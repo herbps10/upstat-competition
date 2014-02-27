@@ -23,5 +23,11 @@ d$gender<-NULL
 # unique(sort(d$firstlanguage))
 # cor(d[sapply(d,is.numeric)],use='pairwise.complete.obs')
 require(homals)
-homals(poi[,1:110],level='n',verbose=3)
+require(psych)
+require(polychor)
+# homals(poi[,1:110],level='n',ndim=3,rank=3)
+dich<-homals(poi[,1:110], ndim = 3, rank = 3, level = "nominal", sets = 0, active = T, eps = 1e-06, itermax = 1000, verbose = 3)
 
+m.tet<-tetrachoric(poi,correct=T,smooth=T)
+fa(m.tet)
+fa.poly(m.tet,n.iter=100,rotate='oblimin',fm='ml',missing=T,symmetric=T)
