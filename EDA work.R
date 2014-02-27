@@ -23,5 +23,5 @@ d$gender<-NULL
 # unique(sort(d$firstlanguage))
 # cor(d[sapply(d,is.numeric)],use='pairwise.complete.obs')
 require(homals)
-
+homals(poi[,1:110],level='n',verbose=3)
 
