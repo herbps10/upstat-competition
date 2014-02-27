@@ -24,10 +24,16 @@ d$gender<-NULL
 # cor(d[sapply(d,is.numeric)],use='pairwise.complete.obs')
 require(homals)
 require(psych)
-require(polychor)
+require(GPArotation)
 # homals(poi[,1:110],level='n',ndim=3,rank=3)
-dich<-homals(poi[,1:110], ndim = 3, rank = 3, level = "nominal", sets = 0, active = T, eps = 1e-06, itermax = 1000, verbose = 3)
+poe<-poi[,1:36]
+pom<-poi[,37:68]
+pos<-poi[,69:110]
 
-m.tet<-tetrachoric(poi,correct=T,smooth=T)
-fa(m.tet)
-fa.poly(m.tet,n.iter=100,rotate='oblimin',fm='ml',missing=T,symmetric=T)
+fe<-fa.poly(poe,nfactors=3,n.iter=100,rotate='oblimin',fm='ml',oblique.scores=T)
+fm<-fa.poly(pom,nfactors=3,n.iter=100,rotate='oblimin',fm='ml',oblique.scores=T)
+fs<-fa.poly(pos,nfactors=3,n.iter=100,rotate='oblimin',fm='ml',oblique.scores=T)
+
+fa.diagram(poe)
+fa.diagram(pom)
+fa.diagram(pos)
