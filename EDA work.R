@@ -30,9 +30,9 @@ pom<-poi[,37:68]
 pos<-poi[,69:110]
 
 #composes correlated factors from domains' multiple choice questions
-fe<-fa.poly(poe,nfactors=2,n.iter=1,rotate='oblimin',fm='ml',oblique.scores=T)
-fm<-fa.poly(pom,nfactors=5,n.iter=1,rotate='oblimin',fm='ml',oblique.scores=T)
-fs<-fa.poly(pos,nfactors=3,n.iter=1,rotate='oblimin',fm='ml',oblique.scores=T)
+fe<-fa.poly(poe,nfactors=2,n.iter=100,rotate='oblimin',fm='ml',oblique.scores=T)
+fm<-fa.poly(pom,nfactors=5,n.iter=100,rotate='oblimin',fm='ml',oblique.scores=T)
+fs<-fa.poly(pos,nfactors=3,n.iter=100,rotate='oblimin',fm='ml',oblique.scores=T)
 
 fa.diagram(fe)
 fa.diagram(fm)
@@ -70,10 +70,10 @@ sci$sitem44<-d$sitem44
 sci$sitem45<-d$sitem45
 
 
-feng<-fa.poly(eng,nfactors=3,n.iter=1,rotate='oblimin',fm='ml',oblique.scores=T)
-fmat<-fa.poly(mat,nfactors=6,n.iter=1,rotate='oblimin',fm='ml',oblique.scores=T)
+feng<-fa.poly(eng,nfactors=3,n.iter=100,rotate='oblimin',fm='ml',oblique.scores=T)
+fmat<-fa.poly(mat,nfactors=6,n.iter=100,rotate='oblimin',fm='ml',oblique.scores=T)
 # don't use this one yet. We can't solve this for solutions before disentangling the two tests.
 # fsci<-fa.poly(sci,nfactors=2,n.iter=1,rotate='oblimin',fm='ml',oblique.scores=T)
 
-
-
+require(NbClust)
+which.test<-NbClust(sci,distance='binary',max.nc=4,method='kmeans')
