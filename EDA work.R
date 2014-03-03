@@ -115,6 +115,7 @@ f.two<-fa.poly(two,nfactors=5,n.iter=1000,rotate='bifactor',fm='minres',oblique.
 fa.diagram(f.two)
 fa.parallel.poly(eng,1000,SMC=T,fm='ml',T)
 
+<<<<<<< HEAD
 f.htwo<-omega(two,nfactors=9,fm="ml",n.iter=1,poly=T,flip=TRUE,digits=3,
       title="English and Math Sections",sl=F,
       plot=TRUE,n.obs=NA,rotate="oblimin")
@@ -128,3 +129,8 @@ demo$eth<-drop.levels(demo$eth,reorder=T)
 demo$quest10<-recode(demo$quest10,"' '=NA")
 demo$quest10<-as.numeric(demo$quest10)
 fa.poly(demo,nfactors=5,n.iter=1,rotate='oblimin',fm='ml',global=F)
+=======
+omega(two,nfactors=10,fm="ml",n.iter=1,poly=T,flip=TRUE,digits=3,
+      title="Omega",sl=F,labels=NULL,
+      plot=TRUE,n.obs=NA,rotate="oblimin")
+>>>>>>> fce11648fca816fd07345425fac464279a7fd3dc
