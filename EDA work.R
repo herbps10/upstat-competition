@@ -71,6 +71,7 @@ sci$sitem45<-d$sitem45
 
 
 feng<-fa.poly(eng,nfactors=3,n.iter=1000,rotate='oblimin',fm='ml',oblique.scores=T)
+fengh<-omega(poe,nfactors=3,n.iter=1,rotate='oblimin',fm='ml',sl=F)
 fa.diagram(feng)
 fmat<-fa.poly(mat,nfactors=5,n.iter=1000,rotate='oblimin',fm='ml',oblique.scores=T)
 
@@ -115,8 +116,8 @@ f.two<-fa.poly(two,nfactors=5,n.iter=1000,rotate='bifactor',fm='minres',oblique.
 fa.diagram(f.two)
 fa.parallel.poly(eng,1000,SMC=T,fm='ml',T)
 
-<<<<<<< HEAD
-f.htwo<-omega(two,nfactors=9,fm="ml",n.iter=1,poly=T,flip=TRUE,digits=3,
+
+f.htwo<-omega(two,nfactors=7,fm="ml",n.iter=1,poly=T,flip=TRUE,digits=3,
       title="English and Math Sections",sl=F,
       plot=TRUE,n.obs=NA,rotate="oblimin")
 
@@ -129,8 +130,61 @@ demo$eth<-drop.levels(demo$eth,reorder=T)
 demo$quest10<-recode(demo$quest10,"' '=NA")
 demo$quest10<-as.numeric(demo$quest10)
 fa.poly(demo,nfactors=5,n.iter=1,rotate='oblimin',fm='ml',global=F)
-=======
-omega(two,nfactors=10,fm="ml",n.iter=1,poly=T,flip=TRUE,digits=3,
-      title="Omega",sl=F,labels=NULL,
-      plot=TRUE,n.obs=NA,rotate="oblimin")
->>>>>>> fce11648fca816fd07345425fac464279a7fd3dc
+
+require(semTools)
+require(lavaan)
+require(mice)
+d2<-d[,3:90]
+# d2[,44:46]<-list(NULL)
+codive <- function(x) {ifelse(x=='+',1,ifelse(x==' ',NA,0))}
+d3<-data.frame(codive(d2))
+d3<-as.data.frame(lapply(d3,factor))
+d3$eitem9<-d2$eitem9
+d3$eitem18<-d$eitem18
+d3$eitem27<-d$eitem27
+d3$eitem35<-d$eitem35
+d3$mitem15<-d$mitem15
+d3$mitem16<-d$mitem16
+d3$mitem17<-d$mitem17
+d3$mitem18<-d$mitem18
+d3$mitem19<-d$mitem19
+d3$mitem20<-d$mitem20
+d3$mitem21<-d$mitem21
+d3$mitem31<-d$mitem31
+d3$mitem41<-d$mitem41
+d3$mitem42<-d$mitem42
+d3$erawsc<-d$erawsc
+d3$mrawsc<-d$mrawsc
+d3$eitem41<-NULL
+d3$eitem42<-NULL
+require(gdata)
+require(car)
+d3<-d3[d3$eth!='M' & d3$eth!='P' & d3$eth!='N' & d3$quest3!='E',]
+d3$eth<-drop.levels(d3$eth,reorder=T)
+
+model1<-lavaan(model="
+f1=~eitem8+eitem13+eitem22+eitem26+eitem28+eitem30+eitem31
+f2=~eitem38+eitem39+eitem40
+f4=~mitem40+mitem42+mitem35+mitem12+mitem11+mitem5
+f5=~mitem6+mitem10+mitem17+mitem39
+f6=~mitem22+mitem28+mitem34+mitem38+mitem31
+f7=~mitem18+mitem20+mitem21+mitem31+mitem41
+erawsc~f1+f2
+mrawsc~f4+f5+f6+f7
+erawsc~~mrawsc",data=d3,model.type='sem',verbose=T)
+
+invariance="f1=~eitem8+eitem13+eitem22+eitem26+eitem28+eitem30+eitem31
+            f2=~eitem38+eitem39+eitem40
+            f4=~mitem40+mitem42+mitem35+mitem12+mitem11+mitem5
+            f5=~mitem6+mitem10+mitem17+mitem39
+            f6=~mitem22+mitem28+mitem34+mitem38+mitem31
+            f7=~mitem18+mitem20+mitem21+mitem31+mitem41
+            erawsc~f1+f2
+            mrawsc~f4+f5+f6+f7"
+
+
+,data=d3,model.type='sem',verbose=T)
+
+
+
+measurementInvariance(invariance,data=d3,group='eth')
