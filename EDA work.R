@@ -63,24 +63,46 @@ mat$mitem31<-d$mitem31
 mat$mitem41<-d$mitem41
 mat$mitem42<-d$mitem42
 
-sci<-d[,96:140]
+sci<-d[,97:140]
 sci<-data.frame(codive(sci))
-sci$sitem23<-d$sitem23
-sci$sitem44<-d$sitem44
-sci$sitem45<-d$sitem45
+
+# sci<-as.data.frame(lapply(sci,factor))
+sci$sitem12<-as.numeric(d$sitem12)
+sci$sitem23<-as.numeric(d$sitem23)
+sci$sitem32<-as.numeric(d$sitem32)
+sci$sitem44<-as.numeric(d$sitem44)
+sci$sitem45<-as.numeric(d$sitem45)
+
+
+
+sci$scitry<-d$scitry
+
+sci1<-sci[sci$scitry==1,]
+sci1$scitry<-NULL
+sci2<-sci[sci$scitry==2,]
+sci2$scitry<-NULL
+sci3<-sci[sci$scitry==3,]
+sci3$scitry<-NULL
+sci4<-sci[sci$scitry==4,]
+sci4$scitry<-NULL
 
 
 feng<-fa.poly(eng,nfactors=3,n.iter=1000,rotate='oblimin',fm='ml',oblique.scores=T)
-fengh<-omega(poe,nfactors=3,n.iter=1,rotate='oblimin',fm='ml',sl=F)
+fengh<-omega(poe,nfactors=3,n.iter=1000,rotate='oblimin',fm='ml',sl=F)
 fa.diagram(feng)
-fmat<-fa.poly(mat,nfactors=5,n.iter=1000,rotate='oblimin',fm='ml',oblique.scores=T)
+fmat<-fa.poly(mat,nfactors=5,n.iter=1,rotate='oblimin',fm='ml',oblique.scores=T)
 
-# don't use this one yet. We can't solve this for solutions before disentangling the two tests.
-# fsci<-fa.poly(sci,nfactors=2,n.iter=1,rotate='oblimin',fm='ml',oblique.scores=T)
+# x<-read.csv('~/Documents/workspace/DataCompete/Student Data Competition/bio.txt')
+# y<-read.csv('~/Documents/workspace/DataCompete/Student Data Competition/phys.txt')
+# This just pulls information that I built using pdftotext and the two MC guides.
 
-##below is just scratchwork, I'll remove it when we've got a solution.
+fsci1<-fa(sci1,nfactors=5,n.iter=25,rotate='oblimin',fm='ml',oblique.scores=T)
+fsci2<-fa.poly(sci2,nfactors=4,n.iter=25,rotate='oblimin',fm='ml',oblique.scores=T)
+# fsci3<-fa.poly(sci3,nfactors=4,n.iter=25,rotate='oblimin',fm='ml',oblique.scores=T)
+# fsci4<-fa.poly(sci4,nfactors=4,n.iter=25,rotate='oblimin',fm='ml',oblique.scores=T)
 
-require(poLCA)
+
+# require(poLCA)
 # codive <- function(x) {ifelse(x=='+',2,ifelse(x==' ',NA,1))}
 
 # sci2<-d[,96:140]
@@ -182,9 +204,4 @@ invariance="f1=~eitem8+eitem13+eitem22+eitem26+eitem28+eitem30+eitem31
             erawsc~f1+f2
             mrawsc~f4+f5+f6+f7"
 
-
-,data=d3,model.type='sem',verbose=T)
-
-
-
-measurementInvariance(invariance,data=d3,group='eth')
+MI.model<-measurementInvariance(invariance,data=d3,group='eth',missing='fiml',bootstrap=75)
