@@ -63,28 +63,68 @@ mat$mitem31<-d$mitem31
 mat$mitem41<-d$mitem41
 mat$mitem42<-d$mitem42
 
-sci<-d[,97:140]
-sci<-data.frame(codive(sci))
 
-# sci<-as.data.frame(lapply(sci,factor))
-sci$sitem12<-as.numeric(d$sitem12)
-sci$sitem23<-as.numeric(d$sitem23)
-sci$sitem32<-as.numeric(d$sitem32)
-sci$sitem44<-as.numeric(d$sitem44)
-sci$sitem45<-as.numeric(d$sitem45)
-
-
-
+codive2<-function(x){ifelse(x==' ',NA,as.numeric(x))}
+require(gdata)
+sci<-d[,96:140]
 sci$scitry<-d$scitry
+da<-sci[sci$scitry==1,]
 
 sci1<-sci[sci$scitry==1,]
+# lapply(sci1,table)
+sci1<-drop.levels(sci1)
+da<-drop.levels(da)
+sci1<-as.data.frame(codive(sci1[sapply(sci1,is.factor)]))
+sci1$sitem12<-codive2(da$sitem12)
+sci1$sitem23<-codive2(da$sitem23)
+sci1$sitem32<-codive2(da$sitem32)
+sci1$sitem44<-codive2(da$sitem44)
+sci1$sitem45<-codive2(da$sitem45)
 sci1$scitry<-NULL
+
 sci2<-sci[sci$scitry==2,]
 sci2$scitry<-NULL
-sci3<-sci[sci$scitry==3,]
+# lapply(sci2,table)
+db<-sci[sci$scitry==2,]
+
+sci2<-drop.levels(sci2)
+db<-drop.levels(db)
+sci2<-as.data.frame(codive(sci2[sapply(sci2,is.factor)]))
+sci2$sitem11<-codive2(db$sitem11)
+sci2$sitem23<-codive2(db$sitem23)
+sci2$sitem33<-codive2(db$sitem33)
+sci2$sitem44<-codive2(db$sitem44)
+sci2$sitem45<-codive2(db$sitem45)
+
+
+sci3<-sci[sci$scitry=3,]
 sci3$scitry<-NULL
+dc<-sci[sci$scitry==3,]
+dc<-drop.levels(dc)
+# lapply(sci3,table)
+
+sci3<-as.data.frame(codive(sci3[sapply(sci3,is.factor)]))
+sci3$sitem12<-codive2(dc$sitem12)
+sci3$sitem23<-codive2(dc$sitem23)
+sci3$sitem32<-codive2(dc$sitem32)
+sci3$sitem44<-codive2(dc$sitem44)
+sci3$sitem45<-codive2(dc$sitem45)
+
+
 sci4<-sci[sci$scitry==4,]
+dd<-drop.levels(dd)
 sci4$scitry<-NULL
+sci4<-drop.levels(sci4)
+dd<-sci[sci$scitry==4,]
+# lapply(sci4,table)
+
+sci4<-as.data.frame(codive(sci4[sapply(sci4,is.factor)]))
+
+sci4$sitem11<-codive2(dd$sitem11)
+sci4$sitem23<-codive2(dd$sitem23)
+sci4$sitem44<-codive2(dd$sitem44)
+sci4$sitem45<-codive2(dd$sitem45)
+
 
 
 feng<-fa.poly(eng,nfactors=3,n.iter=1000,rotate='oblimin',fm='ml',oblique.scores=T)
@@ -96,10 +136,11 @@ fmat<-fa.poly(mat,nfactors=5,n.iter=1,rotate='oblimin',fm='ml',oblique.scores=T)
 # y<-read.csv('~/Documents/workspace/DataCompete/Student Data Competition/phys.txt')
 # This just pulls information that I built using pdftotext and the two MC guides.
 
-fsci1<-fa(sci1,nfactors=5,n.iter=25,rotate='oblimin',fm='ml',oblique.scores=T)
+fsci1<-fa.poly(sci1,nfactors=5,n.iter=25,rotate='oblimin',fm='ml',oblique.scores=T)
 fsci2<-fa.poly(sci2,nfactors=4,n.iter=25,rotate='oblimin',fm='ml',oblique.scores=T)
-# fsci3<-fa.poly(sci3,nfactors=4,n.iter=25,rotate='oblimin',fm='ml',oblique.scores=T)
-# fsci4<-fa.poly(sci4,nfactors=4,n.iter=25,rotate='oblimin',fm='ml',oblique.scores=T)
+
+fsci3<-fa.poly(sci3,nfactors=6,n.iter=25,rotate='oblimin',fm='ml',oblique.scores=T)
+fsci4<-fa.poly(sci4,nfactors=6,n.iter=25,rotate='oblimin',fm='ml',oblique.scores=T)
 
 
 # require(poLCA)
@@ -184,16 +225,6 @@ require(car)
 d3<-d3[d3$eth!='M' & d3$eth!='P' & d3$eth!='N' & d3$quest3!='E',]
 d3$eth<-drop.levels(d3$eth,reorder=T)
 
-model1<-lavaan(model="
-f1=~eitem8+eitem13+eitem22+eitem26+eitem28+eitem30+eitem31
-f2=~eitem38+eitem39+eitem40
-f4=~mitem40+mitem42+mitem35+mitem12+mitem11+mitem5
-f5=~mitem6+mitem10+mitem17+mitem39
-f6=~mitem22+mitem28+mitem34+mitem38+mitem31
-f7=~mitem18+mitem20+mitem21+mitem31+mitem41
-erawsc~f1+f2
-mrawsc~f4+f5+f6+f7
-erawsc~~mrawsc",data=d3,model.type='sem',verbose=T)
 
 invariance="f1=~eitem8+eitem13+eitem22+eitem26+eitem28+eitem30+eitem31
             f2=~eitem38+eitem39+eitem40
