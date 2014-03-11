@@ -203,7 +203,7 @@ d2<-d[,3:90]
 # d2[,44:46]<-list(NULL)
 codive <- function(x) {ifelse(x=='+',1,ifelse(x==' ',NA,0))}
 d3<-data.frame(codive(d2))
-d3<-as.data.frame(lapply(d3,factor))
+# d3<-as.data.frame(lapply(d3,factor))
 d3$eitem9<-d2$eitem9
 d3$eitem18<-d$eitem18
 d3$eitem27<-d$eitem27
@@ -223,10 +223,11 @@ d3$mrawsc<-d$mrawsc
 d3$eitem41<-NULL
 d3$eitem42<-NULL
 
-#d3<-d3[d3$eth!='M' & d3$eth!='P' & d3$eth!='N' & d3$quest3!='E',]
-d3<-d3[d3$eth!='M' & d3$eth!='P' & d3$eth!='N' & d3$quest3!='E',]
+#d3<-d3[d3$eth!='M' & d3$eth!='P' & d3$eth!='N',]
+d3$eth<-d$eth
+d3<-d3[d3$eth!='M' & d3$eth!='P' & d3$eth!='N',]
+require(gdata)
 d3$eth<-drop.levels(d3$eth,reorder=T)
-
 
 invariance="f1=~eitem8+eitem13+eitem22+eitem26+eitem28+eitem30+eitem31
             f2=~eitem38+eitem39+eitem40
@@ -266,4 +267,4 @@ sci1$eth<-da$eth
 sci1<-sci1[sci1$eth !='M' & sci1$eth !='P' & sci1$eth !='N',]
 sci1$eth<-drop.levels(sci1$eth,reorder=T)
 
-MI.model2<-measurementInvariance(sci_inv,data=sci1,group='eth',missing='fiml',bootstrap=75)
+MI.model2<-measurementInvariance(sci_inv,data=sci1,group='eth',missing='fiml',bootstrap=100)
