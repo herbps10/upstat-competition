@@ -1,0 +1,44 @@
+% !Rnw weave = knitr
+\documentclass{article}
+
+\usepackage{cite}
+\begin{document}
+
+<<setup, include=FALSE, cache=FALSE, echo=FALSE>>=
+Sys.setenv(TEXINPUTS=getwd(), 
+           BIBINPUTS=getwd(), 
+           BSTINPUTS=getwd())
+@
+
+\title{Analysis of Massachusetts Standardized Testing Data through Structural Equation Modelling}
+\date{March 24, 2014}
+\author{Landon Hurley\\ Psychology, SUNY Geneseo \and Herb Susmann\\ Mathematics, SUNY Geneseo}
+
+\maketitle
+
+\section*{Abstract}
+
+\section*{Introduction}
+
+\section*{Data}
+
+The Massachusetts Compreshensive Assessment System (MCAS) is a standardized test administered to Massachusetts public school students in grades 3-10 since 1998. We examine a random sample of 10,515 10th grade student's results from the 2009 MCAS test. The data also contains basic demographic information for each student.
+
+The test consists of english, mathematics and science components. Every student takes a English and Mathematics tests; the science component can be fulfilled by taking either a Biology, Chemistry, Introductory Physics, or Technology/Engineering test. \cite{mcas_summary}
+
+Each test consists of multiple choice and short answer type questions. 
+
+\section*{Methods}
+Description of SEM
+
+\section*{Results}
+
+\section*{Discussion}
+Could also include ideas for other questions to ask in the questionairre
+
+\section*{Works Cited}
+
+\bibliography{references}{}
+\bibliographystyle{plain}
+
+\end{document}

@@ -198,6 +198,7 @@ fa.poly(demo,nfactors=5,n.iter=1,rotate='oblimin',fm='ml',global=F)
 require(semTools)
 require(lavaan)
 require(mice)
+
 d2<-d[,3:90]
 # d2[,44:46]<-list(NULL)
 codive <- function(x) {ifelse(x=='+',1,ifelse(x==' ',NA,0))}
@@ -222,6 +223,7 @@ d3$mrawsc<-d$mrawsc
 d3$eitem41<-NULL
 d3$eitem42<-NULL
 
+#d3<-d3[d3$eth!='M' & d3$eth!='P' & d3$eth!='N' & d3$quest3!='E',]
 d3<-d3[d3$eth!='M' & d3$eth!='P' & d3$eth!='N' & d3$quest3!='E',]
 d3$eth<-drop.levels(d3$eth,reorder=T)
 
