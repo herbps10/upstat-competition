@@ -33,8 +33,25 @@ Description of SEM
 
 \section*{Results}
 
+- Questionairre results - regression tree 
+
+Results from "omega" exploratory data analysis
+- diagram of factor loadings
+
+Model Structure
+
+Table
+- Results from factor invariance
+
 \section*{Discussion}
+Test doesn't work the same across races
+
+Could be because of SES?
+
+Questionairre results
+
 Could also include ideas for other questions to ask in the questionairre
+
 
 \section*{Works Cited}
 
