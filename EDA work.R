@@ -238,7 +238,9 @@ invariance="f1=~eitem8+eitem13+eitem22+eitem26+eitem28+eitem30+eitem31
             erawsc~f1+f2
             mrawsc~f4+f5+f6+f7"
 
-MI.model<-measurementInvariance(invariance,data=d3,group='eth',missing='fiml',bootstrap=75)
+MI.model<-measurementInvariance(invariance,data=d3,group='eth',missing='fiml',bootstrap=100)
+
+
 
 sci_inv<-'f3=~sitem1+sitem2+sitem13+sitem14+sitem15+sitem22+sitem27+sitem30+sitem33+sitem34+sitem37+sitem40+sitem41
 f2=~sitem3+sitem5+sitem18+sitem19+sitem28+sitem31+sitem35+sitem43+sitem45
@@ -267,4 +269,17 @@ sci1$eth<-da$eth
 sci1<-sci1[sci1$eth !='M' & sci1$eth !='P' & sci1$eth !='N',]
 sci1$eth<-drop.levels(sci1$eth,reorder=T)
 
-MI.model2<-measurementInvariance(sci_inv,data=sci1,group='eth',missing='fiml',bootstrap=100)
+MI.model2<-measurementInvariance(sci_inv,data=sci1,group='eth',missing='fiml',bootstrap=100,strict=T,test='Bollen.Stine')
+
+
+d4<-d[,145:172]
+d5<-d[,c(170,141,91,45)]
+d4<-merge(d4,d5,by='id')
+require(mvpart)
+d4$id<-NULL
+fit1<-mvpart(cbind(d$mrawsc,d$erawsc,d$srawsc)~sex+eth,data=d4,)
+
+summary(manova(cbind(d$mrawsc,d$erawsc,d$srawsc)~.,d4))
+
+
+
