@@ -1,0 +1,64 @@
+% This file was created with JabRef 2.7b.
+% Encoding: UTF-8
+
+@STANDARD{mcas_summary,
+  title = {Spring 2009 MCAS Tests: Summary of State Results},
+  organization = {Massachusetts Department of Elementary and Secondary Education},
+  month = {September},
+  year = {2009},
+  owner = {herb},
+  timestamp = {2014.03.09}
+}
+@Manual{,
+  title = {semTools: Useful tools for structural equation modeling.},
+  author = {Sunthud Pornprasertmanit and Patrick Miller and Alexander Schoemann and Yves Rosseel},
+  year = {2013},
+  note = {R package version 0.4-0},
+  url = {http://CRAN.R-project.org/package=semTools},
+}
+
+@Article{,
+  title = {{lavaan}: An {R} Package for Structural Equation Modeling},
+  author = {Yves Rosseel},
+  journal = {Journal of Statistical Software},
+  year = {2012},
+  volume = {48},
+  number = {2},
+  pages = {1--36},
+  url = {http://www.jstatsoft.org/v48/i02/},
+}
+@Article{,
+  title = {{mice}: Multivariate Imputation by Chained Equations in R},
+  author = {Stef {van Buuren} and Karin Groothuis-Oudshoorn},
+  journal = {Journal of Statistical Software},
+  year = {2011},
+  volume = {45},
+  number = {3},
+  pages = {1--67},
+  url = {http://www.jstatsoft.org/v45/i03/},
+}
+@article{gaudet2000effective,
+  title={Effective school districts in Massachusetts},
+  author={Gaudet, Robert D},
+  journal={The Donahue Institute, Boston},
+  year={2000}
+}
+@article{meredith1993measurement,
+  title={Measurement invariance, factor analysis and factorial invariance},
+  author={Meredith, William},
+  journal={Psychometrika},
+  volume={58},
+  number={4},
+  pages={525--543},
+  year={1993},
+  publisher={Springer}
+}
+
+@comment{jabref-meta: selector_publisher:}
+
+@comment{jabref-meta: selector_author:}
+
+@comment{jabref-meta: selector_journal:}
+
+@comment{jabref-meta: selector_keywords:}
+
