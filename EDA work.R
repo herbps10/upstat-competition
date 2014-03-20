@@ -111,14 +111,6 @@ require(gdata)
 d3$eth<-drop.levels(d3$eth,reorder=T)
 d2$eth<-drop.levels(d2$eth,reorder=T)
 
-invariance="f1=~eitem8+eitem13+eitem22+eitem26+eitem28+eitem30+eitem31
-            f2=~eitem38+eitem39+eitem40
-            f4=~mitem40+mitem42+mitem35+mitem12+mitem11+mitem5
-            f5=~mitem6+mitem10+mitem17+mitem39
-            f6=~mitem22+mitem28+mitem34+mitem38+mitem31
-            f7=~mitem18+mitem20+mitem21+mitem31+mitem41
-            erawsc~f1+f2
-            mrawsc~f4+f5+f6+f7"
 engl<-'
 e1=~eitem8+eitem10+eitem11+eitem12+eitem13+eitem16+eitem17+eitem20+eitem21+eitem22+eitem23+eitem24+eitem25+eitem26+eitem28+eitem29+eitem30+eitem31+eitem32+eitem33+eitem34+eitem36+eitem37
 e2=~eitem27+eitem35+eitem9+eitem18
@@ -136,47 +128,49 @@ s4=~sitem4+sitem23+sitem29+sitem32+sitem44
 srawsc~s1+s2+s3+s4'
   
   
-MI.model<-measurementInvariance(invariance,d2,group='eth',missing='fiml',bootstrap=1000)
-MI.all<-measurementInvariance(all,d3,group='eth',missing='fiml',bootstrap=100)
+MI.eng<-measurementInvariance(engl,d3,group='eth',missing='fiml',bootstrap=150,strict=T)
+MI.maths<-measurementInvariance(maths,d3,group='eth',missing='fiml',bootstrap=150,strict=T)
+MI.scien<-measurementInvariance(scien,d3,group='eth',missing='fiml',bootstrap=150,strict=T)
+
+fitMeasures(MI.eng$fit.configural, c('chisq','tli', 'cfi','rmsea','aic'))
+fitMeasures(MI.eng$fit.loadings, c('chisq','tli', 'cfi','rmsea','aic'))
+fitMeasures(MI.eng$fit.intercepts, c('chisq','tli', 'cfi','rmsea','aic'))
+fitMeasures(MI.eng$fit.residuals, c('chisq','tli', 'cfi','rmsea','aic'))
+fitMeasures(MI.eng$fit.means, c('chisq','tli', 'cfi','rmsea','aic'))
+
+fitMeasures(MI.maths$fit.configural, c('chisq','tli', 'cfi','rmsea','aic'))
+fitMeasures(MI.maths$fit.loadings, c('chisq','tli', 'cfi','rmsea','aic'))
+fitMeasures(MI.maths$fit.intercepts, c('chisq','tli', 'cfi','rmsea','aic'))
+fitMeasures(MI.maths$fit.residuals, c('chisq','tli', 'cfi','rmsea','aic'))
+fitMeasures(MI.maths$fit.means, c('chisq','tli', 'cfi','rmsea','aic'))
+
+fitMeasures(MI.scien$fit.configural, c('chisq','tli', 'cfi','rmsea','aic'))
+fitMeasures(MI.scien$fit.loadings, c('chisq','tli', 'cfi','rmsea','aic'))
+fitMeasures(MI.scien$fit.intercepts, c('chisq','tli', 'cfi','rmsea','aic'))
+fitMeasures(MI.scien$fit.residuals, c('chisq','tli', 'cfi','rmsea','aic'))
+fitMeasures(MI.scien$fit.means, c('chisq','tli', 'cfi','rmsea','aic'))
 
 
-MI.eng<-measurementInvariance(engl,d3,group='eth',missing='fiml',bootstrap=50,strict=T)
-MI.maths<-measurementInvariance(maths,d3,group='eth',missing='fiml',bootstrap=50,strict=T)
-MI.scien<-measurementInvariance(scien,d3,group='eth',missing='fiml',bootstrap=50,strict=T)
-
-
-
-fitMeasures(MI.loadings, c('chisq','tli', 'cfi','rmsea','aic'))
-fitMeasures(MI.intercepts, c('chisq','tli', 'cfi','rmsea','aic'))
-fitMeasures(MI.means, c('chisq','tli', 'cfi','rmsea','aic'))
-fitMeasures(MI.residuals, c('chisq','tli', 'cfi','rmsea','aic'))
-
-second<-'
-e1=~eitem8+eitem10+eitem11+eitem12+eitem13+eitem16+eitem17+eitem20+eitem21+eitem22+eitem23+eitem24+eitem25+eitem26+eitem28+eitem29+eitem30+eitem31+eitem32+eitem33+eitem34+eitem36+eitem37
-e2=~eitem27+eitem35+eitem9+eitem18
-e3=~eitem38+eitem39+eitem40
-erawsc~e1+e2+e3
-m1=~mitem4+mitem5+mitem8+mitem11+mitem12+mitem14+mitem25+mitem32+mitem35+mitem37+mitem40+mitem42
-m2=~mitem6+mitem10+mitem17+mitem24+mitem39
-m3=~mitem22+mitem28+mitem34+mitem38+mitem41
-m4=~mitem18+mitem20+mitem21+mitem31+mitem42
-m5=~mitem2+mitem3+mitem9+mitem18+mitem19
-mrawsc~m1+m2+m3+m4+m5'
-
-measurementInvariance(second,d2,group='eth',missing='fiml',bootstrap=100)
-
-
-
-d4<-d[,c(147:172,45,91,141)]
+d4<-d[,c(145:172,45,91,141,95)]
 require(mvpart)
-fit1<-mvpart(cbind(mrawsc,erawsc,srawsc)~.,data=d4,rsq=T)
-require(mice)
-d5<-mice(d4,m=25,maxit=25,defaultMethod = c("norm","logreg","polyreg"))
-summary(manova(cbind(mrawsc,erawsc,srawsc)~.,d4))
-summary(lm(cbind(mrawsc,erawsc,srawsc)~.,d4))
+fit<-mvpart(cbind(mrawsc,erawsc,srawsc)~.,d4)
 
-summary(with(d5,manova(cbind(mrawsc,erawsc,srawsc)~.)))
-summary(with(d5,lm(cbind(mrawsc,erawsc,srawsc)~.,d4)))
+require(foreign)
+a<-read.spss('/home/landon/Documents/workspace/DataCompete/Student Data Competition/missingDataCoded.sav',use.value.labels=T,to.data.frame=T,use.missings=T)
+
+d5<-a[,c(147:171,47,93,143,97,2,3)]
+colnames(d5)<-tolower(colnames(d5))
+d5$eth<-d5$race_off
+d5$race_off<-NULL
+
+
+require(mice)
+d6<-mice(d5,m=13,maxit=15,defaultMethod = c("norm","logreg","polyreg"))
+summary(manova(cbind(mrawsc,erawsc,srawsc)~.,d5))
+summary(lm(cbind(mrawsc,erawsc,srawsc)~.,d5))
+
+summary(with(d6,manova(cbind(mrawsc,erawsc,srawsc)~.)))
+summary(with(d6,lm(cbind(mrawsc,erawsc,srawsc)~.)))
 
 # require(VIM)
 # a$erawsc<-a$emcpts<-a$eorpts<-a$ecpi<-a$mrawsc<-a$mmcpts<-a$morpts<-a$mcpi<-a$srawsc<-a$smcpts<-a$sorpts<-a$scpi<-a$eitem41<-a$eitem42<-a$scitry<-NULL

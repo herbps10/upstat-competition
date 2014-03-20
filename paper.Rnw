@@ -61,15 +61,16 @@ Given the preceeding information, we examined the Mathematics, English, and Biol
 \subsection{MG-CFA}
 As a consequence of the unequal numbers of test takers between Biology and the rest of the science exam options, we chose to run two separate tests for measurement invariance: the first was composed of the total sample on the English and Mathematics, and the second was composed of the Biology testees ($N$=9,239); exploratory factor analyses (EFA) presented the following results:
 <<fig=T>>=
-fa.diagram(feng)
+setwd('~/Documents/workspace/DataCompete/upstat-competition')
+fa.diagram(feng,main='English Oblimin')
 @
 
 <<fig=T>>=
-fa.diagram(fmat)
+fa.diagram(fmat,main='Mathematics Oblimin')
 @
 
 <<fig=T>>=
-fa.diagram(fsci1)
+fa.diagram(fsci1,main='Biology Oblimin')
 @
 
 These were subsequently specified using a FIML procedure with bootstrapped sampling within the four primary ethnicities: A,B,H,W. Other ethnicities were excluded because of their relative rarity within the sample. As a consequence of the $\chi$\textsuperscript{2} fit statistic, defined as \begin{equation} \chi^2_{d.f}=2(N-1) * F_0 \end{equation} scales as a function of both sample size and the minimum function test statistic $F_0$, traditional measurement invariance, which uses changes in significance to reject a constraint, fails here, as the sample size guarantees significant results. In response to this fact, we employ three different fitness criterion: the $\Delta$ Comparative Fit Index (CFI) \cite{Bentler}, the $\Delta$ root mean square error of approximation (RMSEA), and the $\Delta$ Tucker-Lewis Index (TLI) \cite{Chen}. For all three, decreases in model fit of greater than .01 are considered significant reductions in model fit. In addition, we include An (Akaike) Information Criterion (AIC), to demonstrate whether model fit increases or decreases between sequential steps in comparison to the theoretical true model.
@@ -98,11 +99,16 @@ fitMeasures(MI.eng$fit.loadings, c('chisq','tli', 'cfi','rmsea','aic'))
 @
 
 \subsubsection{Strong Invariance}
-Strong Invariance does substantively change model fit above and beyond weak invariance: $\Delta$ CFI = .002, $\Delta$ RMSEA =. , and the $\Delta$ TLI = and $\Delta$$\chi^2$=187.875. As a consequence, strict invariance is not tested, because by definition it cannot hold.
+Strong Invariance is established using the model fit indexes above and beyond weak invariance: $\Delta$ CFI = .002, $\Delta$ RMSEA = .000 , and the $\Delta$ TLI =.000 and $\Delta$$\chi^2$=187.875.
 <<>>=
 fitMeasures(MI.eng$fit.intercepts, c('chisq','tli', 'cfi','rmsea','aic'))
 @
 
+\subsubsection{Strict Invariance}
+Strict invariance does not hold, with a significant $\Delta$ CFI = .034, $\Delta$ RMSEA = .006, $\Delta$$\chi^2$=1670.297, and the $\Delta$ TLI = .03 indicating lack of fit.
+<<>>=
+fitMeasures(MI.eng$fit.residuals, c('chisq','tli', 'cfi','rmsea','aic'))
+@
 \subsection{Mathematics}
 While the EFA presented a good model fit for a five factor model, when the SEM model imposed upon the data, it failed to converge due to underspecification. As such, factor 5 was removed, because it consisted of only four low loading items.
 <<>>=
@@ -115,22 +121,29 @@ mrawsc~m1+m2+m3+m4
 
 \subsubsection{Configural Invariance}
 <<>>=
-fitMeasures(MI.eng$fit.configural, c('chisq','tli', 'cfi','rmsea','aic'))
+fitMeasures(MI.maths$fit.configural, c('chisq','tli', 'cfi','rmsea','aic'))
 @
 As the summary statistics given in the analyses show, configural invariance is supported, meaning that all four ethnicities employ the same conceptual frameworks to answer the test items. 
 \subsubsection{Metric (Weak) Invariance}
-Weak Invariance does impact the model fit compared to step 1, however negligably: $\Delta$ CFI = .002, $\Delta$ RMSEA =. , $\Delta$$\chi^2$=187.875, and the $\Delta$ TLI =.
+Weak Invariance does impact the model fit compared to step 1, however negligably: $\Delta$ CFI = .004, $\Delta$ RMSEA = .001 , $\Delta$$\chi^2$=260.076, and the $\Delta$ TLI = .002.
 
 <<>>=
-fitMeasures(MI.eng$fit.loadings, c('chisq','tli', 'cfi','rmsea','aic'))
+fitMeasures(MI.maths$fit.loadings, c('chisq','tli', 'cfi','rmsea','aic'))
 @
 
 \subsubsection{Strong Invariance}
-Strong Invariance does substantively change model fit above and beyond weak invariance: $\Delta$ CFI = .002, $\Delta$ RMSEA =. , and the $\Delta$ TLI = and $\Delta$$\chi^2$=187.875. As a consequence, strict invariance is not tested, because by definition it cannot hold.
+Strong Invariance does not substantively change model fit above and beyond weak invariance: $\Delta$ CFI = .002, $\Delta$ RMSEA = .000, the $\Delta$ TLI = .000 and $\Delta$$\chi^2$=167.652. 
+
 <<>>=
-fitMeasures(MI.eng$fit.intercepts, c('chisq','tli', 'cfi','rmsea','aic'))
+fitMeasures(MI.maths$fit.intercepts, c('chisq','tli', 'cfi','rmsea','aic'))
 @
 
+\subsubsection{Strict Invariance}
+Strong Invariance imposes a significant constraint upon model fit: $\Delta$ CFI = .017, $\Delta$ RMSEA = .005, the $\Delta$ TLI = .014 and $\Delta$$\chi^2$=998.348. 
+
+<<>>=
+fitMeasures(MI.maths$fit.residuals, c('chisq','tli', 'cfi','rmsea','aic'))
+@
 
 \subsection{Biology}
 We proceeded with the same methodology to test the science section in isolation, using identical $\Delta$ constraints as above. The test for configural invariance produced non-significant results, indicating general acceptance of the factor structure. In addition, each subsequent test produced similar results, indicating that across all four primary ethnicities, the test operated with equivalent measurement. Biology as presented an interpretable factor structure, which was represented with the following mathematical structure.
@@ -148,28 +161,34 @@ fitMeasures(MI.eng$fit.configural, c('chisq','tli', 'cfi','rmsea','aic'))
 @
 As the summary statistics given in the analyses show, configural invariance is supported, meaning that all four ethnicities employ the same conceptual frameworks to answer the test items. 
 \subsubsection{Metric (Weak) Invariance}
-Weak Invariance does impact the model fit compared to step 1, however negligably: $\Delta$ CFI = .002, $\Delta$ RMSEA =. , $\Delta$$\chi^2$=187.875, and the $\Delta$ TLI =.
+Weak Invariance does impact the model fit compared to step 1, however negligably: $\Delta$ CFI = .002, $\Delta$ RMSEA = .000 , $\Delta$$\chi^2$=168.330, and the $\Delta$ TLI = .000.
 
 <<>>=
 fitMeasures(MI.eng$fit.loadings, c('chisq','tli', 'cfi','rmsea','aic'))
 @
 
 \subsubsection{Strong Invariance}
-Strong Invariance does substantively change model fit above and beyond weak invariance: $\Delta$ CFI = .002, $\Delta$ RMSEA =. , and the $\Delta$ TLI = and $\Delta$$\chi^2$=187.875. As a consequence, strict invariance is not tested, because by definition it cannot hold.
+Strong Invariance does fails to substantively change model fit above and beyond metric invariance: $\Delta$ CFI = .002, $\Delta$ RMSEA = .000 , and the $\Delta$ TLI = .000 and $\Delta$$\chi^2$=187.875. 
 <<>>=
 fitMeasures(MI.eng$fit.intercepts, c('chisq','tli', 'cfi','rmsea','aic'))
 @
 
+\subsubsection{Strict Invariance}
+Strict Invariance does substantively change model fit above and beyond strong invariance: $\Delta$ CFI = .034, $\Delta$ RMSEA = .006 , and the $\Delta$ TLI = .03 and $\Delta$$\chi^2$=1670.297. 
+<<>>=
+fitMeasures(MI.eng$fit.residuals, c('chisq','tli', 'cfi','rmsea','aic'))
+@
+
 \subsection{Questionnaire}
 \subsubsection{Multivariate Regression Tree}
-Without preexisting beliefs about the nature of the relationship between the response surface and the questionnaire and demographics, we chose to begin the analyses with an undirected multivariate tree regression \cite{De'ath}, conceptually similar to running a multinomial regression upon the different clusters of the response variables. 
+Without preexisting beliefs about the nature of the relationship between the response surface and the questionnaire and demographics, we chose to begin the analyses with an undirected multivariate tree regression \cite{De'ath}, conceptually similar to running a multinomial regression upon the different clusters analysis groups of the response variables. The tree also tests by default the possibility that which science test a student takes interacts with other outcomes --in addition, forcibly partitioning the data does not meaningfully increase model fit. We also made the decision to leave non-response as a legitimate factor level: this allows us to incorporate nonresponse as a partitioning criterion.
 
 <<fig=T>>=
 require(mvpart)
 mvpart(cbind(mrawsc,erawsc,srawsc)~.,data=d4,rsq=T)
 @
 
-These results indicate substantive effects between the future student aspirations (those who intended to attain a baccalaureate degree) and overall performance, with these students performing significantly better on all three sections. The failure for the function to further discretize the high achievers indicates that the individual differences wihin accounted for no additional information. For lower aspiring students, Ethnicity was found to be the second most important in discriminating test scores, with Blacks, Hispanics and Native Americans performing similarly worse on the Mathematics and Biology sections than the other ethnicities. The final node split discriminates between high and low scoring science students, with those who responded as rarely using scientific instruments performing worse. Cross-validated errors were high, at CVE=.905, which corresponds to $R^2$=.15
+These results indicate substantive effects between the future student aspirations (those who intended to attain a baccalaureate degree) and overall performance, with these students performing significantly better on all three sections. The failure for the function to further discretize the low achievers indicates that the individual differences wihin accounted for no additional information. For high aspiring students, ethnicity was found to be the second most important in discriminating test scores, with Blacks, Hispanics and Native Americans performing similarly worse on the Mathematics and Biology sections than the other ethnicities. The final node split discriminates between high and low scoring science students, with those who responded as rarely using scientific instruments performing worse. Cross-validated errors were high, at CVE=.905, which corresponds to $R^2$=.15
 \subsubsection{Multivariate Regression}
 A parametric regression model was also conducted exploring only main effects between the predictors and response. Multivariate and univariate responses were found within the tests
 
