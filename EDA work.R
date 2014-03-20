@@ -36,9 +36,10 @@ sci1<-d[d$scitry==1,c(95:140,170)]
 require(gdata)
 sci1<-as.data.frame(lapply(sci1,drop.levels))
 scix<-sci1[,c(13,24,33,45,46,47)]
+sci1$sitem12<-sci1$sitem32<-NULL
 sci1<-as.data.frame(cbind(codive(sci1[sapply(sci1,is.factor)]),sci1$id))
-sci1$id<-sci1$V43
-sci1$V43<-NULL
+sci1$id<-sci1$V41
+sci1$V41<-NULL
 
 scix[scix==' ']<-NA
 scix<-as.data.frame(lapply(scix,as.integer))
@@ -50,7 +51,6 @@ scixx<-sci2[,c(12,24,34,45,46,47)]
 sci2<-as.data.frame(cbind(codive(sci2[sapply(sci2,is.factor)]),sci2$id))
 sci2$id<-sci2$V43
 sci2$V43<-NULL
-
 scixx[scixx==' ']<-NA
 scixx<-as.data.frame(lapply(scixx,as.integer))
 sci2<-merge(sci2,scixx,by='id')
@@ -78,36 +78,38 @@ scixxxx<-as.data.frame(lapply(scixxxx,as.integer))
 sci4<-merge(sci4,scixxxx,by='id')
 
 require(psych)
-feng<-fa.poly(eng,nfactors=3,n.iter=1000,rotate='oblimin',fm='ml',oblique.scores=T)
+feng<-fa.poly(eng[,c(2:41)],nfactors=3,n.iter=10,rotate='oblimin',fm='ml',oblique.scores=T)
 # fengh<-omega(poe,nfactors=3,n.iter=1000,rotate='oblimin',fm='ml',sl=F)
 fa.diagram(feng)
 fmat<-fa.poly(mat,nfactors=5,n.iter=1000,rotate='oblimin',fm='ml',oblique.scores=T)
 
-fsci1<-fa.poly(sci1,nfactors=4,n.iter=1,rotate='oblimin',fm='ml',oblique.scores=T)
+fsci1<-fa.poly(sci1,nfactors=4,n.iter=100,rotate='oblimin',fm='ml',oblique.scores=T)
 
 ##Below gives us two of the three domains to work with.
 two<-merge(eng,mat,by='id')
-f.two<-fa.poly(two,nfactors=5,n.iter=1000,rotate='oblimin',fm='ml',oblique.scores=T)
+f.two<-fa.poly(two,nfactors=5,n.iter=100,rotate='oblimin',fm='ml',oblique.scores=T)
 fa.diagram(f.two)
 fa.parallel.poly(two,1000,SMC=T,fm='ml',T)
 
 
-f.htwo<-omega(two,nfactors=7,fm="ml",n.iter=1,poly=T,flip=TRUE,digits=3,
-      title="English and Math Sections",sl=F,
-      plot=TRUE,n.obs=NA,rotate="oblimin")
+# f.htwo<-omega(two,nfactors=7,fm="ml",n.iter=1,poly=T,flip=TRUE,digits=3,
+#       title="English and Math Sections",sl=F,
+#       plot=TRUE,n.obs=NA,rotate="oblimin")
 
 require(semTools)
 require(lavaan)
 require(mice)
 
 two<-merge(eng,mat,by='id')
-d1<-d[,c(170:172)]
+d1<-d[,c(170:172,45,91,141)]
 two<-merge(two,d1,by='id')
-#d3<-d3[d3$eth!='M' & d3$eth!='P' & d3$eth!='N',]
-d3$eth<-d$eth
-d3<-d3[d3$eth!='M' & d3$eth!='P' & d3$eth!='N',]
+three<-merge(two,sci1,by='id')
+d3<-three[three$eth!='M' & three$eth!='P' & three$eth!='N',]
+d2<-two[two$eth!='M' & two$eth!='P' & two$eth!='N',]
+
 require(gdata)
 d3$eth<-drop.levels(d3$eth,reorder=T)
+d2$eth<-drop.levels(d2$eth,reorder=T)
 
 invariance="f1=~eitem8+eitem13+eitem22+eitem26+eitem28+eitem30+eitem31
             f2=~eitem38+eitem39+eitem40
@@ -117,44 +119,65 @@ invariance="f1=~eitem8+eitem13+eitem22+eitem26+eitem28+eitem30+eitem31
             f7=~mitem18+mitem20+mitem21+mitem31+mitem41
             erawsc~f1+f2
             mrawsc~f4+f5+f6+f7"
-
-MI.model<-measurementInvariance(invariance,data=d3,group='eth',missing='fiml',bootstrap=1000)
-
-
-sci_inv<-'f3=~sitem1+sitem2+sitem13+sitem14+sitem15+sitem22+sitem27+sitem30+sitem33+sitem34+sitem37+sitem40+sitem41
-f2=~sitem3+sitem5+sitem18+sitem19+sitem28+sitem31+sitem35+sitem43+sitem45
-f1=~sitem8+sitem10+sitem11+sitem12+sitem24+sitem23
-f4=~sitem4+sitem29+sitem32+sitem44
-srawsc~f1+f2+f3+f4'
-
-sci<-d[,96:140]
-sci$srawsc<-d$srawsc
-sci$scitry<-d$scitry
-sci$eth<-d$eth
-sci1<-sci[sci$scitry==1,]
-da<-sci1
-# lapply(sci1,table)
-sci1<-drop.levels(sci1)
-da<-drop.levels(da)
-sci1<-as.data.frame(codive(sci1[sapply(sci1,is.factor)]))
-sci1$sitem12<-codive2(da$sitem12)
-sci1$sitem23<-codive2(da$sitem23)
-sci1$sitem32<-codive2(da$sitem32)
-sci1$sitem44<-codive2(da$sitem44)
-sci1$sitem45<-codive2(da$sitem45)
-sci1$scitry<-NULL
-sci1$srawsc<-da$srawsc
-sci1$eth<-da$eth
-sci1<-sci1[sci1$eth !='M' & sci1$eth !='P' & sci1$eth !='N',]
-sci1$eth<-drop.levels(sci1$eth,reorder=T)
+engl<-'
+e1=~eitem8+eitem10+eitem11+eitem12+eitem13+eitem16+eitem17+eitem20+eitem21+eitem22+eitem23+eitem24+eitem25+eitem26+eitem28+eitem29+eitem30+eitem31+eitem32+eitem33+eitem34+eitem36+eitem37
+e2=~eitem27+eitem35+eitem9+eitem18
+e3=~eitem38+eitem39+eitem40
+erawsc~e1+e2+e3'
+maths<-'m1=~mitem11+mitem12+mitem14+mitem25+mitem32+mitem35+mitem37+mitem40
+m2=~mitem6+mitem10+mitem17+mitem24+mitem39
+m3=~mitem22+mitem28+mitem34+mitem38+mitem41
+m4=~mitem18+mitem20+mitem21+mitem31+mitem42
+mrawsc~m1+m2+m3+m4'
+scien<-'s1=~sitem1+sitem2+sitem13+sitem14+sitem15+sitem22+sitem27+sitem30+sitem33+sitem34+sitem37+sitem40+sitem41
+s2=~sitem3+sitem5+sitem18+sitem19+sitem28+sitem31+sitem35+sitem43+sitem45
+s3=~sitem8+sitem10+sitem11+sitem12+sitem23+sitem24+sitem25+sitem23
+s4=~sitem4+sitem23+sitem29+sitem32+sitem44
+srawsc~s1+s2+s3+s4'
+  
+  
+MI.model<-measurementInvariance(invariance,d2,group='eth',missing='fiml',bootstrap=1000)
+MI.all<-measurementInvariance(all,d3,group='eth',missing='fiml',bootstrap=100)
 
 
-d4<-d[,c(147:171,93,47,143)]
+MI.eng<-measurementInvariance(engl,d3,group='eth',missing='fiml',bootstrap=50,strict=T)
+MI.maths<-measurementInvariance(maths,d3,group='eth',missing='fiml',bootstrap=50,strict=T)
+MI.scien<-measurementInvariance(scien,d3,group='eth',missing='fiml',bootstrap=50,strict=T)
+
+
+
+fitMeasures(MI.loadings, c('chisq','tli', 'cfi','rmsea','aic'))
+fitMeasures(MI.intercepts, c('chisq','tli', 'cfi','rmsea','aic'))
+fitMeasures(MI.means, c('chisq','tli', 'cfi','rmsea','aic'))
+fitMeasures(MI.residuals, c('chisq','tli', 'cfi','rmsea','aic'))
+
+second<-'
+e1=~eitem8+eitem10+eitem11+eitem12+eitem13+eitem16+eitem17+eitem20+eitem21+eitem22+eitem23+eitem24+eitem25+eitem26+eitem28+eitem29+eitem30+eitem31+eitem32+eitem33+eitem34+eitem36+eitem37
+e2=~eitem27+eitem35+eitem9+eitem18
+e3=~eitem38+eitem39+eitem40
+erawsc~e1+e2+e3
+m1=~mitem4+mitem5+mitem8+mitem11+mitem12+mitem14+mitem25+mitem32+mitem35+mitem37+mitem40+mitem42
+m2=~mitem6+mitem10+mitem17+mitem24+mitem39
+m3=~mitem22+mitem28+mitem34+mitem38+mitem41
+m4=~mitem18+mitem20+mitem21+mitem31+mitem42
+m5=~mitem2+mitem3+mitem9+mitem18+mitem19
+mrawsc~m1+m2+m3+m4+m5'
+
+measurementInvariance(second,d2,group='eth',missing='fiml',bootstrap=100)
+
+
+
+d4<-d[,c(147:172,45,91,141)]
 require(mvpart)
-fit1<-mvpart(cbind(d4$mrawsc,d4$erawsc,d4$srawsc)~.,data=d4)
+fit1<-mvpart(cbind(mrawsc,erawsc,srawsc)~.,data=d4,rsq=T)
+require(mice)
+d5<-mice(d4,m=25,maxit=25,defaultMethod = c("norm","logreg","polyreg"))
+summary(manova(cbind(mrawsc,erawsc,srawsc)~.,d4))
+summary(lm(cbind(mrawsc,erawsc,srawsc)~.,d4))
 
-summary(manova(cbind(d4$mrawsc,d4$erawsc,d4$srawsc)~.,d4))
-summary(lm(cbind(d4$mrawsc,d4$erawsc,d4$srawsc)~.,d4))
-require(VIM)
-a$erawsc<-a$emcpts<-a$eorpts<-a$ecpi<-a$mrawsc<-a$mmcpts<-a$morpts<-a$mcpi<-a$srawsc<-a$smcpts<-a$sorpts<-a$scpi<-a$eitem41<-a$eitem42<-a$scitry<-NULL
-summary(aggr(a))
+summary(with(d5,manova(cbind(mrawsc,erawsc,srawsc)~.)))
+summary(with(d5,lm(cbind(mrawsc,erawsc,srawsc)~.,d4)))
+
+# require(VIM)
+# a$erawsc<-a$emcpts<-a$eorpts<-a$ecpi<-a$mrawsc<-a$mmcpts<-a$morpts<-a$mcpi<-a$srawsc<-a$smcpts<-a$sorpts<-a$scpi<-a$eitem41<-a$eitem42<-a$scitry<-NULL
+# summary(aggr(a))

@@ -73,6 +73,29 @@ Chen, F\BPBI F.%
 \PrintBackRefs{\CurrentBib}
 
 \bibitem[\protect\citeauthoryear{%
+De'Ath%
+}{%
+De'Ath%
+}{%
+{\protect\APACyear{2002}}%
+}]{%
+De'ath}%
+\APACinsertmetastar{%
+De'ath}%
+De'Ath, G.%
+%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2002}{}{}.
+\newblock
+\BBOQ{}\APACrefatitle{Multivariate regression trees: a new technique for
+  modeling species-environment relationships}{Multivariate regression trees: a
+  new technique for modeling species-environment relationships}.\BBCQ{}
+\newblock
+\APACjournalVolNumPages{Ecology}{83}{4}{1105--1117}.
+\PrintBackRefs{\CurrentBib}
+
+\bibitem[\protect\citeauthoryear{%
 Gaudet%
 }{%
 Gaudet%
