@@ -110,7 +110,8 @@ As a consequence of the unequal numbers of test takers between Biology and the r
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
-\hlkwd{fa.diagram}\hlstd{(feng)}
+\hlkwd{setwd}\hlstd{(}\hlstr{"~/Documents/workspace/DataCompete/upstat-competition"}\hlstd{)}
+\hlkwd{fa.diagram}\hlstd{(feng,} \hlkwc{main} \hlstd{=} \hlstr{"English Oblimin"}\hlstd{)}
 \end{alltt}
 
 
@@ -121,7 +122,7 @@ As a consequence of the unequal numbers of test takers between Biology and the r
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
-\hlkwd{fa.diagram}\hlstd{(fmat)}
+\hlkwd{fa.diagram}\hlstd{(fmat,} \hlkwc{main} \hlstd{=} \hlstr{"Mathematics Oblimin"}\hlstd{)}
 \end{alltt}
 
 
@@ -132,7 +133,7 @@ As a consequence of the unequal numbers of test takers between Biology and the r
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
-\hlkwd{fa.diagram}\hlstd{(fsci1)}
+\hlkwd{fa.diagram}\hlstd{(fsci1,} \hlkwc{main} \hlstd{=} \hlstr{"Biology Oblimin"}\hlstd{)}
 \end{alltt}
 
 
@@ -188,7 +189,7 @@ Weak Invariance does impact the model fit compared to step 1, however negligably
 
 
 \subsubsection{Strong Invariance}
-Strong Invariance does substantively change model fit above and beyond weak invariance: $\Delta$ CFI = .002, $\Delta$ RMSEA =. , and the $\Delta$ TLI = and $\Delta$$\chi^2$=187.875. As a consequence, strict invariance is not tested, because by definition it cannot hold.
+Strong Invariance is established using the model fit indexes above and beyond weak invariance: $\Delta$ CFI = .002, $\Delta$ RMSEA = .000 , and the $\Delta$ TLI =.000 and $\Delta$$\chi^2$=187.875.
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
@@ -199,6 +200,18 @@ Strong Invariance does substantively change model fit above and beyond weak inva
 {\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error: could not find function "{}fitMeasures"{}}}\end{kframe}
 \end{knitrout}
 
+
+\subsubsection{Strict Invariance}
+Strict invariance does not hold, with a significant $\Delta$ CFI = .034, $\Delta$ RMSEA = .006, $\Delta$$\chi^2$=1670.297, and the $\Delta$ TLI = .03 indicating lack of fit.
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlkwd{fitMeasures}\hlstd{(MI.eng}\hlopt{$}\hlstd{fit.residuals,} \hlkwd{c}\hlstd{(}\hlstr{"chisq"}\hlstd{,} \hlstr{"tli"}\hlstd{,} \hlstr{"cfi"}\hlstd{,} \hlstr{"rmsea"}\hlstd{,} \hlstr{"aic"}\hlstd{))}
+\end{alltt}
+
+
+{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error: could not find function "{}fitMeasures"{}}}\end{kframe}
+\end{knitrout}
 
 \subsection{Mathematics}
 While the EFA presented a good model fit for a five factor model, when the SEM model imposed upon the data, it failed to converge due to underspecification. As such, factor 5 was removed, because it consisted of only four low loading items.
@@ -210,11 +223,10 @@ While the EFA presented a good model fit for a five factor model, when the SEM m
 \hlstd{m2} \hlkwb{=} \hlopt{~}\hlstd{mitem6} \hlopt{+} \hlstd{mitem10} \hlopt{+} \hlstd{mitem17} \hlopt{+} \hlstd{mitem24} \hlopt{+} \hlstd{mitem39}
 \hlstd{m3} \hlkwb{=} \hlopt{~}\hlstd{mitem22} \hlopt{+} \hlstd{mitem28} \hlopt{+} \hlstd{mitem34} \hlopt{+} \hlstd{mitem38} \hlopt{+} \hlstd{mitem41}
 \hlstd{m4} \hlkwb{=} \hlopt{~}\hlstd{mitem18} \hlopt{+} \hlstd{mitem20} \hlopt{+} \hlstd{mitem21} \hlopt{+} \hlstd{mitem31} \hlopt{+} \hlstd{mitem42}
-\hlstd{m5} \hlkwb{=} \hlopt{~}\hlstd{mitem2} \hlopt{+} \hlstd{mitem3} \hlopt{+} \hlstd{mitem9} \hlopt{+} \hlstd{mitem18} \hlopt{+} \hlstd{mitem19}
-\hlstd{mrawsc} \hlopt{~} \hlstd{m1} \hlopt{+} \hlstd{m2} \hlopt{+} \hlstd{m3} \hlopt{+} \hlstd{m4} \hlopt{+} \hlstd{m5}
+\hlstd{mrawsc} \hlopt{~} \hlstd{m1} \hlopt{+} \hlstd{m2} \hlopt{+} \hlstd{m3} \hlopt{+} \hlstd{m4}
 \end{alltt}
 \begin{verbatim}
-## mrawsc ~ m1 + m2 + m3 + m4 + m5
+## mrawsc ~ m1 + m2 + m3 + m4
 \end{verbatim}
 \end{kframe}
 \end{knitrout}
@@ -224,7 +236,7 @@ While the EFA presented a good model fit for a five factor model, when the SEM m
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
-\hlkwd{fitMeasures}\hlstd{(MI.eng}\hlopt{$}\hlstd{fit.configural,} \hlkwd{c}\hlstd{(}\hlstr{"chisq"}\hlstd{,} \hlstr{"tli"}\hlstd{,} \hlstr{"cfi"}\hlstd{,} \hlstr{"rmsea"}\hlstd{,} \hlstr{"aic"}\hlstd{))}
+\hlkwd{fitMeasures}\hlstd{(MI.maths}\hlopt{$}\hlstd{fit.configural,} \hlkwd{c}\hlstd{(}\hlstr{"chisq"}\hlstd{,} \hlstr{"tli"}\hlstd{,} \hlstr{"cfi"}\hlstd{,} \hlstr{"rmsea"}\hlstd{,} \hlstr{"aic"}\hlstd{))}
 \end{alltt}
 
 
@@ -233,12 +245,12 @@ While the EFA presented a good model fit for a five factor model, when the SEM m
 
 As the summary statistics given in the analyses show, configural invariance is supported, meaning that all four ethnicities employ the same conceptual frameworks to answer the test items. 
 \subsubsection{Metric (Weak) Invariance}
-Weak Invariance does impact the model fit compared to step 1, however negligably: $\Delta$ CFI = .002, $\Delta$ RMSEA =. , $\Delta$$\chi^2$=187.875, and the $\Delta$ TLI =.
+Weak Invariance does impact the model fit compared to step 1, however negligably: $\Delta$ CFI = .004, $\Delta$ RMSEA = .001 , $\Delta$$\chi^2$=260.076, and the $\Delta$ TLI = .002.
 
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
-\hlkwd{fitMeasures}\hlstd{(MI.eng}\hlopt{$}\hlstd{fit.loadings,} \hlkwd{c}\hlstd{(}\hlstr{"chisq"}\hlstd{,} \hlstr{"tli"}\hlstd{,} \hlstr{"cfi"}\hlstd{,} \hlstr{"rmsea"}\hlstd{,} \hlstr{"aic"}\hlstd{))}
+\hlkwd{fitMeasures}\hlstd{(MI.maths}\hlopt{$}\hlstd{fit.loadings,} \hlkwd{c}\hlstd{(}\hlstr{"chisq"}\hlstd{,} \hlstr{"tli"}\hlstd{,} \hlstr{"cfi"}\hlstd{,} \hlstr{"rmsea"}\hlstd{,} \hlstr{"aic"}\hlstd{))}
 \end{alltt}
 
 
@@ -247,17 +259,31 @@ Weak Invariance does impact the model fit compared to step 1, however negligably
 
 
 \subsubsection{Strong Invariance}
-Strong Invariance does substantively change model fit above and beyond weak invariance: $\Delta$ CFI = .002, $\Delta$ RMSEA =. , and the $\Delta$ TLI = and $\Delta$$\chi^2$=187.875. As a consequence, strict invariance is not tested, because by definition it cannot hold.
+Strong Invariance does not substantively change model fit above and beyond weak invariance: $\Delta$ CFI = .002, $\Delta$ RMSEA = .000, the $\Delta$ TLI = .000 and $\Delta$$\chi^2$=167.652. 
+
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
-\hlkwd{fitMeasures}\hlstd{(MI.eng}\hlopt{$}\hlstd{fit.intercepts,} \hlkwd{c}\hlstd{(}\hlstr{"chisq"}\hlstd{,} \hlstr{"tli"}\hlstd{,} \hlstr{"cfi"}\hlstd{,} \hlstr{"rmsea"}\hlstd{,} \hlstr{"aic"}\hlstd{))}
+\hlkwd{fitMeasures}\hlstd{(MI.maths}\hlopt{$}\hlstd{fit.intercepts,} \hlkwd{c}\hlstd{(}\hlstr{"chisq"}\hlstd{,} \hlstr{"tli"}\hlstd{,} \hlstr{"cfi"}\hlstd{,} \hlstr{"rmsea"}\hlstd{,} \hlstr{"aic"}\hlstd{))}
 \end{alltt}
 
 
 {\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error: could not find function "{}fitMeasures"{}}}\end{kframe}
 \end{knitrout}
 
+
+\subsubsection{Strict Invariance}
+Strong Invariance imposes a significant constraint upon model fit: $\Delta$ CFI = .017, $\Delta$ RMSEA = .005, the $\Delta$ TLI = .014 and $\Delta$$\chi^2$=998.348. 
+
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlkwd{fitMeasures}\hlstd{(MI.maths}\hlopt{$}\hlstd{fit.residuals,} \hlkwd{c}\hlstd{(}\hlstr{"chisq"}\hlstd{,} \hlstr{"tli"}\hlstd{,} \hlstr{"cfi"}\hlstd{,} \hlstr{"rmsea"}\hlstd{,} \hlstr{"aic"}\hlstd{))}
+\end{alltt}
+
+
+{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error: could not find function "{}fitMeasures"{}}}\end{kframe}
+\end{knitrout}
 
 
 \subsection{Biology}
@@ -293,7 +319,7 @@ We proceeded with the same methodology to test the science section in isolation,
 
 As the summary statistics given in the analyses show, configural invariance is supported, meaning that all four ethnicities employ the same conceptual frameworks to answer the test items. 
 \subsubsection{Metric (Weak) Invariance}
-Weak Invariance does impact the model fit compared to step 1, however negligably: $\Delta$ CFI = .002, $\Delta$ RMSEA =. , $\Delta$$\chi^2$=187.875, and the $\Delta$ TLI =.
+Weak Invariance does impact the model fit compared to step 1, however negligably: $\Delta$ CFI = .002, $\Delta$ RMSEA = .000 , $\Delta$$\chi^2$=168.330, and the $\Delta$ TLI = .000.
 
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
@@ -307,7 +333,7 @@ Weak Invariance does impact the model fit compared to step 1, however negligably
 
 
 \subsubsection{Strong Invariance}
-Strong Invariance does substantively change model fit above and beyond weak invariance: $\Delta$ CFI = .002, $\Delta$ RMSEA =. , and the $\Delta$ TLI = and $\Delta$$\chi^2$=187.875. As a consequence, strict invariance is not tested, because by definition it cannot hold.
+Strong Invariance does fails to substantively change model fit above and beyond metric invariance: $\Delta$ CFI = .002, $\Delta$ RMSEA = .000 , and the $\Delta$ TLI = .000 and $\Delta$$\chi^2$=187.875. 
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
@@ -319,9 +345,22 @@ Strong Invariance does substantively change model fit above and beyond weak inva
 \end{knitrout}
 
 
+\subsubsection{Strict Invariance}
+Strict Invariance does substantively change model fit above and beyond strong invariance: $\Delta$ CFI = .034, $\Delta$ RMSEA = .006 , and the $\Delta$ TLI = .03 and $\Delta$$\chi^2$=1670.297. 
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlkwd{fitMeasures}\hlstd{(MI.eng}\hlopt{$}\hlstd{fit.residuals,} \hlkwd{c}\hlstd{(}\hlstr{"chisq"}\hlstd{,} \hlstr{"tli"}\hlstd{,} \hlstr{"cfi"}\hlstd{,} \hlstr{"rmsea"}\hlstd{,} \hlstr{"aic"}\hlstd{))}
+\end{alltt}
+
+
+{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error: could not find function "{}fitMeasures"{}}}\end{kframe}
+\end{knitrout}
+
+
 \subsection{Questionnaire}
 \subsubsection{Multivariate Regression Tree}
-Without preexisting beliefs about the nature of the relationship between the response surface and the questionnaire and demographics, we chose to begin the analyses with an undirected multivariate tree regression \cite{De'ath}, conceptually similar to running a multinomial regression upon the different clusters of the response variables. 
+Without preexisting beliefs about the nature of the relationship between the response surface and the questionnaire and demographics, we chose to begin the analyses with an undirected multivariate tree regression \cite{De'ath}, conceptually similar to running a multinomial regression upon the different clusters analysis groups of the response variables. The tree also tests by default the possibility that which science test a student takes interacts with other outcomes --in addition, forcibly partitioning the data does not meaningfully increase model fit.
 
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
@@ -339,7 +378,7 @@ Without preexisting beliefs about the nature of the relationship between the res
 \end{knitrout}
 
 
-These results indicate substantive effects between the future student aspirations (those who intended to attain a baccalaureate degree) and overall performance, with these students performing significantly better on all three sections. The failure for the function to further discretize the high achievers indicates that the individual differences wihin accounted for no additional information. For lower aspiring students, Ethnicity was found to be the second most important in discriminating test scores, with Blacks, Hispanics and Native Americans performing similarly worse on the Mathematics and Biology sections than the other ethnicities. The final node split discriminates between high and low scoring science students, with those who responded as rarely using scientific instruments performing worse. Cross-validated errors were high, at CVE=.905, which corresponds to $R^2$=.15
+These results indicate substantive effects between the future student aspirations (those who intended to attain a baccalaureate degree) and overall performance, with these students performing significantly better on all three sections. The failure for the function to further discretize the low achievers indicates that the individual differences wihin accounted for no additional information. For high aspiring students, ethnicity was found to be the second most important in discriminating test scores, with Blacks, Hispanics and Native Americans performing similarly worse on the Mathematics and Biology sections than the other ethnicities. The final node split discriminates between high and low scoring science students, with those who responded as rarely using scientific instruments performing worse. Cross-validated errors were high, at CVE=.905, which corresponds to $R^2$=.15
 \subsubsection{Multivariate Regression}
 A parametric regression model was also conducted exploring only main effects between the predictors and response. Multivariate and univariate responses were found within the tests
 
