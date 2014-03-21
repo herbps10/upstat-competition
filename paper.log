@@ -1,12 +1,8 @@
-<<<<<<< HEAD
-This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2012.4.28)  20 MAR 2014 19:59
-=======
-This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2012.4.28)  20 MAR 2014 15:17
->>>>>>> 6c3ac8e8db388cc465089be37915256d9c2bb59f
+This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2012.4.28)  21 MAR 2014 17:16
 entering extended mode
  %&-line parsing enabled.
 **paper.tex
-(./paper.tex
+(/home/landon/Documents/workspace/DataCompete/upstat-competition/paper.tex
 LaTeX2e <2009/09/24>
 Babel <v3.8l> and hyphenation patterns for english, usenglishmax, dumylang, noh
 yphenation, loaded.
@@ -60,8 +56,9 @@ File: color.cfg 2007/01/18 v1.5 color configuration of teTeX/TeXLive
 )
 Package color Info: Driver file: pdftex.def on input line 130.
 )
-(/usr/share/texmf-texlive/tex/latex/ltxmisc/framed.sty
-Package: framed 2007/10/04 v 0.95: framed or shaded text with page breaks
+(/home/landon/Documents/workspace/DataCompete/upstat-competition/framed.sty
+Package: framed 2011/10/22 v 0.96: framed or shaded text with page breaks
+\OuterFrameSep=\skip43
 \fb@frw=\dimen105
 \fb@frh=\dimen106
 \FrameRule=\dimen107
@@ -73,10 +70,10 @@ Package: alltt 1997/06/16 v2.0g defines alltt environment
 (/usr/share/texmf-texlive/tex/latex/apacite/apacite.sty
 Package: apacite 2009/03/01 v4.05 APA citation
 \c@BibCnt=\count88
-\bibleftmargin=\skip43
-\bibindent=\skip44
-\bibparsep=\skip45
-\bibitemsep=\skip46
+\bibleftmargin=\skip44
+\bibindent=\skip45
+\bibparsep=\skip46
+\bibitemsep=\skip47
 )
 (/usr/share/texmf-texlive/tex/latex/geometry/geometry.sty
 Package: geometry 2008/12/21 v4.2 Page Geometry
@@ -99,15 +96,15 @@ Package ifvtex Info: VTeX not detected.
 \Gm@dimlist=\toks15
 )
 (/usr/share/texmf-texlive/tex/latex/fancyhdr/fancyhdr.sty
-\fancy@headwidth=\skip47
-\f@ncyO@elh=\skip48
-\f@ncyO@erh=\skip49
-\f@ncyO@olh=\skip50
-\f@ncyO@orh=\skip51
-\f@ncyO@elf=\skip52
-\f@ncyO@erf=\skip53
-\f@ncyO@olf=\skip54
-\f@ncyO@orf=\skip55
+\fancy@headwidth=\skip48
+\f@ncyO@elh=\skip49
+\f@ncyO@erh=\skip50
+\f@ncyO@olh=\skip51
+\f@ncyO@orh=\skip52
+\f@ncyO@elf=\skip53
+\f@ncyO@erf=\skip54
+\f@ncyO@olf=\skip55
+\f@ncyO@orf=\skip56
 )
 (/usr/share/texmf-texlive/tex/latex/upquote/upquote.sty
 Package: upquote 2003/08/11 v1.1 Covington's upright-quote modification to verb
@@ -179,7 +176,8 @@ Package textcomp Info: Setting pplx sub-encoding to TS1/3 on input line 323.
 Package textcomp Info: Setting pplj sub-encoding to TS1/3 on input line 324.
 Package textcomp Info: Setting ptmx sub-encoding to TS1/4 on input line 325.
 Package textcomp Info: Setting ptmj sub-encoding to TS1/4 on input line 326.
-)) (./paper.aux)
+))
+(/home/landon/Documents/workspace/DataCompete/upstat-competition/paper.aux)
 \openout1 = `paper.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 56.
@@ -275,116 +273,131 @@ for a fair and eq-ui-table comparison[]Meredith,
  []
 
 [2]
-Package color Info: Redefining color shadecolor on input line 111.
-LaTeX Font Info:    Font shape `OT1/cmtt/bx/n' in size <10> not available
-(Font)              Font shape `OT1/cmtt/m/n' tried instead on input line 113.
-Package color Info: Redefining color shadecolor on input line 123.
-Package color Info: Redefining color shadecolor on input line 134.
- [3]
-Package color Info: Redefining color shadecolor on input line 149.
+</home/landon/Documents/workspace/DataCompete/upstat-competition/figure/English
+.jpeg, id=14, 724.7075pt x 304.13625pt>
+File: /home/landon/Documents/workspace/DataCompete/upstat-competition/figure/En
+glish.jpeg Graphic file (type jpg)
 
-Overfull \hbox (10.99153pt too wide) in paragraph at lines 151--151
+<use /home/landon/Documents/workspace/DataCompete/upstat-competition/figure/Eng
+lish.jpeg>
+Overfull \hbox (309.70111pt too wide) in paragraph at lines 111--112
+[][] 
+ []
+
+Package color Info: Redefining color shadecolor on input line 114.
+[3]
+LaTeX Font Info:    Font shape `OT1/cmtt/bx/n' in size <10> not available
+(Font)              Font shape `OT1/cmtt/m/n' tried instead on input line 116.
+Package color Info: Redefining color shadecolor on input line 125.
+ [4 </home/landon/Documents/workspace/DataCompete/upstat-competition/figure/Eng
+lish.jpeg>]
+Package color Info: Redefining color shadecolor on input line 140.
+
+Overfull \hbox (10.99153pt too wide) in paragraph at lines 142--142
 [][]\OT1/cmtt/m/n/10 e1[] []=[] []~[][]eitem8[] []+[] []eitem10[] []+[] []eitem
 11[] []+[] []eitem12[] []+[] []eitem13[] []+[] []eitem16[] []+[] []eitem17[] []
 +[] []eitem20[] []+[][] 
  []
 
 
-Overfull \hbox (5.74158pt too wide) in paragraph at lines 152--152
+Overfull \hbox (5.74158pt too wide) in paragraph at lines 143--143
 []    []\OT1/cmtt/m/n/10 eitem21[] []+[] []eitem22[] []+[] []eitem23[] []+[] []
 eitem24[] []+[] []eitem25[] []+[] []eitem26[] []+[] []eitem28[] []+[] []eitem29
 [] []+[][] 
  []
 
-Package color Info: Redefining color shadecolor on input line 167.
-Package color Info: Redefining color shadecolor on input line 181.
-[4]
-Package color Info: Redefining color shadecolor on input line 194.
-Package color Info: Redefining color shadecolor on input line 207.
-Package color Info: Redefining color shadecolor on input line 219.
+Package color Info: Redefining color shadecolor on input line 158.
+Package color Info: Redefining color shadecolor on input line 172.
+Package color Info: Redefining color shadecolor on input line 185.
+Package color Info: Redefining color shadecolor on input line 198.
+[5]
+Package color Info: Redefining color shadecolor on input line 210.
 
-Overfull \hbox (0.49162pt too wide) in paragraph at lines 221--221
+Overfull \hbox (0.49162pt too wide) in paragraph at lines 212--212
 [][]\OT1/cmtt/m/n/10 m1[] []=[] []~[][]mitem4[] []+[] []mitem5[] []+[] []mitem8
 [] []+[] []mitem11[] []+[] []mitem12[] []+[] []mitem14[] []+[] []mitem25[] []+[
 ] []mitem32[] []+[][] 
  []
 
-Package color Info: Redefining color shadecolor on input line 237.
-Package color Info: Redefining color shadecolor on input line 251.
-[5]
-Package color Info: Redefining color shadecolor on input line 265.
-Package color Info: Redefining color shadecolor on input line 279.
-Package color Info: Redefining color shadecolor on input line 292.
+Package color Info: Redefining color shadecolor on input line 228.
+Package color Info: Redefining color shadecolor on input line 242.
+Package color Info: Redefining color shadecolor on input line 256.
+[6]
+Package color Info: Redefining color shadecolor on input line 270.
+Package color Info: Redefining color shadecolor on input line 283.
 
-Overfull \hbox (5.74158pt too wide) in paragraph at lines 294--294
+Overfull \hbox (5.74158pt too wide) in paragraph at lines 285--285
 [][]\OT1/cmtt/m/n/10 s1[] []=[] []~[][]sitem1[] []+[] []sitem2[] []+[] []sitem1
 3[] []+[] []sitem14[] []+[] []sitem15[] []+[] []sitem22[] []+[] []sitem27[] []+
 [] []sitem30[] []+[][] 
  []
 
 
-Overfull \hbox (5.74158pt too wide) in paragraph at lines 296--296
+Overfull \hbox (5.74158pt too wide) in paragraph at lines 287--287
 [][]\OT1/cmtt/m/n/10 s2[] []=[] []~[][]sitem3[] []+[] []sitem5[] []+[] []sitem1
 8[] []+[] []sitem19[] []+[] []sitem28[] []+[] []sitem31[] []+[] []sitem35[] []+
 [] []sitem43[] []+[][] 
  []
 
 
-Overfull \hbox (0.49162pt too wide) in paragraph at lines 298--298
+Overfull \hbox (0.49162pt too wide) in paragraph at lines 289--289
 [][]\OT1/cmtt/m/n/10 s3[] []=[] []~[][]sitem8[] []+[] []sitem10[] []+[] []sitem
 11[] []+[] []sitem12[] []+[] []sitem23[] []+[] []sitem24[] []+[] []sitem25[] []
 +[] []sitem23[][] 
  []
 
-Package color Info: Redefining color shadecolor on input line 311.
-[6]
-Package color Info: Redefining color shadecolor on input line 325.
-Package color Info: Redefining color shadecolor on input line 338.
-Package color Info: Redefining color shadecolor on input line 351.
-Package color Info: Redefining color shadecolor on input line 366.
- [7] (./paper.bbl [8]
-Underfull \hbox (badness 3179) in paragraph at lines 185--202
+Package color Info: Redefining color shadecolor on input line 302.
+Package color Info: Redefining color shadecolor on input line 316.
+[7]
+Package color Info: Redefining color shadecolor on input line 329.
+Package color Info: Redefining color shadecolor on input line 342.
+Package color Info: Redefining color shadecolor on input line 358.
+ [8]
+(/home/landon/Documents/workspace/DataCompete/upstat-competition/paper.bbl
+Missing character: There is no ‚ in font cmr10!
+Missing character: There is no Ä in font cmr10!
+Missing character: There is no ú in font cmr10!
+Missing character: There is no ‚ in font cmr10!
+Missing character: There is no Ä in font cmr10!
+Missing character: There is no ù in font cmr10!
+
+[9]
+Underfull \hbox (badness 3179) in paragraph at lines 230--247
 []\OT1/cmr/m/n/10 Revelle, W.  (2014).  psych: Pro-ce-dures for psy-cho-log-i-c
 al, psy-cho-me-t-ric, and per-
  []
 
 
-Underfull \hbox (badness 1533) in paragraph at lines 185--202
+Underfull \hbox (badness 1533) in paragraph at lines 230--247
 \OT1/cmr/m/n/10 son-al-ity re-search [Com-puter soft-ware man-ual].  Evanston, 
 Illi-nois.  Avail-able from
  []
 
-) [9] (./paper.aux) ) 
+) [10]
+(/home/landon/Documents/workspace/DataCompete/upstat-competition/paper.aux) ) 
 Here is how much of TeX's memory you used:
- 2387 strings out of 495061
- 31667 string characters out of 1182621
- 89539 words of memory out of 3000000
- 5563 multiletter control sequences out of 15000+50000
+ 2419 strings out of 495061
+ 32953 string characters out of 1182621
+ 90218 words of memory out of 3000000
+ 5592 multiletter control sequences out of 15000+50000
  8577 words of font info for 31 fonts, out of 3000000 for 9000
  28 hyphenation exceptions out of 8191
-<<<<<<< HEAD
- 25i,11n,43p,1322b,303s stack positions out of 5000i,500n,10000p,200000b,50000s
-=======
- 25i,11n,43p,1322b,304s stack positions out of 5000i,500n,10000p,200000b,50000s
->>>>>>> 6c3ac8e8db388cc465089be37915256d9c2bb59f
-</usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/c
-mbx10.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmbx12.pfb><
-/usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmitt10.pfb></usr/share
-/texmf-texlive/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texmf-texl
-ive/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/share/texmf-texlive/fonts/ty
-pe1/public/amsfonts/cm/cmr10.pfb></usr/share/texmf-texlive/fonts/type1/public/a
-msfonts/cm/cmr12.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/c
-mr17.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmr7.pfb></us
-r/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/tex
-mf-texlive/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/share/texmf-texlive/
-fonts/type1/public/amsfonts/cm/cmtt10.pfb>
-<<<<<<< HEAD
-Output written on paper.pdf (9 pages, 185729 bytes).
-=======
-Output written on paper.pdf (9 pages, 185617 bytes).
->>>>>>> 6c3ac8e8db388cc465089be37915256d9c2bb59f
+ 25i,11n,43p,1322b,307s stack positions out of 5000i,500n,10000p,200000b,50000s
+</
+usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/share/t
+exmf-texlive/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texmf-texliv
+e/fonts/type1/public/amsfonts/cm/cmitt10.pfb></usr/share/texmf-texlive/fonts/ty
+pe1/public/amsfonts/cm/cmmi10.pfb></usr/share/texmf-texlive/fonts/type1/public/
+amsfonts/cm/cmmi7.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/
+cmr10.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmr12.pfb></
+usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/share/te
+xmf-texlive/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/texmf-texlive/f
+onts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texmf-texlive/fonts/type1/
+public/amsfonts/cm/cmti10.pfb></usr/share/texmf-texlive/fonts/type1/public/amsf
+onts/cm/cmtt10.pfb>
+Output written on paper.pdf (10 pages, 250580 bytes).
 PDF statistics:
- 80 PDF objects out of 1000 (max. 8388607)
+ 84 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
- 1 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 6 words of extra memory for PDF output out of 10000 (max. 10000000)
 

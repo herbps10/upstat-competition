@@ -24,7 +24,7 @@ Sys.setenv(TEXINPUTS=getwd(),
 
 \subsection{Data}
 
-The Massachusetts Compreshensive Assessment System (MCAS) is a standardized test administered to Massachusetts public school students in grades 3-10 since 1998. We examine a subset sample of 10\textsuperscript{th} grade students' results from the 2009 Spring MCAS test. The data also contains basic demographic information for each student comprised of race/ethnicity, gender, and an academic engagement questionnaire. Each test consists of multiple choice items and open ended type questions that are graded on a holistic scale, implemented as a 5 point integer scale. 
+The Massachusetts Compreshensive Assessment System (MCAS) is a standardized test administered to Massachusetts public school students in grades 3-10 since 1998. We examine a subset sample of 10\textsuperscript{th} grade students' results from the 2009 Spring MCAS test. The data also contains basic demographic information for each student comprised of race/ethnicity, gender, and an academic engagement questionnaire. Each test consists of multiple choice items and open-ended questions that are graded on a holistic scale, implemented as a 5 point integer scale. 
 
 The examinations are comprised of three separate knowledge domains: English, Mathematics and a science component. Every student takes identical versions of the English and Mathematics sections; the science component can be fulfilled by taking either a Biology, Chemistry, Introductory Physics, or Technology/Engineering test. \cite{mcas_summary}
 
@@ -44,26 +44,24 @@ A critical assumption within standardised testing, and in truth any measurement 
 Tests whether the same factor model (i.e., latent variables, equivalent to knowledge subdomains, for example grammar) is found within each subgroup.
 \item{Weak invariance:}
 Tests whether in addition to the same factor structure, the same items load equivalently onto the same same structure.
-\item{Strong invariance}
+\item{Strong invariance:}
 Tests that the intercepts, item loadings, and factor structure are equivalent across groups.
 \item{Strict invariance:}
 Tests the assumption that in addition to the preceeding steps, the residual variances are equivalent across groups.
 \end{enumerate}
-These four factors are argued to be necessary conditions for a fair and equitable comparison\cite{Meredith}, and are established by way of multi-group confirmatory factor analysis (MG-CFA). In this paper, we examine these factors using a series of R packages found cited at the end of the paper \cite{psych,lavaan,semTools}. 
+These four factors are argued to be necessary conditions for a fair and equitable comparison\cite{Meredith}, and are established by way of multi-group confirmatory factor analysis (MG-CFA). In this paper, we examine these factors using a group of R packages cited at the end of the paper \cite{psych,lavaan,semTools}. 
 Exploratory bootstrapped oblimin factor analyses were conducted upon each section to establish the number of domains and high loading items within each of the three tests. As a consequence of the extreme ethnicity imbalance within three of the four science exams, only Biology was tested using MG-CFA.
 
 Furthermore, we investigated the information found within the questionnaire, relating them to the students' scores on the three sections using both multivariate parametric regressions, and a non-parametric predictive procedure using the mvpart package, which models multivariate regression trees.
 
-Missing data in survey and test data is an important consideration, and there exist a number of techniques to produce more robust solutions, mainly working under the bayesian estimation process for missing data pioneered by Donald Rubin\cite{rubin}. However, within the structure of the exam, missing data was unsurprisingly a rare occurence: the highest proportion of missing for any item was .008, and 91.23\% had no missing questions. Even so, for the MG-CFA, we attempted to account for this by utilising the Full Information Maximum Likelihood (FIML) estimation, in conjunction with a large number of bootstraps to obtain accurate estimates of asymptotic errors. However, the questionnaire exhibited extreme proportions of non-response, which is problematic for the multivariate regression techniques, producing potentially biased results under the assumption that items are missing completely at random. As such, we processed the original responses using the mice package\cite{mice}, using 25 imputed data frames with 30 iterations in each dataframe. Regression trees are relatively robust to missing data, because all information is not processed simultaneously, but sequentially in order of variable importance, and as such we did not take any additional steps when conducting that analysis.
+Missing data in survey and test data is an important consideration, and there exist a number of techniques to produce more robust solutions, mainly working under the Bayesian estimation process for missing data pioneered by Donald Rubin\cite{rubin}. However, within the structure of the exam, missing data was unsurprisingly a rare occurence: the highest proportion of missing for any item was .008, and 91.23\% had no missing questions. Even so, for the MG-CFA, we attempted to account for this by utilising the Full Information Maximum Likelihood (FIML) estimation, in conjunction with a large number of bootstraps to obtain accurate estimates of asymptotic errors. However, the questionnaire exhibited extreme proportions of non-response, which is problematic for the multivariate regression techniques, producing potentially biased results under the assumption that items are missing completely at random. As such, we processed the original responses using the mice package\cite{mice}, using 25 imputed data frames with 30 iterations in each dataframe. Regression trees are relatively robust to missing data, because all information is not processed simultaneously, but sequentially in order of variable importance, and as such we did not take any additional steps when conducting that analysis.
 \section{Results}
 \subsection{Exploratory factor analyses}
 Given the preceeding information, we examined the Mathematics, English, and Biology sections of the exam, using a oblimin rotated factor structure, with the number of latent factors equal to the number of general domains; factor loadings were calculated using maximum likelihood estimates from the tetrachoric correlation matrices for each subset of items. The psych package was used to calculate the factor structure. Items that loaded higher than .3 on a factor were specified as indicators, and diagrams of each factor can be located in Appendix B.
 \subsection{MG-CFA}
 As a consequence of the unequal numbers of test takers between Biology and the rest of the science exam options, we chose to run two separate tests for measurement invariance: the first was composed of the total sample on the English and Mathematics, and the second was composed of the Biology testees ($N$=9,239); exploratory factor analyses (EFA) presented the following results:
-<<fig=T>>=
-setwd('~/Documents/workspace/DataCompete/upstat-competition')
-fa.diagram(feng,main='English Oblimin')
-@
+
+\includegraphics{/home/landon/Documents/workspace/DataCompete/upstat-competition/figure/English.jpeg}
 
 <<fig=T>>=
 fa.diagram(fmat,main='Mathematics Oblimin')
@@ -181,26 +179,22 @@ fitMeasures(MI.eng$fit.residuals, c('chisq','tli', 'cfi','rmsea','aic'))
 
 \subsection{Questionnaire}
 \subsubsection{Multivariate Regression Tree}
-<<<<<<< HEAD
+
 Without preexisting beliefs about the nature of the relationship between the response surface and the questionnaire and demographics, we chose to begin the analyses with an undirected multivariate tree regression \cite{De'ath}, conceptually similar to running a multinomial regression upon the different clusters analysis groups of the response variables. The tree also tests by default the possibility that which science test a student takes interacts with other outcomes --in addition, forcibly partitioning the data does not meaningfully increase model fit. We also made the decision to leave non-response as a legitimate factor level: this allows us to incorporate nonresponse as a partitioning criterion.
-=======
-Without preexisting beliefs about the nature of the relationship between the response surface and the questionnaire and demographics, we chose to begin the analyses with an undirected multivariate tree regression \cite{De'ath}, conceptually similar to running a multinomial regression upon the different clusters analysis groups of the response variables. The tree also tests by default the possibility that which science test a student takes interacts with other outcomes --in addition, forcibly partitioning the data does not meaningfully increase model fit. We also madethe decision to leave non-response as a legitimate factor level: this allows us to incorporate nonresponse as a partitioning criterion.
->>>>>>> 6c3ac8e8db388cc465089be37915256d9c2bb59f
 
 <<fig=T>>=
 require(mvpart)
-mvpart(cbind(mrawsc,erawsc,srawsc)~.,data=d4,rsq=T)
+mvpart(cbind(mrawsc,erawsc,srawsc)~.,data=d4)
 @
 
 These results indicate substantive effects between the future student aspirations (those who intended to attain a baccalaureate degree) and overall performance, with these students performing significantly better on all three sections. The failure for the function to further discretize the low achievers indicates that the individual differences wihin accounted for no additional information. For high aspiring students, ethnicity was found to be the second most important in discriminating test scores, with Blacks, Hispanics and Native Americans performing similarly worse on the Mathematics and Biology sections than the other ethnicities. The final node split discriminates between high and low scoring science students, with those who responded as rarely using scientific instruments performing worse. Cross-validated errors were high, at CVE=.905, which corresponds to $R^2$=.15
 \subsubsection{Multivariate Regression}
-A parametric regression model was also conducted exploring only main effects between the predictors and response. Multivariate and univariate responses were found within the tests
+A parametric regression model was also conducted exploring only main effects between the predictors and response.
 
 
 \section{Discussion}
-As indicated in the results section, the test fails to perform equivalently across the four groups, which is the primary point of order in test design and advocacy. This lends substantive credence to the argument that there are fundamental flaws within the test. However, the multivariate regression and tree results indicate that there are no functional differences between the test scores themselves across ethnicity, which is surpising given the previous point. In our opinion, a plausible explanation for these results are that there are ethnic differences not between the overall scores but between the general education practices taught, which is likely a function of SES, which disproportionately affects minorities over Whites. This subtle distinction has the immediate consequence of arguing that there is a fundamental flaw within the standards of difficulty construed as appropriate for this test, and as a consequence, the test performs poorly as an indicator of individual student achievement.
+As indicated in the results section, the test fails to perform equivalently across the four groups, which is the primary point of order in test design and advocacy. Moreover, strict invariance has a specific import upon the function of psychometric and education measurements, testing whether the error variances --the portions of item variation not attributable to the common factors. Conceptually, strict invariance validates the assumption that error variances are different across groups; if this fails, there are either different variables operating on the measures across groups or the same set of variables operates differently across groups \cite{deshon}. This fundamentally demonstrates the importance of ensuring that all four mainstays of measurement invariance be substantiated, especially when one considers the long standing view that residuals convey meaning of unmeasured latent constructs' effects, moderated by group membership in this case \cite{cronbach}. This lends substantive credence to the argument that there are fundamental flaws within the test, specifically with reflection towards students' socioeconomic status.
 
-Little more can be said about the questionnaire beyond the fact that the mode for each item is the most efficient predictor of individual student responses. As such, we can only conclude that the information being measured by these items are independent of the exams' item functioning and student performance.
 
 
 \bibliography{references}{}
