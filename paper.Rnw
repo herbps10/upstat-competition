@@ -181,7 +181,11 @@ fitMeasures(MI.eng$fit.residuals, c('chisq','tli', 'cfi','rmsea','aic'))
 
 \subsection{Questionnaire}
 \subsubsection{Multivariate Regression Tree}
+<<<<<<< HEAD
 Without preexisting beliefs about the nature of the relationship between the response surface and the questionnaire and demographics, we chose to begin the analyses with an undirected multivariate tree regression \cite{De'ath}, conceptually similar to running a multinomial regression upon the different clusters analysis groups of the response variables. The tree also tests by default the possibility that which science test a student takes interacts with other outcomes --in addition, forcibly partitioning the data does not meaningfully increase model fit. We also made the decision to leave non-response as a legitimate factor level: this allows us to incorporate nonresponse as a partitioning criterion.
+=======
+Without preexisting beliefs about the nature of the relationship between the response surface and the questionnaire and demographics, we chose to begin the analyses with an undirected multivariate tree regression \cite{De'ath}, conceptually similar to running a multinomial regression upon the different clusters analysis groups of the response variables. The tree also tests by default the possibility that which science test a student takes interacts with other outcomes --in addition, forcibly partitioning the data does not meaningfully increase model fit. We also madethe decision to leave non-response as a legitimate factor level: this allows us to incorporate nonresponse as a partitioning criterion.
+>>>>>>> 6c3ac8e8db388cc465089be37915256d9c2bb59f
 
 <<fig=T>>=
 require(mvpart)
