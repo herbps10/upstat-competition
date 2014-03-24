@@ -118,6 +118,7 @@ Gaudet, R\BPBI D.%
 \PrintBackRefs{\CurrentBib}
 
 \bibitem[\protect\citeauthoryear{%
+<<<<<<< HEAD
 Kim%
 \ \BBA{} Bentler%
 }{%
@@ -168,6 +169,8 @@ Little, R\BPBI J.%
 \PrintBackRefs{\CurrentBib}
 
 \bibitem[\protect\citeauthoryear{%
+=======
+>>>>>>> 782b5472c392dad1d398b23760e87d19f21ebe4a
 Meredith%
 }{%
 Meredith%

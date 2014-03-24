@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2012.4.28)  24 MAR 2014 12:22
+=======
+This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2012.4.28)  24 MAR 2014 10:55
+>>>>>>> 782b5472c392dad1d398b23760e87d19f21ebe4a
 entering extended mode
  %&-line parsing enabled.
 **paper-knitr.tex
@@ -322,17 +326,26 @@ Overfull \hbox (15.0pt too wide) in paragraph at lines 368--369
 unnamed-chunk-13.pdf>]
 (/home/landon/Documents/workspace/DataCompete/upstat-competition/paper-knitr.bb
 l
+<<<<<<< HEAD
 Underfull \hbox (badness 3179) in paragraph at lines 235--252
+=======
+Underfull \hbox (badness 3179) in paragraph at lines 185--202
+>>>>>>> 782b5472c392dad1d398b23760e87d19f21ebe4a
 []\OT1/cmr/m/n/10 Revelle, W.  (2014).  psych: Pro-ce-dures for psy-cho-log-i-c
 al, psy-cho-me-t-ric, and per-
  []
 
 
+<<<<<<< HEAD
 Underfull \hbox (badness 1533) in paragraph at lines 235--252
+=======
+Underfull \hbox (badness 1533) in paragraph at lines 185--202
+>>>>>>> 782b5472c392dad1d398b23760e87d19f21ebe4a
 \OT1/cmr/m/n/10 son-al-ity re-search [Com-puter soft-ware man-ual].  Evanston, 
 Illi-nois.  Avail-able from
  []
 
+<<<<<<< HEAD
 [9]) [10]
 (/home/landon/Documents/workspace/DataCompete/upstat-competition/paper-knitr.au
 x) ) 
@@ -344,6 +357,19 @@ Here is how much of TeX's memory you used:
  8409 words of font info for 30 fonts, out of 3000000 for 9000
  28 hyphenation exceptions out of 8191
  25i,12n,43p,1414b,313s stack positions out of 5000i,500n,10000p,200000b,50000s
+=======
+) [9]
+(/home/landon/Documents/workspace/DataCompete/upstat-competition/paper-knitr.au
+x) ) 
+Here is how much of TeX's memory you used:
+ 2408 strings out of 495061
+ 32608 string characters out of 1182621
+ 90088 words of memory out of 3000000
+ 5582 multiletter control sequences out of 15000+50000
+ 8409 words of font info for 30 fonts, out of 3000000 for 9000
+ 28 hyphenation exceptions out of 8191
+ 25i,12n,43p,1326b,263s stack positions out of 5000i,500n,10000p,200000b,50000s
+>>>>>>> 782b5472c392dad1d398b23760e87d19f21ebe4a
 </usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/s
 hare/texmf-texlive/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texmf-
 texlive/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texmf-texlive/fon
@@ -354,9 +380,15 @@ b></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share
 /texmf-texlive/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texmf-texl
 ive/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/share/texmf-texlive/fonts/t
 ype1/public/amsfonts/cm/cmtt10.pfb>
+<<<<<<< HEAD
 Output written on paper-knitr.pdf (10 pages, 183225 bytes).
 PDF statistics:
  85 PDF objects out of 1000 (max. 8388607)
+=======
+Output written on paper-knitr.pdf (9 pages, 181137 bytes).
+PDF statistics:
+ 82 PDF objects out of 1000 (max. 8388607)
+>>>>>>> 782b5472c392dad1d398b23760e87d19f21ebe4a
  0 named destinations out of 1000 (max. 500000)
  6 words of extra memory for PDF output out of 10000 (max. 10000000)
 
