@@ -154,6 +154,8 @@ fitMeasures(MI.scien$fit.means, c('chisq','tli', 'cfi','rmsea','aic'))
 d4<-d[,c(145:172,45,91,141,95,2)]
 require(mvpart)
 fit<-mvpart(cbind(mrawsc,erawsc,srawsc)~.,d4)
+summary(fit)
+
 
 require(foreign)
 a<-read.spss('/home/landon/Documents/workspace/DataCompete/Student Data Competition/missingDataCoded.sav',use.value.labels=T,to.data.frame=T,use.missings=T)
@@ -170,13 +172,13 @@ summary(aggr(d5[,c(1,7:31)]))
 
 d5.fixed = subset(d5, select=-c(quest2a, quest2b, quest2c, quest2d, quest2e))
 
-summary(manova(cbind(mrawsc,erawsc,srawsc)~.,d5.fixed)) #this is on the data with missing 
-summary(lm(cbind(mrawsc,erawsc,srawsc)~.,d5.fixed)) #this is on the data with missing 
+summary(manova(cbind(mrawsc,erawsc,srawsc)~.+eth*gender,d5.fixed)) #this is on the data with missing 
+summary(lm(cbind(mrawsc,erawsc,srawsc)~.+eth*gender,d5.fixed)) #this is on the data with missing 
 
 #d6.fixed = subset(d6$imp, select=-c(quest2a, quest2b, quest2c, quest2d, quest2e))
 
-summary(with(d6,manova(cbind(mrawsc,erawsc,srawsc)~., d6)))
-summary(with(d6,lm(cbind(mrawsc,erawsc,srawsc)~., d6)))
+summary(with(d6,manova(cbind(mrawsc,erawsc,srawsc)~.+eth*gender, d6)))
+summary(with(d6,lm(cbind(mrawsc,erawsc,srawsc)~.+eth*gender, d6)))
 
 # require(VIM)
 # a$erawsc<-a$emcpts<-a$eorpts<-a$ecpi<-a$mrawsc<-a$mmcpts<-a$morpts<-a$mcpi<-a$srawsc<-a$smcpts<-a$sorpts<-a$scpi<-a$eitem41<-a$eitem42<-a$scitry<-NULL

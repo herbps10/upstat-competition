@@ -6,11 +6,14 @@
 \begin{document}
 
 
-<<setup, include=F, cache=FALSE, echo=FALSE>>=
-load('/home/landon/Documents/workspace/DataCompete/upstat-competition/.RData')
-require(psych)
-require(semTools)
-require(mvpart)
+<<setup, include=FALSE, cache=FALSE, echo=FALSE, results='hide'>>=
+library(lavaan)
+library(psych)
+library(mvpart)
+library(semTools)
+
+load("comp.RData")
+
 Sys.setenv(TEXINPUTS=getwd(), 
            BIBINPUTS=getwd(), 
            BSTINPUTS=getwd())
@@ -24,179 +27,248 @@ Sys.setenv(TEXINPUTS=getwd(),
 
 \section{Abstract}
 
+The Massachusetts Comprehensive Assessment System (MCAS) is a set of standardized tests administered to Massachusetts public school students. We performed a series of statistical analyses on a subset of 10\textsuperscript{th} grade student test results in English, Mathematics, and Biology tests. An important property of any testing procedure is that of measurement invariance: the test should measure the same underlying constructs, in the same manner, regardless of what groups (ethnicicy, gender, etc.) each testee belongs to. We employed Structural Equation Modeling (SEM) to test for measurement invariance across four ethnic groups (White, Black, Hispanic, and Asian) in the MCAS results. Our results indicate that the MCAS does not function similarly across the ethnic groups, a result which undermines the validity of the test. Additionally, we applied multivariate regression and multivariate regression trees to analyze results from a questionnaire given to testees. Our results indicate that students who indicate ambition to pursue a bachelor's degree have higher scores on each test and are significantly affected by higher quality educational programs.
+
 \section{Introduction}
 
 \subsection{Data}
 
-The Massachusetts Compreshensive Assessment System (MCAS) is a standardized test administered to Massachusetts public school students in grades 3-10 since 1998. We examine a subset sample of 10\textsuperscript{th} grade students' results from the 2009 Spring MCAS test. The data also contains basic demographic information for each student comprised of race/ethnicity, gender, and an academic engagement questionnaire. Each test consists of multiple choice items and open-ended questions that are graded on a holistic scale, implemented as a 5 point integer scale. 
+The Massachusetts Comprehensive Assessment System (MCAS) is a standardized test administered to Massachusetts public school students in grades 3-10 since 1998. We examine a subset sample of 10\textsuperscript{th} grade students' results from the 2009 Spring MCAS test. The data also contains basic demographic information for each student comprised of race/ethnicity, gender, and an academic engagement questionnaire. Each test consists of multiple choice items and open ended type questions that are graded on a holistic scale, implemented as a 5 point integer scale. 
 
 The examinations are comprised of three separate knowledge domains: English, Mathematics and a science component. Every student takes identical versions of the English and Mathematics sections; the science component can be fulfilled by taking either a Biology, Chemistry, Introductory Physics, or Technology/Engineering test. \cite{mcas_summary}
 
-The MCAS examination structure has received substantial criticism from both educational activists and theoreticians. The former, comprised mainly of teachers and educational policy analysts, claim that the test is unfairly biased against students as a function of demographics, while citing the significant impediment that poor performance upon the tests has upon both immediate and long-term outcomes. Theoretical perspectives on test design are the primary domain of psychometrics, who hold the unfortunate distinction of both supporting standards-based assessment, and subsequently watching their recommendations be ignored when put into practice, either through misinterpretation of statistical results, or the implementation of unrealitic expectations that ignore the original purpose: measurement, or the designation of numerical scales to classify underlying unobservable latent constructs. 
+The MCAS examination structure has received substantial criticism from both educational activists and theoreticians. The former, comprised mainly of teachers and educational policy analysts, claim that the test is unfairly biased against students as a function of demographics, while citing the significant impediment that poor performance upon the tests has upon both immediate and long-term outcomes. \cite{Gaudet} Theoretical perspectives on test design are the primary domain of psychometrics, who hold the unfortunate distinction of both supporting standards-based assessment, and subsequently watching their recommendations be ignored when put into practice, either through misinterpretation of statistical results, or the implementation of unrealitic expectations that ignore the original purpose: measurement, or the designation of numerical scales to classify underlying unobservable latent constructs. 
 
 \subsection{Theoretical structure of the test}
-Our paper begins with an analaysis of both the psychometric equivalance of the MCAS test within our sample of 10\textsuperscript{th} grade students, followed by an investigration into performance within each knowledge domain, conditioned upon the demographics and item responses found within a questionnaire included with the test.
+Our paper begins with an analysis of the psychometric equivalance of the MCAS test within our sample of 10\textsuperscript{th} grade students, followed by an investigation into performance within each knowledge domain, conditioned upon the demographics and item responses found within a questionnaire included with the test.
+
 \section{Methods}
 \subsection{Subjects}
-Our sample is comprised of 10,515 10\textsuperscript{th} grade students enrolled in Massachusett's public education system, and is assumed to be drawn as an unbiased sample of the total universe of 10\textsuperscript{th} graders. Provided demographics present as follows 4.48\% Asian, 2.97\% Black, 3.63\% Hispanic/Latino, 1.8\% multiracial, 0.17\% Native American, .12\% Pacific Islander, and 86.82\% White; 50.32\% was female, and there are no significant interactions between gender and ethnicity.
+Our sample is comprised of 10,515 10\textsuperscript{th} grade students enrolled in Massachusett's public education system, and is assumed to be drawn as an unbiased sample of the total universe of 10\textsuperscript{th} graders. Provided demographics present as follows: 4.48\% Asian, 2.97\% Black, 3.63\% Hispanic/Latino, 1.8\% multiracial, 0.17\% Native American, .12\% Pacific Islander, and 86.82\% White; 50.32\% was female, and there are no significant interactions between gender and ethnicity.
 
 Unfortunately for our purposes, the primary point of contention regarding exam disparity, student socio-economic status (SES), was not available, which limits our ability to test and explore the purported causal relaionship with student scores \cite{Gaudet}, as mediated by ethnicity or spatial location. 
+
 \subsection{Procedure}
-A critical assumption within standardised testing, and in truth any measurement scale, is that the test demonstrates a psychometric property called measurement invariance/equivalence. This property is a series of mathematical constraints applied to latent variables that are assumed to be non-significantly different between groups. Latent variables are unobservable constructs that underly the observed measures; one typically estiamtes them by computing standard principal axis factor analysis. The constraints serve to empirically demonstrate that across sub-populations, the test measures the same concepts, and that each item tests in a similar way the same construct in comparison to the overall sample, by imposing restrictions in a sequential four phase procedure:
+A critical assumption within standardised testing, and in truth any measurement scale, is that the test demonstrates a psychometric property called measurement invariance/equivalence. This property is a series of mathematical constraints applied to latent variables that are assumed to be non-significantly different between groups. Latent variables are unobservable constructs that underly the observed measures; one typically estimates them by computing standard principal axis factor analysis. The constraints serve to empirically demonstrate that across sub-populations, the test measures the same concepts, and that each item tests in a similar way the same construct in comparison to the overall sample. This is shown by imposing restrictions in a sequential four phase procedure:
 \begin{enumerate}
 \item{Configural invariance:} 
 Tests whether the same factor model (i.e., latent variables, equivalent to knowledge subdomains, for example grammar) is found within each subgroup.
 \item{Weak invariance:}
-Tests whether in addition to the same factor structure, the same items load equivalently onto the same same structure.
-\item{Strong invariance:}
+Tests whether in addition to the same factor structure, the same items load equivalently onto the same structure.
+\item{Strong invariance}
 Tests that the intercepts, item loadings, and factor structure are equivalent across groups.
 \item{Strict invariance:}
 Tests the assumption that in addition to the preceeding steps, the residual variances are equivalent across groups.
 \end{enumerate}
-These four factors are argued to be necessary conditions for a fair and equitable comparison\cite{Meredith}, and are established by way of multi-group confirmatory factor analysis (MG-CFA). In this paper, we examine these factors using a group of R packages cited at the end of the paper \cite{psych,lavaan,semTools}. 
-Exploratory bootstrapped oblimin factor analyses were conducted upon each section to establish the number of domains and high loading items within each of the three tests. As a consequence of the extreme ethnicity imbalance within three of the four science exams, only Biology was tested using MG-CFA.
+These four factors are argued to be necessary conditions for a fair and equitable comparison\cite{Meredith}, and are established by way of multi-group confirmatory factor analysis (MG-CFA). In this paper, we examine these factors using a series of R packages \cite{psych,lavaan,semTools}. 
+Exploratory bootstrapped oblimin factor analyses were conducted upon each test to establish the number of domains and high loading items within each of the three tests. As a consequence of the extreme ethnicity imbalance within three of the four science exams, only Biology was tested using MG-CFA.
 
-Furthermore, we investigated the information found within the questionnaire, relating them to the students' scores on the three sections using both multivariate parametric regressions, and a non-parametric predictive procedure using the mvpart package, which models multivariate regression trees.
+Furthermore, we investigated the information found within the questionnaire by relating them to the students' scores on the three sections. We used both multivariate parametric regressions and a non-parametric predictive procedure using the mvpart package, which models multivariate regression trees.
 
-Missing data in survey and test data is an important consideration, and there exist a number of techniques to produce more robust solutions, mainly working under the Bayesian estimation process for missing data pioneered by Donald Rubin\cite{rubin}. However, within the structure of the exam, missing data was unsurprisingly a rare occurence: the highest proportion of missing for any item was .008, and 91.23\% had no missing questions. Even so, for the MG-CFA, we attempted to account for this by utilising the Full Information Maximum Likelihood (FIML) estimation, in conjunction with a large number of bootstraps to obtain accurate estimates of asymptotic errors. However, the questionnaire exhibited extreme proportions of non-response, which is problematic for the multivariate regression techniques, producing potentially biased results under the assumption that items are missing completely at random. As such, we processed the original responses using the mice package\cite{mice}, using 25 imputed data frames with 30 iterations in each dataframe. Regression trees are relatively robust to missing data, because all information is not processed simultaneously, but sequentially in order of variable importance, and as such we did not take any additional steps when conducting that analysis.
+Missing data in survey and test data is an important consideration, and there exist a number of techniques to produce more robust solutions; most work under the bayesian estimation process for missing data pioneered by Donald Rubin\cite{rubin}. However, within the structure of the exam, missing data was unsurprisingly a rare occurence: the highest proportion of missing for any item was .008, and 91.23\% had no missing questions. Even so, for the MG-CFA we attempted to account for this by utilising the Full Information Maximum Likelihood (FIML) estimation in conjunction with a large number of bootstraps to obtain accurate estimates of asymptotic errors. However, the questionnaire exhibited extreme proportions of non-response, which is problematic for the multivariate regression techniques as it produces potentially biased results under the assumption that items are missing completely at random. As such, we processed the original responses using the mice package\cite{mice} using 13 imputed data frames with 15 iterations in each dataframe. Regression trees are relatively robust to missing data because all information is not processed simultaneously, but rather sequentially in order of variable importance. As such we did not take any additional steps when conducting that analysis.
 \section{Results}
 \subsection{Exploratory factor analyses}
-Given the preceeding information, we examined the Mathematics, English, and Biology sections of the exam, using a oblimin rotated factor structure, with the number of latent factors equal to the number of general domains; factor loadings were calculated using maximum likelihood estimates from the tetrachoric correlation matrices for each subset of items. The psych package was used to calculate the factor structure.
-<<fig=T,echo=F>>=
-fa.diagram(feng,main='English Oblimin')
-fa.diagram(fmat,main='Mathematics Oblimin')
-fa.diagram(fsci1,main='Biology Oblimin')
-@
+Given the preceeding information, we examined the Mathematics, English, and Biology sections of the exam using a oblimin rotated factor structure, with the number of latent factors equal to the number of general domains. Factor loadings were calculated using maximum likelihood estimates from the tetrachoric correlation matrices for each subset of items. The psych package was used to calculate the factor structure. Items that loaded higher than .3 on a factor were specified as indicators, and diagrams of each factor can be located in Appendix A.
+
 \subsection{MG-CFA}
-As a consequence of the unequal numbers of test takers between Biology and the rest of the science exam options, we chose to run three separate tests for measurement invariance: 
+As a consequence of the unequal numbers of test takers between Biology and the rest of the science exam options, we chose to run two separate tests for measurement invariance: the first was composed of the total sample on the English and Mathematics, and the second was composed of the Biology testees ($N$=9,239). Diagrams representing the EFA results can be found in Appendix A.
 
-  These were subsequently specified using a FIML procedure with bootstrapped sampling within the four primary ethnicities: A,B,H,W. Other ethnicities were excluded because of their relative rarity within the sample. As a consequence of the $\chi$\textsuperscript{2} fit statistic, defined as \begin{equation} \chi^2_{d.f}=2(N-1) * F_0 \end{equation} scales as a function of both sample size and the minimum function test statistic $F_0$, traditional measurement invariance, which uses changes in significance to reject a constraint, fails here, as the sample size guarantees significant results. In response to this fact, we employ three different fitness criterion: the $\Delta$ Comparative Fit Index (CFI) \cite{Bentler}, the $\Delta$ root mean square error of approximation (RMSEA), and the $\Delta$ Tucker-Lewis Index (TLI) \cite{Chen}. For all three, decreases in model fit of greater than .01 are considered significant reductions in model fit. In addition, we include An (Akaike) Information Criterion (AIC), to demonstrate whether model fit increases or decreases between sequential steps in comparison to the theoretical true model.
-
+ The latent variable models for each test were specified using a FIML procedure with
+bootstrapped sampling within the four primary ethnicities: A,B,H,W.
+Other ethnicities were excluded because of their relative rarity within
+the sample. As a consequence of the $\chi$\textsuperscript{2} fit
+statistic, defined as \begin{equation} \chi^2_{d.f}=2(N-1) * F_0
+\end{equation} scales as a function of both sample size and the minimum
+function test statistic $F_0$, traditional measurement invariance, which
+uses changes in significance to reject a constraint, fails here, as the
+sample size guarantees significant results. In response to this fact, we
+employ three different fitness criterion: the $\Delta$ Comparative Fit
+Index (CFI) \cite{Bentler}, the $\Delta$ root mean square error of
+approximation (RMSEA), and the $\Delta$ Tucker-Lewis Index (TLI)
+\cite{Chen}. For all three, decreases in model fit of greater than .01
+are considered significant reductions in model fit. In addition, we
+include An (Akaike) Information Criterion (AIC), to demonstrate whether
+model fit increases or decreases between sequential steps in comparison
+to the theoretical true model.
 \subsection{English}
-The English section constructed using the following system of latent and test items, as predictors of the unstandardized English score, as given below.
-<<echo=F>>=
-e1=~eitem8+eitem10+eitem11+eitem12+eitem13+eitem16+eitem17+eitem20+
-   eitem21+eitem22+eitem23+eitem24+eitem25+eitem26+eitem28+eitem29+
-   eitem30+eitem31+eitem32+eitem33+eitem34+eitem36+eitem37
-e2=~eitem27+eitem35+eitem9+eitem18
-e3=~eitem38+eitem39+eitem40
-erawsc~e1+e2+e3
-@
+The English section was constructed using the system of latent and test items presented below as predictors of the unstandardized English score.
+
+\vspace{0.25cm}
+
+\begin{minipage}{\linewidth}
+\begin{tabular}{|c|l|}
+\multicolumn{1}{c}{Latent Variable} & \multicolumn{1}{l}{Latent Variable Indicators}\tabularnewline
+\hline 
+1 & 8, 10, 11, 12, 13, 16, 17, 20,  21, 22, 23, 24, 25, 26, 28, 29,  30,
+31, 32, 33, 34, 36, 37\tabularnewline
+\hline 
+2 & 27, 35, 9, 18\tabularnewline
+\hline 
+3 & 38, 39, 40\tabularnewline
+\hline
+\end{tabular}
+
+\bigskip
+
+All latent variable indicators are questions from the English section of the test (e.g. `8' represents `eitem8').
+
+\end{minipage}
+
 
 \subsubsection{Configural Invariance}
-<<echo=F>>=
+<<echo=FALSE>>=
 fitMeasures(MI.eng$fit.configural, c('chisq','tli', 'cfi','rmsea','aic'))
 @
-As the summary statistics given in the analyses show, configural invariance is supported, meaning that all four ethnicities employ the same conceptual frameworks to answer the test items. 
+As the summary statistics given in the analyses show, configural invariance is supported, meaning that all four ethnicities employ the same conceptual frameworks to answer the test items.
 \subsubsection{Metric (Weak) Invariance}
-Weak Invariance does impact the model fit compared to step 1, however negligably: $\Delta$ CFI = .002, $\Delta$ RMSEA = .000 , $\Delta$$\chi^2$=187.875, and the $\Delta$ TLI =.
+Weak Invariance does impact the model fit compared to step 1, however negligably: $\Delta\mathrm{CFI}$ = .002, $\Delta\mathrm{RMSEA}$ = 0.000 , $\Delta$$\chi^2$=187.875, and the $\Delta\mathrm{TLI}$ = 0.000.
 
-<<echo=F>>=
+<<echo=FALSE>>=
 fitMeasures(MI.eng$fit.loadings, c('chisq','tli', 'cfi','rmsea','aic'))
 @
 
 \subsubsection{Strong Invariance}
-Strong Invariance is established using the model fit indexes above and beyond weak invariance: $\Delta$ CFI = .002, $\Delta$ RMSEA = .000 , and the $\Delta$ TLI =.000 and $\Delta$$\chi^2$=187.875.
-<<echo=F>>=
+Strong Invariance is established using the model fit indexes above and beyond weak invariance: $\Delta\mathrm{CFI}$ = .002, $\Delta\mathrm{RMSEA}$ = .000 , and the $\Delta\mathrm{TLI}$ =.000 and $\Delta$$\chi^2$=187.875.
+
+<<echo=FALSE>>=
 fitMeasures(MI.eng$fit.intercepts, c('chisq','tli', 'cfi','rmsea','aic'))
 @
 
 \subsubsection{Strict Invariance}
-Strict invariance does not hold, with a significant $\Delta$ CFI = .034, $\Delta$ RMSEA = .006, $\Delta$$\chi^2$=1670.297, and the $\Delta$ TLI = .03 indicating lack of fit.
-<<echo=F>>=
+Strict invariance does not hold, with a significant $\Delta\mathrm{CFI}$ = .034, $\Delta\mathrm{RMSEA}$ = .006, $\Delta$$\chi^2$=1670.297, and the $\Delta\mathrm{TLI}$ = .03 indicating lack of fit.
+
+<<echo=FALSE>>=
 fitMeasures(MI.eng$fit.residuals, c('chisq','tli', 'cfi','rmsea','aic'))
 @
 \subsection{Mathematics}
-While the EFA presented a good model fit for a five factor model, when the SEM model imposed upon the data, it failed to converge due to underspecification. As such, factor 5 was removed, because it consisted of only four low loading items.
-<<echo=F>>=
-m1=~mitem4+mitem5+mitem8+mitem11+mitem12+mitem14+mitem25+mitem32+mitem35+mitem37+mitem40+mitem42
-m2=~mitem6+mitem10+mitem17+mitem24+mitem39
-m3=~mitem22+mitem28+mitem34+mitem38+mitem41
-m4=~mitem18+mitem20+mitem21+mitem31+mitem42
-mrawsc~m1+m2+m3+m4
-@
+While the EFA presented a good model fit for a five factor model, when the SEM model was imposed upon the data it failed to converge due to underspecification. As such, factor 5 was removed because it consisted of only four low loading items. The latent variable model for Mathematics is presented in the table below. 
+
+\vspace{0.25cm}
+
+\begin{minipage}{\linewidth}
+\begin{tabular}{|c|l|}
+\multicolumn{1}{c}{Latent Variable} & \multicolumn{1}{l}{Latent Variable Indicators}\tabularnewline
+\hline 
+1 & 4, 5, 8, 11, 12, 14, 25, 32, 35, 37, 40, 42\tabularnewline
+\hline 
+2 & 6, 10, 17, 24, 39\tabularnewline
+\hline 
+3 & 22, 28, 34, 38, 41\tabularnewline
+\hline 
+4 & 18, 20, 21, 31, 42\tabularnewline
+\hline 
+\end{tabular}
+
+\bigskip
+
+All latent variable indicators are questions from the Mathematics section of the test (e.g. `8' represents `mitem8').
+
+\end{minipage}
+
 
 \subsubsection{Configural Invariance}
-<<echo=F>>=
+<<echo=FALSE>>=
 fitMeasures(MI.maths$fit.configural, c('chisq','tli', 'cfi','rmsea','aic'))
 @
-As the summary statistics given in the analyses show, configural invariance is supported, meaning that all four ethnicities employ the same conceptual frameworks to answer the test items. 
-\subsubsection{Metric (Weak) Invariance}
-Weak Invariance does impact the model fit compared to step 1, however negligably: $\Delta$ CFI = .004, $\Delta$ RMSEA = .001 , $\Delta$$\chi^2$=260.076, and the $\Delta$ TLI = .002.
 
-<<echo=F>>=
+The summary statistics presented below show that configural invariance is supported, meaning that all four ethnicities employ the same conceptual frameworks to answer the test items. 
+
+\subsubsection{Metric (Weak) Invariance}
+Weak Invariance does impact the model fit compared to step 1, however negligably: $\Delta\mathrm{CFI}$ = .004, $\Delta\mathrm{RMSEA}$ = .001 , $\Delta$$\chi^2$=260.076, and the $\Delta\mathrm{TLI}$ = .002.
+
+<<echo=FALSE>>=
 fitMeasures(MI.maths$fit.loadings, c('chisq','tli', 'cfi','rmsea','aic'))
 @
 
 \subsubsection{Strong Invariance}
-Strong Invariance does not substantively change model fit above and beyond weak invariance: $\Delta$ CFI = .002, $\Delta$ RMSEA = .000, the $\Delta$ TLI = .000 and $\Delta$$\chi^2$=167.652. 
+Strong Invariance does not substantively change model fit above and beyond weak invariance: $\Delta\mathrm{CFI}$ = .002, $\Delta\mathrm{RMSEA}$ = .000, the $\Delta\mathrm{TLI}$ = .000 and $\Delta$$\chi^2$=167.652. 
 
-<<echo=F>>=
-round(fitMeasures(MI.maths$fit.intercepts, c('chisq','tli', 'cfi','rmsea','aic')),4)
+<<echo=FALSE>>=
+fitMeasures(MI.maths$fit.intercepts, c('chisq','tli', 'cfi','rmsea','aic'))
 @
 
 \subsubsection{Strict Invariance}
-Strong Invariance imposes a significant constraint upon model fit: $\Delta$ CFI = .017, $\Delta$ RMSEA = .005, the $\Delta$ TLI = .014 and $\Delta$$\chi^2$=998.348. 
+Strong Invariance imposes a significant constraint upon model fit: $\Delta\mathrm{CFI}$ = .017, $\Delta\mathrm{RMSEA}$ = .005, the $\Delta\mathrm{TLI}$ = .014 and $\Delta$$\chi^2$=998.348. 
 
-<<echo=F>>=
+<<echo=FALSE>>=
 fitMeasures(MI.maths$fit.residuals, c('chisq','tli', 'cfi','rmsea','aic'))
 @
 
 \subsection{Biology}
-We proceeded with the same methodology to test the science section in isolation, using identical $\Delta$ constraints as above. The test for configural invariance produced non-significant results, indicating general acceptance of the factor structure. In addition, each subsequent test produced similar results, indicating that across all four primary ethnicities, the test operated with equivalent measurement. Biology as presented an interpretable factor structure, which was represented with the following mathematical structure.
-<<echo=F>>=
-s1=~sitem1+sitem2+sitem13+sitem14+sitem15+sitem22+sitem27+sitem30+sitem33+sitem34+sitem37+sitem40+sitem41
-s2=~sitem3+sitem5+sitem18+sitem19+sitem28+sitem31+sitem35+sitem43+sitem45
-s3=~sitem8+sitem10+sitem11+sitem12+sitem23+sitem24+sitem25+sitem23
-s4=~sitem4+sitem23+sitem29+sitem32+sitem44
-srawsc~s1+s2+s3+s4
-@
+We proceeded with the same methodology to test the science section in isolation, using identical $\Delta$ constraints as above. The test for configural invariance produced non-significant results, indicating general acceptance of the factor structure. In addition, each subsequent test produced similar results, indicating that across all four primary ethnicities, the test operated with equivalent measurement. Biology presented an interpretable factor structure, which was represented with the following mathematical structure.
+
+\vspace{0.25cm}
+
+\begin{minipage}{\linewidth}
+\begin{tabular}{|c|l|}
+\multicolumn{1}{c}{Latent Variable} & \multicolumn{1}{l}{Latent Variable Indicators}\tabularnewline
+\hline 
+1 & 1, 2, 13, 14, 15, 22, 27, 30, 33, 34, 37, 40, 41\tabularnewline
+\hline 
+2 & 3, 5, 18, 19, 28, 31, 35, 43, 45\tabularnewline
+\hline 
+3 & 8, 10, 11, 12, 23, 24, 25\tabularnewline
+\hline 
+4 & 4, 23, 29, 32, 44\tabularnewline
+\hline 
+\end{tabular}
+
+\bigskip
+
+All latent variable indicators are questions from the Biology section of the test (e.g. `8' represents `sitem8').
+
+\end{minipage}
+
+
 
 \subsubsection{Configural Invariance}
-<<echo=F>>=
+The analyses' summary statistics show that configural invariance is supported, meaning that all four ethnicities employ the same conceptual frameworks to answer the test items.
+
+<<echo=FALSE>>=
 fitMeasures(MI.eng$fit.configural, c('chisq','tli', 'cfi','rmsea','aic'))
 @
-As the summary statistics given in the analyses show, configural invariance is supported, meaning that all four ethnicities employ the same conceptual frameworks to answer the test items. 
-\subsubsection{Metric (Weak) Invariance}
-Weak Invariance does impact the model fit compared to step 1, however negligably: $\Delta$ CFI = .002, $\Delta$ RMSEA = .000 , $\Delta$$\chi^2$=168.330, and the $\Delta$ TLI = .000.
 
-<<echo=F>>=
+\subsubsection{Metric (Weak) Invariance}
+While Weak Invariance does impact the model fit compared to step 1, the change is negligable: $\Delta\mathrm{CFI}$ = .002, $\Delta\mathrm{RMSEA}$ = .000 , $\Delta$$\chi^2$=168.330, and the $\Delta\mathrm{TLI}$ = .000.
+
+<<echo=FALSE>>=
 fitMeasures(MI.eng$fit.loadings, c('chisq','tli', 'cfi','rmsea','aic'))
 @
 
 \subsubsection{Strong Invariance}
-Strong Invariance does fails to substantively change model fit above and beyond metric invariance: $\Delta$ CFI = .002, $\Delta$ RMSEA = .000 , and the $\Delta$ TLI = .000 and $\Delta$$\chi^2$=187.875. 
-<<echo=F>>=
+Strong Invariance fails to substantively change model fit above and beyond metric invariance: $\Delta\mathrm{CFI}$ = .002, $\Delta\mathrm{RMSEA}$ = .000 , and the $\Delta\mathrm{TLI}$ = .000 and $\Delta$$\chi^2$=187.875.
+<<echo=FALSE>>=
 fitMeasures(MI.eng$fit.intercepts, c('chisq','tli', 'cfi','rmsea','aic'))
 @
 
 \subsubsection{Strict Invariance}
-Strict Invariance does substantively change model fit above and beyond strong invariance: $\Delta$ CFI = .034, $\Delta$ RMSEA = .006 , and the $\Delta$ TLI = .03 and $\Delta$$\chi^2$=1670.297. 
-<<echo=F>>=
+Strict Invariance does substantively change model fit above and beyond strong invariance: $\Delta\mathrm{CFI}$ = .034, $\Delta\mathrm{RMSEA}$ = .006 , and the $\Delta\mathrm{TLI}$ = .03 and $\Delta$$\chi^2$=1670.297. 
+<<echo=FALSE>>=
 fitMeasures(MI.eng$fit.residuals, c('chisq','tli', 'cfi','rmsea','aic'))
 @
 
 \subsection{Questionnaire}
 \subsubsection{Multivariate Regression Tree}
+Without preexisting beliefs about the nature of the relationship between the response surface and the questionnaire and demographics, we chose to begin the analyses with an undirected multivariate tree regression \cite{De'ath} which is conceptually similar to running a multinomial regression upon the different clusters of the response variables. The tree also tests by default the possibility that which science test a student takes interacts with other outcomes --in addition, forcibly partitioning the data does not meaningfully increase model fit. We also made the decision to leave non-response as a legitimate factor level: this allows us to incorporate nonresponse as a partitioning criterion.
 
-Without preexisting beliefs about the nature of the relationship between the response surface and the questionnaire and demographics, we chose to begin the analyses with an undirected multivariate tree regression \cite{De'ath}, conceptually similar to running a multinomial regression upon the different clusters analysis groups of the response variables. The tree also tests by default the possibility that which science test a student takes interacts with other outcomes --in addition, forcibly partitioning the data does not meaningfully increase model fit. We also made the decision to leave non-response as a legitimate factor level: this allows us to incorporate nonresponse as a partitioning criterion.
-
-<<echo=F,fig=T>>=
-mvpart(cbind(mrawsc,erawsc,srawsc)~.,data=d4)
+<<fig=T, echo=FALSE, fig.height=4>>=
+require(mvpart)
+mvpart(cbind(mrawsc,erawsc,srawsc)~.,data=d4, legend=TRUE)
 @
 
-These results indicate substantive effects between the future student aspirations (those who intended to attain a baccalaureate degree) and overall performance, with these students performing significantly better on all three sections. The failure for the function to further discretize the low achievers indicates that the individual differences wihin accounted for no additional information. For high aspiring students, ethnicity was found to be the second most important in discriminating test scores, with Blacks, Hispanics and Native Americans performing similarly worse on the Mathematics and Biology sections than the other ethnicities. The final node split discriminates between high and low scoring science students, with those who responded as rarely using scientific instruments performing worse. Cross-validated errors were high, at CVE=.905, which corresponds to $R^2$=.15
-\subsubsection{Multivariate Regression}
-A parametric regression model was also conducted exploring only main effects between the predictors and response.
+These results indicate substantive effects between the future student aspirations (those who intended to attain a baccalaureate degree) and overall performance, with these students performing significantly better on all three sections. The failure for the function to further discretize the low achievers indicates that the individual differences within this group accounted for no additional information. For high aspiring students, ethnicity was found to be the second most important variable in discriminating test scores: Blacks, Hispanics and Native Americans performed similarly worse on the Mathematics and Biology sections compared to the other ethnicities. The final node split discriminates between high and low scoring science students, with those who responded as rarely using scientific instruments performing worse. Cross-validated errors were high, at CVE=.905, which corresponds to $R^2$=.15
 
+\subsubsection{Multivariate Regression}
+A parametric regression model was also conducted exploring only main effects between the predictors and response. Secondary analyses run upon the data, using the VIM package, clearly indicated that the missing data was uniformly equal for all but one question, which substantively improves the likelihood that these questions are truly missing completely at random (MCAR). In addition, the bulk of the missing information was a result of all questions being skipped together. Unfortunately, more algorithmically driven tests \cite{little,KB}, traditionally require that the data in question be normally distributed, and then proceed with homoscedatic assessments of the data; for our purposes, the predictors are all categorical, thus never distributed normally. All tests results were based on both the imputed and missing data, however no differences were found amongst the missing results. Results were singly focused upon the science sections, with more involved educational settings supporting higher outcomes. Males typically outperformed women, and Hispanic/Latino and Black students performed significantly worse than other ethnicity groups, who performed non-significantly differentally from themselves. Otherwise, student achievement outcomes were the only conclusively meaningful predictors that presented, with students who expected to achieve higher (e.g., achieve a baccalaureate degree) having higher outcomes. All code necessary to replicate these effects are submitted within the R script file submitted with these results.
 
 \section{Discussion}
-As indicated in the results section, the test fails to perform equivalently across the four groups, which is the primary point of order in test design and advocacy. Moreover, strict invariance has a specific import upon the function of psychometric and education measurements, testing whether the error variances --the portions of item variation not attributable to the common factors. Conceptually, strict invariance validates the assumption that error variances are different across groups; if this fails, there are either different variables operating on the measures across groups or the same set of variables operates differently across groups \cite{deshon}. This fundamentally demonstrates the importance of ensuring that all four mainstays of measurement invariance be substantiated, especially when one considers the long standing view that residuals convey meaning of unmeasured latent constructs' effects, moderated by group membership in this case \cite{cronbach}. This lends substantive credence to the argument that there are fundamental flaws within the test, specifically with reflection towards students' socioeconomic status.
 
-The questionnaire itself holds some important implicatoions for students, namely that increased exposure quality education results in better test performance (c.f., question 14). The low value of predictive accuracy, found within both sets of results, indicates that these survey demographics are either largely irrelevant to the performance of a student, or that they are inaccurate measures of performance. The fact that survey non-response is a significant classifier of above average performing students would indicate that meaningful results are unlikely to be found.
+The primary point of order in test design is for a test to perform equivalently across groups of testees. As indicated in the results section, our analysis suggests that the test fails to perform equivalently across four ethnicity groups. This supplies quantitative evidence to the argument that there are fundamental flaws within the test. However, the multivariate regression and tree results indicate that there are no functional differences between the test scores themselves across ethnicity, which is surpising given the previous point. In our opinion, a plausible explanation for these results are that there are ethnic differences not between the overall scores but between general education practices used for each group, likely a function of SES, which disproportionately affects minorities. This subtle distinction lends credence to the arguement that there is a fundamental flaw within the standards of difficulty construed as appropriate for this test, and as a consequence, the test performs poorly as an indicator of individual student achievement.
+
+Little more can be said about the questionnaire beyond the fact that the mode for each item is the most efficient predictor of individual student responses. As such, we can only conclude that the information being measured by these items is independent of the exams' item functioning and student performance.
+
 
 \bibliography{references}{}
 \bibliographystyle{apacite}
-
 
 \end{document}
