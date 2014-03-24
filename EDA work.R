@@ -123,7 +123,7 @@ m4=~mitem18+mitem20+mitem21+mitem31+mitem42
 mrawsc~m1+m2+m3+m4'
 scien<-'s1=~sitem1+sitem2+sitem13+sitem14+sitem15+sitem22+sitem27+sitem30+sitem33+sitem34+sitem37+sitem40+sitem41
 s2=~sitem3+sitem5+sitem18+sitem19+sitem28+sitem31+sitem35+sitem43+sitem45
-s3=~sitem8+sitem10+sitem11+sitem12+sitem23+sitem24+sitem25+sitem23
+s3=~sitem8+sitem10+sitem11+sitem12+sitem23+sitem24+sitem25
 s4=~sitem4+sitem23+sitem29+sitem32+sitem44
 srawsc~s1+s2+s3+s4'
   
@@ -151,7 +151,7 @@ fitMeasures(MI.scien$fit.residuals, c('chisq','tli', 'cfi','rmsea','aic'))
 fitMeasures(MI.scien$fit.means, c('chisq','tli', 'cfi','rmsea','aic'))
 
 
-d4<-d[,c(145:172,45,91,141,95)]
+d4<-d[,c(145:172,45,91,141,95,2)]
 require(mvpart)
 fit<-mvpart(cbind(mrawsc,erawsc,srawsc)~.,d4)
 
@@ -166,8 +166,9 @@ d5$race_off<-NULL
 
 require(mice)
 d6<-mice(d5,m=13,maxit=15,defaultMethod = c("norm","logreg","polyreg"))
-summary(manova(cbind(mrawsc,erawsc,srawsc)~.,d5))
-summary(lm(cbind(mrawsc,erawsc,srawsc)~.,d5))
+summary(aggr(d5[,c(1,7:31)]))
+summary(manova(cbind(mrawsc,erawsc,srawsc)~.,d5)) #this is on the data with missing 
+summary(lm(cbind(mrawsc,erawsc,srawsc)~.,d5)) #this is on the data with missing 
 
 summary(with(d6,manova(cbind(mrawsc,erawsc,srawsc)~.)))
 summary(with(d6,lm(cbind(mrawsc,erawsc,srawsc)~.)))
