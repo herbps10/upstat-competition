@@ -1,20 +1,63 @@
-\documentclass{article}
+\documentclass{article}\usepackage[]{graphicx}\usepackage[]{color}
+%% maxwidth is the original width if it is less than linewidth
+%% otherwise use linewidth (to make sure the graphics do not exceed the margin)
+\makeatletter
+\def\maxwidth{ %
+  \ifdim\Gin@nat@width>\linewidth
+    \linewidth
+  \else
+    \Gin@nat@width
+  \fi
+}
+\makeatother
+
+\definecolor{fgcolor}{rgb}{0.345, 0.345, 0.345}
+\newcommand{\hlnum}[1]{\textcolor[rgb]{0.686,0.059,0.569}{#1}}%
+\newcommand{\hlstr}[1]{\textcolor[rgb]{0.192,0.494,0.8}{#1}}%
+\newcommand{\hlcom}[1]{\textcolor[rgb]{0.678,0.584,0.686}{\textit{#1}}}%
+\newcommand{\hlopt}[1]{\textcolor[rgb]{0,0,0}{#1}}%
+\newcommand{\hlstd}[1]{\textcolor[rgb]{0.345,0.345,0.345}{#1}}%
+\newcommand{\hlkwa}[1]{\textcolor[rgb]{0.161,0.373,0.58}{\textbf{#1}}}%
+\newcommand{\hlkwb}[1]{\textcolor[rgb]{0.69,0.353,0.396}{#1}}%
+\newcommand{\hlkwc}[1]{\textcolor[rgb]{0.333,0.667,0.333}{#1}}%
+\newcommand{\hlkwd}[1]{\textcolor[rgb]{0.737,0.353,0.396}{\textbf{#1}}}%
+
+\usepackage{framed}
+\makeatletter
+\newenvironment{kframe}{%
+ \def\at@end@of@kframe{}%
+ \ifinner\ifhmode%
+  \def\at@end@of@kframe{\end{minipage}}%
+  \begin{minipage}{\columnwidth}%
+ \fi\fi%
+ \def\FrameCommand##1{\hskip\@totalleftmargin \hskip-\fboxsep
+ \colorbox{shadecolor}{##1}\hskip-\fboxsep
+     % There is no \\@totalrightmargin, so:
+     \hskip-\linewidth \hskip-\@totalleftmargin \hskip\columnwidth}%
+ \MakeFramed {\advance\hsize-\width
+   \@totalleftmargin\z@ \linewidth\hsize
+   \@setminipage}}%
+ {\par\unskip\endMakeFramed%
+ \at@end@of@kframe}
+\makeatother
+
+\definecolor{shadecolor}{rgb}{.97, .97, .97}
+\definecolor{messagecolor}{rgb}{0, 0, 0}
+\definecolor{warningcolor}{rgb}{1, 0, 1}
+\definecolor{errorcolor}{rgb}{1, 0, 0}
+\newenvironment{knitrout}{}{} % an empty environment to be redefined in TeX
+
+\usepackage{alltt}
 \usepackage{apacite,geometry,fancyhdr}
 \pagestyle{fancy}
 \rhead{Hurley \& Susmann}
 \lhead{\thepage}
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
 \begin{document}
 
 
-<<setup, include=F, cache=FALSE, echo=FALSE>>=
-load('/home/landon/Documents/workspace/DataCompete/upstat-competition/.RData')
-require(psych)
-require(semTools)
-require(mvpart)
-Sys.setenv(TEXINPUTS=getwd(), 
-           BIBINPUTS=getwd(), 
-           BSTINPUTS=getwd())
-@
+
+
 
 \title{An Analysis of Massachusetts' Standardized Testing through Multi-Group Structural Equation Modelling}
 \date{March 24, 2014}
@@ -62,128 +105,210 @@ Missing data in survey and test data is an important consideration, and there ex
 \section{Results}
 \subsection{Exploratory factor analyses}
 Given the preceeding information, we examined the Mathematics, English, and Biology sections of the exam, using a oblimin rotated factor structure, with the number of latent factors equal to the number of general domains; factor loadings were calculated using maximum likelihood estimates from the tetrachoric correlation matrices for each subset of items. The psych package was used to calculate the factor structure.
-<<fig=T,echo=F>>=
-fa.diagram(feng,main='English Oblimin')
-fa.diagram(fmat,main='Mathematics Oblimin')
-fa.diagram(fsci1,main='Biology Oblimin')
-@
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}
+\includegraphics[width=\maxwidth]{figure/unnamed-chunk-11} 
+
+\includegraphics[width=\maxwidth]{figure/unnamed-chunk-12} 
+
+\includegraphics[width=\maxwidth]{figure/unnamed-chunk-13} 
+
+\end{knitrout}
+
 \subsection{MG-CFA}
-As a consequence of the unequal numbers of test takers between Biology and the rest of the science exam options, we chose to run two separate tests for measurement invariance: the first was composed of the total sample on the English and Mathematics, and the second was composed of the Biology testees ($N$=9,239)
+As a consequence of the unequal numbers of test takers between Biology and the rest of the science exam options, we chose to run three separate tests for measurement invariance: 
 
   These were subsequently specified using a FIML procedure with bootstrapped sampling within the four primary ethnicities: A,B,H,W. Other ethnicities were excluded because of their relative rarity within the sample. As a consequence of the $\chi$\textsuperscript{2} fit statistic, defined as \begin{equation} \chi^2_{d.f}=2(N-1) * F_0 \end{equation} scales as a function of both sample size and the minimum function test statistic $F_0$, traditional measurement invariance, which uses changes in significance to reject a constraint, fails here, as the sample size guarantees significant results. In response to this fact, we employ three different fitness criterion: the $\Delta$ Comparative Fit Index (CFI) \cite{Bentler}, the $\Delta$ root mean square error of approximation (RMSEA), and the $\Delta$ Tucker-Lewis Index (TLI) \cite{Chen}. For all three, decreases in model fit of greater than .01 are considered significant reductions in model fit. In addition, we include An (Akaike) Information Criterion (AIC), to demonstrate whether model fit increases or decreases between sequential steps in comparison to the theoretical true model.
 
 \subsection{English}
 The English section constructed using the following system of latent and test items, as predictors of the unstandardized English score, as given below.
-<<echo=F>>=
-e1=~eitem8+eitem10+eitem11+eitem12+eitem13+eitem16+eitem17+eitem20+
-   eitem21+eitem22+eitem23+eitem24+eitem25+eitem26+eitem28+eitem29+
-   eitem30+eitem31+eitem32+eitem33+eitem34+eitem36+eitem37
-e2=~eitem27+eitem35+eitem9+eitem18
-e3=~eitem38+eitem39+eitem40
-erawsc~e1+e2+e3
-@
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{verbatim}
+## erawsc ~ e1 + e2 + e3
+\end{verbatim}
+\end{kframe}
+\end{knitrout}
+
 
 \subsubsection{Configural Invariance}
-<<echo=F>>=
-fitMeasures(MI.eng$fit.configural, c('chisq','tli', 'cfi','rmsea','aic'))
-@
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{verbatim}
+##     chisq       tli       cfi     rmsea       aic 
+## 3.981e+03 9.470e-01 9.510e-01 2.400e-02 2.154e+05
+\end{verbatim}
+\end{kframe}
+\end{knitrout}
+
 As the summary statistics given in the analyses show, configural invariance is supported, meaning that all four ethnicities employ the same conceptual frameworks to answer the test items. 
 \subsubsection{Metric (Weak) Invariance}
 Weak Invariance does impact the model fit compared to step 1, however negligably: $\Delta$ CFI = .002, $\Delta$ RMSEA = .000 , $\Delta$$\chi^2$=187.875, and the $\Delta$ TLI =.
 
-<<echo=F>>=
-fitMeasures(MI.eng$fit.loadings, c('chisq','tli', 'cfi','rmsea','aic'))
-@
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{verbatim}
+##     chisq       tli       cfi     rmsea       aic 
+## 4.150e+03 9.470e-01 9.490e-01 2.400e-02 2.154e+05
+\end{verbatim}
+\end{kframe}
+\end{knitrout}
+
 
 \subsubsection{Strong Invariance}
 Strong Invariance is established using the model fit indexes above and beyond weak invariance: $\Delta$ CFI = .002, $\Delta$ RMSEA = .000 , and the $\Delta$ TLI =.000 and $\Delta$$\chi^2$=187.875.
-<<echo=F>>=
-fitMeasures(MI.eng$fit.intercepts, c('chisq','tli', 'cfi','rmsea','aic'))
-@
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{verbatim}
+##     chisq       tli       cfi     rmsea       aic 
+## 4.337e+03 9.470e-01 9.470e-01 2.400e-02 2.154e+05
+\end{verbatim}
+\end{kframe}
+\end{knitrout}
+
 
 \subsubsection{Strict Invariance}
 Strict invariance does not hold, with a significant $\Delta$ CFI = .034, $\Delta$ RMSEA = .006, $\Delta$$\chi^2$=1670.297, and the $\Delta$ TLI = .03 indicating lack of fit.
-<<echo=F>>=
-fitMeasures(MI.eng$fit.residuals, c('chisq','tli', 'cfi','rmsea','aic'))
-@
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{verbatim}
+##     chisq       tli       cfi     rmsea       aic 
+## 6.008e+03 9.180e-01 9.120e-01 3.000e-02 2.169e+05
+\end{verbatim}
+\end{kframe}
+\end{knitrout}
+
 \subsection{Mathematics}
 While the EFA presented a good model fit for a five factor model, when the SEM model imposed upon the data, it failed to converge due to underspecification. As such, factor 5 was removed, because it consisted of only four low loading items.
-<<echo=F>>=
-m1=~mitem4+mitem5+mitem8+mitem11+mitem12+mitem14+mitem25+mitem32+mitem35+mitem37+mitem40+mitem42
-m2=~mitem6+mitem10+mitem17+mitem24+mitem39
-m3=~mitem22+mitem28+mitem34+mitem38+mitem41
-m4=~mitem18+mitem20+mitem21+mitem31+mitem42
-mrawsc~m1+m2+m3+m4
-@
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{verbatim}
+## mrawsc ~ m1 + m2 + m3 + m4
+\end{verbatim}
+\end{kframe}
+\end{knitrout}
+
 
 \subsubsection{Configural Invariance}
-<<echo=F>>=
-fitMeasures(MI.maths$fit.configural, c('chisq','tli', 'cfi','rmsea','aic'))
-@
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{verbatim}
+##     chisq       tli       cfi     rmsea       aic 
+## 2.704e+03 9.640e-01 9.690e-01 2.800e-02 3.160e+05
+\end{verbatim}
+\end{kframe}
+\end{knitrout}
+
 As the summary statistics given in the analyses show, configural invariance is supported, meaning that all four ethnicities employ the same conceptual frameworks to answer the test items. 
 \subsubsection{Metric (Weak) Invariance}
 Weak Invariance does impact the model fit compared to step 1, however negligably: $\Delta$ CFI = .004, $\Delta$ RMSEA = .001 , $\Delta$$\chi^2$=260.076, and the $\Delta$ TLI = .002.
 
-<<echo=F>>=
-fitMeasures(MI.maths$fit.loadings, c('chisq','tli', 'cfi','rmsea','aic'))
-@
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{verbatim}
+##     chisq       tli       cfi     rmsea       aic 
+## 2.965e+03 9.630e-01 9.650e-01 2.900e-02 3.161e+05
+\end{verbatim}
+\end{kframe}
+\end{knitrout}
+
 
 \subsubsection{Strong Invariance}
 Strong Invariance does not substantively change model fit above and beyond weak invariance: $\Delta$ CFI = .002, $\Delta$ RMSEA = .000, the $\Delta$ TLI = .000 and $\Delta$$\chi^2$=167.652. 
 
-<<echo=F>>=
-round(fitMeasures(MI.maths$fit.intercepts, c('chisq','tli', 'cfi','rmsea','aic')),3)
-@
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{verbatim}
+##     chisq       tli       cfi     rmsea       aic 
+## 3.132e+03 9.630e-01 9.630e-01 2.800e-02 3.162e+05
+\end{verbatim}
+\end{kframe}
+\end{knitrout}
+
 
 \subsubsection{Strict Invariance}
 Strong Invariance imposes a significant constraint upon model fit: $\Delta$ CFI = .017, $\Delta$ RMSEA = .005, the $\Delta$ TLI = .014 and $\Delta$$\chi^2$=998.348. 
 
-<<echo=F>>=
-fitMeasures(MI.maths$fit.residuals, c('chisq','tli', 'cfi','rmsea','aic'))
-@
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{verbatim}
+##     chisq       tli       cfi     rmsea       aic 
+## 4.131e+03 9.490e-01 9.460e-01 3.300e-02 3.170e+05
+\end{verbatim}
+\end{kframe}
+\end{knitrout}
+
 
 \subsection{Biology}
 We proceeded with the same methodology to test the science section in isolation, using identical $\Delta$ constraints as above. The test for configural invariance produced non-significant results, indicating general acceptance of the factor structure. In addition, each subsequent test produced similar results, indicating that across all four primary ethnicities, the test operated with equivalent measurement. Biology as presented an interpretable factor structure, which was represented with the following mathematical structure.
-<<echo=F>>=
-s1=~sitem1+sitem2+sitem13+sitem14+sitem15+sitem22+sitem27+sitem30+sitem33+sitem34+sitem37+sitem40+sitem41
-s2=~sitem3+sitem5+sitem18+sitem19+sitem28+sitem31+sitem35+sitem43+sitem45
-s3=~sitem8+sitem10+sitem11+sitem12+sitem23+sitem24+sitem25+sitem23
-s4=~sitem4+sitem23+sitem29+sitem32+sitem44
-srawsc~s1+s2+s3+s4
-@
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{verbatim}
+## srawsc ~ s1 + s2 + s3 + s4
+\end{verbatim}
+\end{kframe}
+\end{knitrout}
+
 
 \subsubsection{Configural Invariance}
-<<echo=F>>=
-fitMeasures(MI.eng$fit.configural, c('chisq','tli', 'cfi','rmsea','aic'))
-@
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{verbatim}
+##     chisq       tli       cfi     rmsea       aic 
+## 3.981e+03 9.470e-01 9.510e-01 2.400e-02 2.154e+05
+\end{verbatim}
+\end{kframe}
+\end{knitrout}
+
 As the summary statistics given in the analyses show, configural invariance is supported, meaning that all four ethnicities employ the same conceptual frameworks to answer the test items. 
 \subsubsection{Metric (Weak) Invariance}
 Weak Invariance does impact the model fit compared to step 1, however negligably: $\Delta$ CFI = .002, $\Delta$ RMSEA = .000 , $\Delta$$\chi^2$=168.330, and the $\Delta$ TLI = .000.
 
-<<echo=F>>=
-fitMeasures(MI.eng$fit.loadings, c('chisq','tli', 'cfi','rmsea','aic'))
-@
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{verbatim}
+##     chisq       tli       cfi     rmsea       aic 
+## 4.150e+03 9.470e-01 9.490e-01 2.400e-02 2.154e+05
+\end{verbatim}
+\end{kframe}
+\end{knitrout}
+
 
 \subsubsection{Strong Invariance}
 Strong Invariance does fails to substantively change model fit above and beyond metric invariance: $\Delta$ CFI = .002, $\Delta$ RMSEA = .000 , and the $\Delta$ TLI = .000 and $\Delta$$\chi^2$=187.875. 
-<<echo=F>>=
-fitMeasures(MI.eng$fit.intercepts, c('chisq','tli', 'cfi','rmsea','aic'))
-@
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{verbatim}
+##     chisq       tli       cfi     rmsea       aic 
+## 4.337e+03 9.470e-01 9.470e-01 2.400e-02 2.154e+05
+\end{verbatim}
+\end{kframe}
+\end{knitrout}
+
 
 \subsubsection{Strict Invariance}
 Strict Invariance does substantively change model fit above and beyond strong invariance: $\Delta$ CFI = .034, $\Delta$ RMSEA = .006 , and the $\Delta$ TLI = .03 and $\Delta$$\chi^2$=1670.297. 
-<<echo=F>>=
-fitMeasures(MI.eng$fit.residuals, c('chisq','tli', 'cfi','rmsea','aic'))
-@
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{verbatim}
+##     chisq       tli       cfi     rmsea       aic 
+## 6.008e+03 9.180e-01 9.120e-01 3.000e-02 2.169e+05
+\end{verbatim}
+\end{kframe}
+\end{knitrout}
+
 
 \subsection{Questionnaire}
 \subsubsection{Multivariate Regression Tree}
 
 Without preexisting beliefs about the nature of the relationship between the response surface and the questionnaire and demographics, we chose to begin the analyses with an undirected multivariate tree regression \cite{De'ath}, conceptually similar to running a multinomial regression upon the different clusters analysis groups of the response variables. The tree also tests by default the possibility that which science test a student takes interacts with other outcomes --in addition, forcibly partitioning the data does not meaningfully increase model fit. We also made the decision to leave non-response as a legitimate factor level: this allows us to incorporate nonresponse as a partitioning criterion.
 
-<<echo=F,fig=T>>=
-mvpart(cbind(mrawsc,erawsc,srawsc)~.,data=d4)
-@
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}
+\includegraphics[width=\maxwidth]{figure/unnamed-chunk-17} 
+
+\end{knitrout}
+
 
 These results indicate substantive effects between the future student aspirations (those who intended to attain a baccalaureate degree) and overall performance, with these students performing significantly better on all three sections. The failure for the function to further discretize the low achievers indicates that the individual differences wihin accounted for no additional information. For high aspiring students, ethnicity was found to be the second most important in discriminating test scores, with Blacks, Hispanics and Native Americans performing similarly worse on the Mathematics and Biology sections than the other ethnicities. The final node split discriminates between high and low scoring science students, with those who responded as rarely using scientific instruments performing worse. Cross-validated errors were high, at CVE=.905, which corresponds to $R^2$=.15
 \subsubsection{Multivariate Regression}

@@ -68,7 +68,7 @@ fa.diagram(fmat,main='Mathematics Oblimin')
 fa.diagram(fsci1,main='Biology Oblimin')
 @
 \subsection{MG-CFA}
-As a consequence of the unequal numbers of test takers between Biology and the rest of the science exam options, we chose to run two separate tests for measurement invariance: the first was composed of the total sample on the English and Mathematics, and the second was composed of the Biology testees ($N$=9,239)
+As a consequence of the unequal numbers of test takers between Biology and the rest of the science exam options, we chose to run three separate tests for measurement invariance: 
 
   These were subsequently specified using a FIML procedure with bootstrapped sampling within the four primary ethnicities: A,B,H,W. Other ethnicities were excluded because of their relative rarity within the sample. As a consequence of the $\chi$\textsuperscript{2} fit statistic, defined as \begin{equation} \chi^2_{d.f}=2(N-1) * F_0 \end{equation} scales as a function of both sample size and the minimum function test statistic $F_0$, traditional measurement invariance, which uses changes in significance to reject a constraint, fails here, as the sample size guarantees significant results. In response to this fact, we employ three different fitness criterion: the $\Delta$ Comparative Fit Index (CFI) \cite{Bentler}, the $\Delta$ root mean square error of approximation (RMSEA), and the $\Delta$ Tucker-Lewis Index (TLI) \cite{Chen}. For all three, decreases in model fit of greater than .01 are considered significant reductions in model fit. In addition, we include An (Akaike) Information Criterion (AIC), to demonstrate whether model fit increases or decreases between sequential steps in comparison to the theoretical true model.
 
@@ -132,7 +132,7 @@ fitMeasures(MI.maths$fit.loadings, c('chisq','tli', 'cfi','rmsea','aic'))
 Strong Invariance does not substantively change model fit above and beyond weak invariance: $\Delta$ CFI = .002, $\Delta$ RMSEA = .000, the $\Delta$ TLI = .000 and $\Delta$$\chi^2$=167.652. 
 
 <<echo=F>>=
-round(fitMeasures(MI.maths$fit.intercepts, c('chisq','tli', 'cfi','rmsea','aic')),3)
+round(fitMeasures(MI.maths$fit.intercepts, c('chisq','tli', 'cfi','rmsea','aic')),4)
 @
 
 \subsubsection{Strict Invariance}
@@ -193,7 +193,7 @@ A parametric regression model was also conducted exploring only main effects bet
 \section{Discussion}
 As indicated in the results section, the test fails to perform equivalently across the four groups, which is the primary point of order in test design and advocacy. Moreover, strict invariance has a specific import upon the function of psychometric and education measurements, testing whether the error variances --the portions of item variation not attributable to the common factors. Conceptually, strict invariance validates the assumption that error variances are different across groups; if this fails, there are either different variables operating on the measures across groups or the same set of variables operates differently across groups \cite{deshon}. This fundamentally demonstrates the importance of ensuring that all four mainstays of measurement invariance be substantiated, especially when one considers the long standing view that residuals convey meaning of unmeasured latent constructs' effects, moderated by group membership in this case \cite{cronbach}. This lends substantive credence to the argument that there are fundamental flaws within the test, specifically with reflection towards students' socioeconomic status.
 
-
+The questionnaire itself holds some important implicatoions for students, namely that increased exposure quality education results in better test performance (c.f., question 14). The low value of predictive accuracy, found within both sets of results, indicates that these survey demographics are either largely irrelevant to the performance of a student, or that they are inaccurate measures of performance. The fact that survey non-response is a significant classifier of above average performing students would indicate that meaningful results are unlikely to be found.
 
 \bibliography{references}{}
 \bibliographystyle{apacite}

@@ -10,6 +10,7 @@
 library(lavaan)
 library(psych)
 library(mvpart)
+library(semTools)
 
 load("comp.RData")
 

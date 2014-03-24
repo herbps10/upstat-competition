@@ -104,48 +104,26 @@ Furthermore, we investigated the information found within the questionnaire, rel
 Missing data in survey and test data is an important consideration, and there exist a number of techniques to produce more robust solutions, mainly working under the Bayesian estimation process for missing data pioneered by Donald Rubin\cite{rubin}. However, within the structure of the exam, missing data was unsurprisingly a rare occurence: the highest proportion of missing for any item was .008, and 91.23\% had no missing questions. Even so, for the MG-CFA, we attempted to account for this by utilising the Full Information Maximum Likelihood (FIML) estimation, in conjunction with a large number of bootstraps to obtain accurate estimates of asymptotic errors. However, the questionnaire exhibited extreme proportions of non-response, which is problematic for the multivariate regression techniques, producing potentially biased results under the assumption that items are missing completely at random. As such, we processed the original responses using the mice package\cite{mice}, using 25 imputed data frames with 30 iterations in each dataframe. Regression trees are relatively robust to missing data, because all information is not processed simultaneously, but sequentially in order of variable importance, and as such we did not take any additional steps when conducting that analysis.
 \section{Results}
 \subsection{Exploratory factor analyses}
-Given the preceeding information, we examined the Mathematics, English, and Biology sections of the exam, using a oblimin rotated factor structure, with the number of latent factors equal to the number of general domains; factor loadings were calculated using maximum likelihood estimates from the tetrachoric correlation matrices for each subset of items. The psych package was used to calculate the factor structure. Items that loaded higher than .3 on a factor were specified as indicators, and diagrams of each factor can be located in Appendix B.
+Given the preceeding information, we examined the Mathematics, English, and Biology sections of the exam, using a oblimin rotated factor structure, with the number of latent factors equal to the number of general domains; factor loadings were calculated using maximum likelihood estimates from the tetrachoric correlation matrices for each subset of items. The psych package was used to calculate the factor structure.
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}
+\includegraphics[width=\maxwidth]{figure/unnamed-chunk-11} 
+
+\includegraphics[width=\maxwidth]{figure/unnamed-chunk-12} 
+
+\includegraphics[width=\maxwidth]{figure/unnamed-chunk-13} 
+
+\end{knitrout}
+
 \subsection{MG-CFA}
-As a consequence of the unequal numbers of test takers between Biology and the rest of the science exam options, we chose to run two separate tests for measurement invariance: the first was composed of the total sample on the English and Mathematics, and the second was composed of the Biology testees ($N$=9,239); exploratory factor analyses (EFA) presented the following results:
+As a consequence of the unequal numbers of test takers between Biology and the rest of the science exam options, we chose to run two separate tests for measurement invariance: the first was composed of the total sample on the English and Mathematics, and the second was composed of the Biology testees ($N$=9,239)
 
-\includegraphics{/home/landon/Documents/workspace/DataCompete/upstat-competition/figure/English.jpeg}
-
-\begin{knitrout}
-\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
-\begin{alltt}
-\hlkwd{fa.diagram}\hlstd{(fmat,} \hlkwc{main} \hlstd{=} \hlstr{"Mathematics Oblimin"}\hlstd{)}
-\end{alltt}
-
-
-{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error: could not find function "{}fa.diagram"{}}}\end{kframe}
-\end{knitrout}
-
-
-\begin{knitrout}
-\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
-\begin{alltt}
-\hlkwd{fa.diagram}\hlstd{(fsci1,} \hlkwc{main} \hlstd{=} \hlstr{"Biology Oblimin"}\hlstd{)}
-\end{alltt}
-
-
-{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error: could not find function "{}fa.diagram"{}}}\end{kframe}
-\end{knitrout}
-
-
-These were subsequently specified using a FIML procedure with bootstrapped sampling within the four primary ethnicities: A,B,H,W. Other ethnicities were excluded because of their relative rarity within the sample. As a consequence of the $\chi$\textsuperscript{2} fit statistic, defined as \begin{equation} \chi^2_{d.f}=2(N-1) * F_0 \end{equation} scales as a function of both sample size and the minimum function test statistic $F_0$, traditional measurement invariance, which uses changes in significance to reject a constraint, fails here, as the sample size guarantees significant results. In response to this fact, we employ three different fitness criterion: the $\Delta$ Comparative Fit Index (CFI) \cite{Bentler}, the $\Delta$ root mean square error of approximation (RMSEA), and the $\Delta$ Tucker-Lewis Index (TLI) \cite{Chen}. For all three, decreases in model fit of greater than .01 are considered significant reductions in model fit. In addition, we include An (Akaike) Information Criterion (AIC), to demonstrate whether model fit increases or decreases between sequential steps in comparison to the theoretical true model.
+  These were subsequently specified using a FIML procedure with bootstrapped sampling within the four primary ethnicities: A,B,H,W. Other ethnicities were excluded because of their relative rarity within the sample. As a consequence of the $\chi$\textsuperscript{2} fit statistic, defined as \begin{equation} \chi^2_{d.f}=2(N-1) * F_0 \end{equation} scales as a function of both sample size and the minimum function test statistic $F_0$, traditional measurement invariance, which uses changes in significance to reject a constraint, fails here, as the sample size guarantees significant results. In response to this fact, we employ three different fitness criterion: the $\Delta$ Comparative Fit Index (CFI) \cite{Bentler}, the $\Delta$ root mean square error of approximation (RMSEA), and the $\Delta$ Tucker-Lewis Index (TLI) \cite{Chen}. For all three, decreases in model fit of greater than .01 are considered significant reductions in model fit. In addition, we include An (Akaike) Information Criterion (AIC), to demonstrate whether model fit increases or decreases between sequential steps in comparison to the theoretical true model.
 
 \subsection{English}
 The English section constructed using the following system of latent and test items, as predictors of the unstandardized English score, as given below.
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
-\begin{alltt}
-\hlstd{e1} \hlkwb{=} \hlopt{~}\hlstd{eitem8} \hlopt{+} \hlstd{eitem10} \hlopt{+} \hlstd{eitem11} \hlopt{+} \hlstd{eitem12} \hlopt{+} \hlstd{eitem13} \hlopt{+} \hlstd{eitem16} \hlopt{+} \hlstd{eitem17} \hlopt{+} \hlstd{eitem20} \hlopt{+}
-    \hlstd{eitem21} \hlopt{+} \hlstd{eitem22} \hlopt{+} \hlstd{eitem23} \hlopt{+} \hlstd{eitem24} \hlopt{+} \hlstd{eitem25} \hlopt{+} \hlstd{eitem26} \hlopt{+} \hlstd{eitem28} \hlopt{+} \hlstd{eitem29} \hlopt{+}
-    \hlstd{eitem30} \hlopt{+} \hlstd{eitem31} \hlopt{+} \hlstd{eitem32} \hlopt{+} \hlstd{eitem33} \hlopt{+} \hlstd{eitem34} \hlopt{+} \hlstd{eitem36} \hlopt{+} \hlstd{eitem37}
-\hlstd{e2} \hlkwb{=} \hlopt{~}\hlstd{eitem27} \hlopt{+} \hlstd{eitem35} \hlopt{+} \hlstd{eitem9} \hlopt{+} \hlstd{eitem18}
-\hlstd{e3} \hlkwb{=} \hlopt{~}\hlstd{eitem38} \hlopt{+} \hlstd{eitem39} \hlopt{+} \hlstd{eitem40}
-\hlstd{erawsc} \hlopt{~} \hlstd{e1} \hlopt{+} \hlstd{e2} \hlopt{+} \hlstd{e3}
-\end{alltt}
 \begin{verbatim}
 ## erawsc ~ e1 + e2 + e3
 \end{verbatim}
@@ -156,26 +134,24 @@ The English section constructed using the following system of latent and test it
 \subsubsection{Configural Invariance}
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
-\begin{alltt}
-\hlkwd{fitMeasures}\hlstd{(MI.eng}\hlopt{$}\hlstd{fit.configural,} \hlkwd{c}\hlstd{(}\hlstr{"chisq"}\hlstd{,} \hlstr{"tli"}\hlstd{,} \hlstr{"cfi"}\hlstd{,} \hlstr{"rmsea"}\hlstd{,} \hlstr{"aic"}\hlstd{))}
-\end{alltt}
-
-
-{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error: could not find function "{}fitMeasures"{}}}\end{kframe}
+\begin{verbatim}
+##     chisq       tli       cfi     rmsea       aic 
+## 3.981e+03 9.470e-01 9.510e-01 2.400e-02 2.154e+05
+\end{verbatim}
+\end{kframe}
 \end{knitrout}
 
 As the summary statistics given in the analyses show, configural invariance is supported, meaning that all four ethnicities employ the same conceptual frameworks to answer the test items. 
 \subsubsection{Metric (Weak) Invariance}
-Weak Invariance does impact the model fit compared to step 1, however negligably: $\Delta$ CFI = .002, $\Delta$ RMSEA =. , $\Delta$$\chi^2$=187.875, and the $\Delta$ TLI =.
+Weak Invariance does impact the model fit compared to step 1, however negligably: $\Delta$ CFI = .002, $\Delta$ RMSEA = .000 , $\Delta$$\chi^2$=187.875, and the $\Delta$ TLI =.
 
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
-\begin{alltt}
-\hlkwd{fitMeasures}\hlstd{(MI.eng}\hlopt{$}\hlstd{fit.loadings,} \hlkwd{c}\hlstd{(}\hlstr{"chisq"}\hlstd{,} \hlstr{"tli"}\hlstd{,} \hlstr{"cfi"}\hlstd{,} \hlstr{"rmsea"}\hlstd{,} \hlstr{"aic"}\hlstd{))}
-\end{alltt}
-
-
-{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error: could not find function "{}fitMeasures"{}}}\end{kframe}
+\begin{verbatim}
+##     chisq       tli       cfi     rmsea       aic 
+## 4.150e+03 9.470e-01 9.490e-01 2.400e-02 2.154e+05
+\end{verbatim}
+\end{kframe}
 \end{knitrout}
 
 
@@ -183,12 +159,11 @@ Weak Invariance does impact the model fit compared to step 1, however negligably
 Strong Invariance is established using the model fit indexes above and beyond weak invariance: $\Delta$ CFI = .002, $\Delta$ RMSEA = .000 , and the $\Delta$ TLI =.000 and $\Delta$$\chi^2$=187.875.
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
-\begin{alltt}
-\hlkwd{fitMeasures}\hlstd{(MI.eng}\hlopt{$}\hlstd{fit.intercepts,} \hlkwd{c}\hlstd{(}\hlstr{"chisq"}\hlstd{,} \hlstr{"tli"}\hlstd{,} \hlstr{"cfi"}\hlstd{,} \hlstr{"rmsea"}\hlstd{,} \hlstr{"aic"}\hlstd{))}
-\end{alltt}
-
-
-{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error: could not find function "{}fitMeasures"{}}}\end{kframe}
+\begin{verbatim}
+##     chisq       tli       cfi     rmsea       aic 
+## 4.337e+03 9.470e-01 9.470e-01 2.400e-02 2.154e+05
+\end{verbatim}
+\end{kframe}
 \end{knitrout}
 
 
@@ -196,26 +171,17 @@ Strong Invariance is established using the model fit indexes above and beyond we
 Strict invariance does not hold, with a significant $\Delta$ CFI = .034, $\Delta$ RMSEA = .006, $\Delta$$\chi^2$=1670.297, and the $\Delta$ TLI = .03 indicating lack of fit.
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
-\begin{alltt}
-\hlkwd{fitMeasures}\hlstd{(MI.eng}\hlopt{$}\hlstd{fit.residuals,} \hlkwd{c}\hlstd{(}\hlstr{"chisq"}\hlstd{,} \hlstr{"tli"}\hlstd{,} \hlstr{"cfi"}\hlstd{,} \hlstr{"rmsea"}\hlstd{,} \hlstr{"aic"}\hlstd{))}
-\end{alltt}
-
-
-{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error: could not find function "{}fitMeasures"{}}}\end{kframe}
+\begin{verbatim}
+##     chisq       tli       cfi     rmsea       aic 
+## 6.008e+03 9.180e-01 9.120e-01 3.000e-02 2.169e+05
+\end{verbatim}
+\end{kframe}
 \end{knitrout}
 
 \subsection{Mathematics}
 While the EFA presented a good model fit for a five factor model, when the SEM model imposed upon the data, it failed to converge due to underspecification. As such, factor 5 was removed, because it consisted of only four low loading items.
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
-\begin{alltt}
-\hlstd{m1} \hlkwb{=} \hlopt{~}\hlstd{mitem4} \hlopt{+} \hlstd{mitem5} \hlopt{+} \hlstd{mitem8} \hlopt{+} \hlstd{mitem11} \hlopt{+} \hlstd{mitem12} \hlopt{+} \hlstd{mitem14} \hlopt{+} \hlstd{mitem25} \hlopt{+} \hlstd{mitem32} \hlopt{+}
-    \hlstd{mitem35} \hlopt{+} \hlstd{mitem37} \hlopt{+} \hlstd{mitem40} \hlopt{+} \hlstd{mitem42}
-\hlstd{m2} \hlkwb{=} \hlopt{~}\hlstd{mitem6} \hlopt{+} \hlstd{mitem10} \hlopt{+} \hlstd{mitem17} \hlopt{+} \hlstd{mitem24} \hlopt{+} \hlstd{mitem39}
-\hlstd{m3} \hlkwb{=} \hlopt{~}\hlstd{mitem22} \hlopt{+} \hlstd{mitem28} \hlopt{+} \hlstd{mitem34} \hlopt{+} \hlstd{mitem38} \hlopt{+} \hlstd{mitem41}
-\hlstd{m4} \hlkwb{=} \hlopt{~}\hlstd{mitem18} \hlopt{+} \hlstd{mitem20} \hlopt{+} \hlstd{mitem21} \hlopt{+} \hlstd{mitem31} \hlopt{+} \hlstd{mitem42}
-\hlstd{mrawsc} \hlopt{~} \hlstd{m1} \hlopt{+} \hlstd{m2} \hlopt{+} \hlstd{m3} \hlopt{+} \hlstd{m4}
-\end{alltt}
 \begin{verbatim}
 ## mrawsc ~ m1 + m2 + m3 + m4
 \end{verbatim}
@@ -226,12 +192,11 @@ While the EFA presented a good model fit for a five factor model, when the SEM m
 \subsubsection{Configural Invariance}
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
-\begin{alltt}
-\hlkwd{fitMeasures}\hlstd{(MI.maths}\hlopt{$}\hlstd{fit.configural,} \hlkwd{c}\hlstd{(}\hlstr{"chisq"}\hlstd{,} \hlstr{"tli"}\hlstd{,} \hlstr{"cfi"}\hlstd{,} \hlstr{"rmsea"}\hlstd{,} \hlstr{"aic"}\hlstd{))}
-\end{alltt}
-
-
-{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error: could not find function "{}fitMeasures"{}}}\end{kframe}
+\begin{verbatim}
+##     chisq       tli       cfi     rmsea       aic 
+## 2.704e+03 9.640e-01 9.690e-01 2.800e-02 3.160e+05
+\end{verbatim}
+\end{kframe}
 \end{knitrout}
 
 As the summary statistics given in the analyses show, configural invariance is supported, meaning that all four ethnicities employ the same conceptual frameworks to answer the test items. 
@@ -240,12 +205,11 @@ Weak Invariance does impact the model fit compared to step 1, however negligably
 
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
-\begin{alltt}
-\hlkwd{fitMeasures}\hlstd{(MI.maths}\hlopt{$}\hlstd{fit.loadings,} \hlkwd{c}\hlstd{(}\hlstr{"chisq"}\hlstd{,} \hlstr{"tli"}\hlstd{,} \hlstr{"cfi"}\hlstd{,} \hlstr{"rmsea"}\hlstd{,} \hlstr{"aic"}\hlstd{))}
-\end{alltt}
-
-
-{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error: could not find function "{}fitMeasures"{}}}\end{kframe}
+\begin{verbatim}
+##     chisq       tli       cfi     rmsea       aic 
+## 2.965e+03 9.630e-01 9.650e-01 2.900e-02 3.161e+05
+\end{verbatim}
+\end{kframe}
 \end{knitrout}
 
 
@@ -254,12 +218,11 @@ Strong Invariance does not substantively change model fit above and beyond weak 
 
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
-\begin{alltt}
-\hlkwd{fitMeasures}\hlstd{(MI.maths}\hlopt{$}\hlstd{fit.intercepts,} \hlkwd{c}\hlstd{(}\hlstr{"chisq"}\hlstd{,} \hlstr{"tli"}\hlstd{,} \hlstr{"cfi"}\hlstd{,} \hlstr{"rmsea"}\hlstd{,} \hlstr{"aic"}\hlstd{))}
-\end{alltt}
-
-
-{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error: could not find function "{}fitMeasures"{}}}\end{kframe}
+\begin{verbatim}
+##     chisq       tli       cfi     rmsea       aic 
+## 3.132e+03 9.630e-01 9.630e-01 2.900e-02 3.162e+05
+\end{verbatim}
+\end{kframe}
 \end{knitrout}
 
 
@@ -268,12 +231,11 @@ Strong Invariance imposes a significant constraint upon model fit: $\Delta$ CFI 
 
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
-\begin{alltt}
-\hlkwd{fitMeasures}\hlstd{(MI.maths}\hlopt{$}\hlstd{fit.residuals,} \hlkwd{c}\hlstd{(}\hlstr{"chisq"}\hlstd{,} \hlstr{"tli"}\hlstd{,} \hlstr{"cfi"}\hlstd{,} \hlstr{"rmsea"}\hlstd{,} \hlstr{"aic"}\hlstd{))}
-\end{alltt}
-
-
-{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error: could not find function "{}fitMeasures"{}}}\end{kframe}
+\begin{verbatim}
+##     chisq       tli       cfi     rmsea       aic 
+## 4.131e+03 9.490e-01 9.460e-01 3.300e-02 3.170e+05
+\end{verbatim}
+\end{kframe}
 \end{knitrout}
 
 
@@ -281,15 +243,6 @@ Strong Invariance imposes a significant constraint upon model fit: $\Delta$ CFI 
 We proceeded with the same methodology to test the science section in isolation, using identical $\Delta$ constraints as above. The test for configural invariance produced non-significant results, indicating general acceptance of the factor structure. In addition, each subsequent test produced similar results, indicating that across all four primary ethnicities, the test operated with equivalent measurement. Biology as presented an interpretable factor structure, which was represented with the following mathematical structure.
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
-\begin{alltt}
-\hlstd{s1} \hlkwb{=} \hlopt{~}\hlstd{sitem1} \hlopt{+} \hlstd{sitem2} \hlopt{+} \hlstd{sitem13} \hlopt{+} \hlstd{sitem14} \hlopt{+} \hlstd{sitem15} \hlopt{+} \hlstd{sitem22} \hlopt{+} \hlstd{sitem27} \hlopt{+} \hlstd{sitem30} \hlopt{+}
-    \hlstd{sitem33} \hlopt{+} \hlstd{sitem34} \hlopt{+} \hlstd{sitem37} \hlopt{+} \hlstd{sitem40} \hlopt{+} \hlstd{sitem41}
-\hlstd{s2} \hlkwb{=} \hlopt{~}\hlstd{sitem3} \hlopt{+} \hlstd{sitem5} \hlopt{+} \hlstd{sitem18} \hlopt{+} \hlstd{sitem19} \hlopt{+} \hlstd{sitem28} \hlopt{+} \hlstd{sitem31} \hlopt{+} \hlstd{sitem35} \hlopt{+} \hlstd{sitem43} \hlopt{+}
-    \hlstd{sitem45}
-\hlstd{s3} \hlkwb{=} \hlopt{~}\hlstd{sitem8} \hlopt{+} \hlstd{sitem10} \hlopt{+} \hlstd{sitem11} \hlopt{+} \hlstd{sitem12} \hlopt{+} \hlstd{sitem23} \hlopt{+} \hlstd{sitem24} \hlopt{+} \hlstd{sitem25} \hlopt{+} \hlstd{sitem23}
-\hlstd{s4} \hlkwb{=} \hlopt{~}\hlstd{sitem4} \hlopt{+} \hlstd{sitem23} \hlopt{+} \hlstd{sitem29} \hlopt{+} \hlstd{sitem32} \hlopt{+} \hlstd{sitem44}
-\hlstd{srawsc} \hlopt{~} \hlstd{s1} \hlopt{+} \hlstd{s2} \hlopt{+} \hlstd{s3} \hlopt{+} \hlstd{s4}
-\end{alltt}
 \begin{verbatim}
 ## srawsc ~ s1 + s2 + s3 + s4
 \end{verbatim}
@@ -300,12 +253,11 @@ We proceeded with the same methodology to test the science section in isolation,
 \subsubsection{Configural Invariance}
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
-\begin{alltt}
-\hlkwd{fitMeasures}\hlstd{(MI.eng}\hlopt{$}\hlstd{fit.configural,} \hlkwd{c}\hlstd{(}\hlstr{"chisq"}\hlstd{,} \hlstr{"tli"}\hlstd{,} \hlstr{"cfi"}\hlstd{,} \hlstr{"rmsea"}\hlstd{,} \hlstr{"aic"}\hlstd{))}
-\end{alltt}
-
-
-{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error: could not find function "{}fitMeasures"{}}}\end{kframe}
+\begin{verbatim}
+##     chisq       tli       cfi     rmsea       aic 
+## 3.981e+03 9.470e-01 9.510e-01 2.400e-02 2.154e+05
+\end{verbatim}
+\end{kframe}
 \end{knitrout}
 
 As the summary statistics given in the analyses show, configural invariance is supported, meaning that all four ethnicities employ the same conceptual frameworks to answer the test items. 
@@ -314,12 +266,11 @@ Weak Invariance does impact the model fit compared to step 1, however negligably
 
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
-\begin{alltt}
-\hlkwd{fitMeasures}\hlstd{(MI.eng}\hlopt{$}\hlstd{fit.loadings,} \hlkwd{c}\hlstd{(}\hlstr{"chisq"}\hlstd{,} \hlstr{"tli"}\hlstd{,} \hlstr{"cfi"}\hlstd{,} \hlstr{"rmsea"}\hlstd{,} \hlstr{"aic"}\hlstd{))}
-\end{alltt}
-
-
-{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error: could not find function "{}fitMeasures"{}}}\end{kframe}
+\begin{verbatim}
+##     chisq       tli       cfi     rmsea       aic 
+## 4.150e+03 9.470e-01 9.490e-01 2.400e-02 2.154e+05
+\end{verbatim}
+\end{kframe}
 \end{knitrout}
 
 
@@ -327,12 +278,11 @@ Weak Invariance does impact the model fit compared to step 1, however negligably
 Strong Invariance does fails to substantively change model fit above and beyond metric invariance: $\Delta$ CFI = .002, $\Delta$ RMSEA = .000 , and the $\Delta$ TLI = .000 and $\Delta$$\chi^2$=187.875. 
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
-\begin{alltt}
-\hlkwd{fitMeasures}\hlstd{(MI.eng}\hlopt{$}\hlstd{fit.intercepts,} \hlkwd{c}\hlstd{(}\hlstr{"chisq"}\hlstd{,} \hlstr{"tli"}\hlstd{,} \hlstr{"cfi"}\hlstd{,} \hlstr{"rmsea"}\hlstd{,} \hlstr{"aic"}\hlstd{))}
-\end{alltt}
-
-
-{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error: could not find function "{}fitMeasures"{}}}\end{kframe}
+\begin{verbatim}
+##     chisq       tli       cfi     rmsea       aic 
+## 4.337e+03 9.470e-01 9.470e-01 2.400e-02 2.154e+05
+\end{verbatim}
+\end{kframe}
 \end{knitrout}
 
 
@@ -340,12 +290,11 @@ Strong Invariance does fails to substantively change model fit above and beyond 
 Strict Invariance does substantively change model fit above and beyond strong invariance: $\Delta$ CFI = .034, $\Delta$ RMSEA = .006 , and the $\Delta$ TLI = .03 and $\Delta$$\chi^2$=1670.297. 
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
-\begin{alltt}
-\hlkwd{fitMeasures}\hlstd{(MI.eng}\hlopt{$}\hlstd{fit.residuals,} \hlkwd{c}\hlstd{(}\hlstr{"chisq"}\hlstd{,} \hlstr{"tli"}\hlstd{,} \hlstr{"cfi"}\hlstd{,} \hlstr{"rmsea"}\hlstd{,} \hlstr{"aic"}\hlstd{))}
-\end{alltt}
-
-
-{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error: could not find function "{}fitMeasures"{}}}\end{kframe}
+\begin{verbatim}
+##     chisq       tli       cfi     rmsea       aic 
+## 6.008e+03 9.180e-01 9.120e-01 3.000e-02 2.169e+05
+\end{verbatim}
+\end{kframe}
 \end{knitrout}
 
 
@@ -355,18 +304,9 @@ Strict Invariance does substantively change model fit above and beyond strong in
 Without preexisting beliefs about the nature of the relationship between the response surface and the questionnaire and demographics, we chose to begin the analyses with an undirected multivariate tree regression \cite{De'ath}, conceptually similar to running a multinomial regression upon the different clusters analysis groups of the response variables. The tree also tests by default the possibility that which science test a student takes interacts with other outcomes --in addition, forcibly partitioning the data does not meaningfully increase model fit. We also made the decision to leave non-response as a legitimate factor level: this allows us to incorporate nonresponse as a partitioning criterion.
 
 \begin{knitrout}
-\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
-\begin{alltt}
-\hlkwd{require}\hlstd{(mvpart)}
-\end{alltt}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}
+\includegraphics[width=\maxwidth]{figure/unnamed-chunk-17} 
 
-
-{\ttfamily\noindent\itshape\color{messagecolor}{\#\# Loading required package: mvpart}}\begin{alltt}
-\hlkwd{mvpart}\hlstd{(}\hlkwd{cbind}\hlstd{(mrawsc, erawsc, srawsc)} \hlopt{~} \hlstd{.,} \hlkwc{data} \hlstd{= d4)}
-\end{alltt}
-
-
-{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error: object 'd4' not found}}\end{kframe}
 \end{knitrout}
 
 
