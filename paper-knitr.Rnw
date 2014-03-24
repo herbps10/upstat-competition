@@ -119,23 +119,23 @@ All latent variable indicators are questions from the English section of the tes
 <<echo=FALSE>>=
 fitMeasures(MI.eng$fit.configural, c('chisq','tli', 'cfi','rmsea','aic'))
 @
-As the summary statistics given in the analyses show, configural invariance is supported, meaning that all four ethnicities employ the same conceptual frameworks to answer the test items. 
+As the summary statistics given in the analyses show, configural invariance is supported, meaning that all four ethnicities employ the same conceptual frameworks to answer the test items.
 \subsubsection{Metric (Weak) Invariance}
-Weak Invariance does impact the model fit compared to step 1, however negligably: $\Delta$ CFI = .002, $\Delta$ RMSEA = 0.000 , $\Delta$$\chi^2$=187.875, and the $\Delta$ TLI = 0.000.
+Weak Invariance does impact the model fit compared to step 1, however negligably: $\Delta\mathrm{CFI}$ = .002, $\Delta\mathrm{RMSEA}$ = 0.000 , $\Delta$$\chi^2$=187.875, and the $\Delta\mathrm{TLI}$ = 0.000.
 
 <<echo=FALSE>>=
 fitMeasures(MI.eng$fit.loadings, c('chisq','tli', 'cfi','rmsea','aic'))
 @
 
 \subsubsection{Strong Invariance}
-Strong Invariance is established using the model fit indexes above and beyond weak invariance: $\Delta$ CFI = .002, $\Delta$ RMSEA = .000 , and the $\Delta$ TLI =.000 and $\Delta$$\chi^2$=187.875.
+Strong Invariance is established using the model fit indexes above and beyond weak invariance: $\Delta\mathrm{CFI}$ = .002, $\Delta\mathrm{RMSEA}$ = .000 , and the $\Delta\mathrm{TLI}$ =.000 and $\Delta$$\chi^2$=187.875.
 
 <<echo=FALSE>>=
 fitMeasures(MI.eng$fit.intercepts, c('chisq','tli', 'cfi','rmsea','aic'))
 @
 
 \subsubsection{Strict Invariance}
-Strict invariance does not hold, with a significant $\Delta$ CFI = .034, $\Delta$ RMSEA = .006, $\Delta$$\chi^2$=1670.297, and the $\Delta$ TLI = .03 indicating lack of fit.
+Strict invariance does not hold, with a significant $\Delta\mathrm{CFI}$ = .034, $\Delta\mathrm{RMSEA}$ = .006, $\Delta$$\chi^2$=1670.297, and the $\Delta\mathrm{TLI}$ = .03 indicating lack of fit.
 
 <<echo=FALSE>>=
 fitMeasures(MI.eng$fit.residuals, c('chisq','tli', 'cfi','rmsea','aic'))
@@ -170,23 +170,25 @@ All latent variable indicators are questions from the Mathematics section of the
 <<echo=FALSE>>=
 fitMeasures(MI.maths$fit.configural, c('chisq','tli', 'cfi','rmsea','aic'))
 @
+
 The summary statistics presented below show that configural invariance is supported, meaning that all four ethnicities employ the same conceptual frameworks to answer the test items. 
+
 \subsubsection{Metric (Weak) Invariance}
-Weak Invariance does impact the model fit compared to step 1, however negligably: $\Delta$ CFI = .004, $\Delta$ RMSEA = .001 , $\Delta$$\chi^2$=260.076, and the $\Delta$ TLI = .002.
+Weak Invariance does impact the model fit compared to step 1, however negligably: $\Delta\mathrm{CFI}$ = .004, $\Delta\mathrm{RMSEA}$ = .001 , $\Delta$$\chi^2$=260.076, and the $\Delta\mathrm{TLI}$ = .002.
 
 <<echo=FALSE>>=
 fitMeasures(MI.maths$fit.loadings, c('chisq','tli', 'cfi','rmsea','aic'))
 @
 
 \subsubsection{Strong Invariance}
-Strong Invariance does not substantively change model fit above and beyond weak invariance: $\Delta$ CFI = .002, $\Delta$ RMSEA = .000, the $\Delta$ TLI = .000 and $\Delta$$\chi^2$=167.652. 
+Strong Invariance does not substantively change model fit above and beyond weak invariance: $\Delta\mathrm{CFI}$ = .002, $\Delta\mathrm{RMSEA}$ = .000, the $\Delta\mathrm{TLI}$ = .000 and $\Delta$$\chi^2$=167.652. 
 
 <<echo=FALSE>>=
 fitMeasures(MI.maths$fit.intercepts, c('chisq','tli', 'cfi','rmsea','aic'))
 @
 
 \subsubsection{Strict Invariance}
-Strong Invariance imposes a significant constraint upon model fit: $\Delta$ CFI = .017, $\Delta$ RMSEA = .005, the $\Delta$ TLI = .014 and $\Delta$$\chi^2$=998.348. 
+Strong Invariance imposes a significant constraint upon model fit: $\Delta\mathrm{CFI}$ = .017, $\Delta\mathrm{RMSEA}$ = .005, the $\Delta\mathrm{TLI}$ = .014 and $\Delta$$\chi^2$=998.348. 
 
 <<echo=FALSE>>=
 fitMeasures(MI.maths$fit.residuals, c('chisq','tli', 'cfi','rmsea','aic'))
@@ -227,20 +229,20 @@ fitMeasures(MI.eng$fit.configural, c('chisq','tli', 'cfi','rmsea','aic'))
 @
 
 \subsubsection{Metric (Weak) Invariance}
-While Weak Invariance does impact the model fit compared to step 1, the change is negligable: $\Delta$ CFI = .002, $\Delta$ RMSEA = .000 , $\Delta$$\chi^2$=168.330, and the $\Delta$ TLI = .000.
+While Weak Invariance does impact the model fit compared to step 1, the change is negligable: $\Delta\mathrm{CFI}$ = .002, $\Delta\mathrm{RMSEA}$ = .000 , $\Delta$$\chi^2$=168.330, and the $\Delta\mathrm{TLI}$ = .000.
 
 <<echo=FALSE>>=
 fitMeasures(MI.eng$fit.loadings, c('chisq','tli', 'cfi','rmsea','aic'))
 @
 
 \subsubsection{Strong Invariance}
-Strong Invariance fails to substantively change model fit above and beyond metric invariance: $\Delta$ CFI = .002, $\Delta$ RMSEA = .000 , and the $\Delta$ TLI = .000 and $\Delta$$\chi^2$=187.875. 
+Strong Invariance fails to substantively change model fit above and beyond metric invariance: $\Delta\mathrm{CFI}$ = .002, $\Delta\mathrm{RMSEA}$ = .000 , and the $\Delta\mathrm{TLI}$ = .000 and $\Delta$$\chi^2$=187.875.
 <<echo=FALSE>>=
 fitMeasures(MI.eng$fit.intercepts, c('chisq','tli', 'cfi','rmsea','aic'))
 @
 
 \subsubsection{Strict Invariance}
-Strict Invariance does substantively change model fit above and beyond strong invariance: $\Delta$ CFI = .034, $\Delta$ RMSEA = .006 , and the $\Delta$ TLI = .03 and $\Delta$$\chi^2$=1670.297. 
+Strict Invariance does substantively change model fit above and beyond strong invariance: $\Delta\mathrm{CFI}$ = .034, $\Delta\mathrm{RMSEA}$ = .006 , and the $\Delta\mathrm{TLI}$ = .03 and $\Delta$$\chi^2$=1670.297. 
 <<echo=FALSE>>=
 fitMeasures(MI.eng$fit.residuals, c('chisq','tli', 'cfi','rmsea','aic'))
 @

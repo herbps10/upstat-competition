@@ -167,11 +167,16 @@ d5$race_off<-NULL
 require(mice)
 d6<-mice(d5,m=13,maxit=15,defaultMethod = c("norm","logreg","polyreg"))
 summary(aggr(d5[,c(1,7:31)]))
-summary(manova(cbind(mrawsc,erawsc,srawsc)~.,d5)) #this is on the data with missing 
-summary(lm(cbind(mrawsc,erawsc,srawsc)~.,d5)) #this is on the data with missing 
 
-summary(with(d6,manova(cbind(mrawsc,erawsc,srawsc)~.)))
-summary(with(d6,lm(cbind(mrawsc,erawsc,srawsc)~.)))
+d5.fixed = subset(d5, select=-c(quest2a, quest2b, quest2c, quest2d, quest2e))
+
+summary(manova(cbind(mrawsc,erawsc,srawsc)~.,d5.fixed)) #this is on the data with missing 
+summary(lm(cbind(mrawsc,erawsc,srawsc)~.,d5.fixed)) #this is on the data with missing 
+
+#d6.fixed = subset(d6$imp, select=-c(quest2a, quest2b, quest2c, quest2d, quest2e))
+
+summary(with(d6,manova(cbind(mrawsc,erawsc,srawsc)~., d6.fixed)))
+summary(with(d6,lm(cbind(mrawsc,erawsc,srawsc)~., d6.fixed)))
 
 # require(VIM)
 # a$erawsc<-a$emcpts<-a$eorpts<-a$ecpi<-a$mrawsc<-a$mmcpts<-a$morpts<-a$mcpi<-a$srawsc<-a$smcpts<-a$sorpts<-a$scpi<-a$eitem41<-a$eitem42<-a$scitry<-NULL
