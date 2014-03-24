@@ -175,8 +175,8 @@ summary(lm(cbind(mrawsc,erawsc,srawsc)~.,d5.fixed)) #this is on the data with mi
 
 #d6.fixed = subset(d6$imp, select=-c(quest2a, quest2b, quest2c, quest2d, quest2e))
 
-summary(with(d6,manova(cbind(mrawsc,erawsc,srawsc)~., d6.fixed)))
-summary(with(d6,lm(cbind(mrawsc,erawsc,srawsc)~., d6.fixed)))
+summary(with(d6,manova(cbind(mrawsc,erawsc,srawsc)~., d6)))
+summary(with(d6,lm(cbind(mrawsc,erawsc,srawsc)~., d6)))
 
 # require(VIM)
 # a$erawsc<-a$emcpts<-a$eorpts<-a$ecpi<-a$mrawsc<-a$mmcpts<-a$morpts<-a$mcpi<-a$srawsc<-a$smcpts<-a$sorpts<-a$scpi<-a$eitem41<-a$eitem42<-a$scitry<-NULL
