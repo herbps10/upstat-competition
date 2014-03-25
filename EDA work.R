@@ -171,15 +171,25 @@ d6<-mice(d5,m=13,maxit=15,defaultMethod = c("norm","logreg","polyreg"))
 summary(aggr(d5[,c(1,7:31)]))
 
 d5.fixed = subset(d5, select=-c(quest2a, quest2b, quest2c, quest2d, quest2e))
-
+options(contrasts = c("contr.sum", "contr.poly"))
 summary(manova(cbind(mrawsc,erawsc,srawsc)~.+eth*gender,d5.fixed)) #this is on the data with missing 
 summary(lm(cbind(mrawsc,erawsc,srawsc)~.+eth*gender,d5.fixed)) #this is on the data with missing 
 
 #d6.fixed = subset(d6$imp, select=-c(quest2a, quest2b, quest2c, quest2d, quest2e))
 
-summary(with(d6,manova(cbind(mrawsc,erawsc,srawsc)~.+eth*gender, d6)))
-summary(with(d6,lm(cbind(mrawsc,erawsc,srawsc)~.+eth*gender, d6)))
 
+
+
+w1=with(d6,lm(erawsc~quest1+quest3+quest4+quest5+quest6+quest7+quest8+quest9+quest10+quest11+quest12+quest13+quest14+quest15+quest16+quest17+quest18+quest19+quest20+quest21+gender*eth))
+w2=with(d6,lm(mrawsc~quest1+quest3+quest4+quest5+quest6+quest7+quest8+quest9+quest10+quest11+quest12+quest13+quest14+quest15+quest16+quest17+quest18+quest19+quest20+quest21+gender*eth))
+w3=with(d6,lm(srawsc~quest1+quest3+quest4+quest5+quest6+quest7+quest8+quest9+quest10+quest11+quest12+quest13+quest14+quest15+quest16+quest17+quest18+quest19+quest20+quest21+gender*eth))
+
+pool.r.squared(w1,adjusted=T)
+pool.r.squared(w2,adjusted=T)
+pool.r.squared(w3,adjusted=T)
+round(summary(pool(w1))[,c(1,3,5)],3)
+round(summary(pool(w2))[,c(1,3,5)],3)
+round(summary(pool(w3))[,c(1,3,5)],3)
 # require(VIM)
 # a$erawsc<-a$emcpts<-a$eorpts<-a$ecpi<-a$mrawsc<-a$mmcpts<-a$morpts<-a$mcpi<-a$srawsc<-a$smcpts<-a$sorpts<-a$scpi<-a$eitem41<-a$eitem42<-a$scitry<-NULL
 # summary(aggr(a))
