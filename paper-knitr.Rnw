@@ -19,7 +19,7 @@ Sys.setenv(TEXINPUTS=getwd(),
            BSTINPUTS=getwd())
 @
 
-\title{An Analysis of Massachusetts' Standardized Testing through Multi-Group Structural Equation Modelling}
+\title{An Analysis of Massachusetts' Standardized Testing through Multi-Group Structural Equation Modeling}
 \date{March 24, 2014}
 \author{Landon Hurley\\ Psychology, SUNY Geneseo \and Herb Susmann\\ Mathematics, SUNY Geneseo}
 
@@ -30,8 +30,6 @@ Sys.setenv(TEXINPUTS=getwd(),
 The Massachusetts Comprehensive Assessment System (MCAS) is a set of standardized tests administered to Massachusetts public school students. We performed a series of statistical analyses on a subset of 10\textsuperscript{th} grade student test results in English, Mathematics, and Biology tests. An important property of any testing procedure is that of measurement invariance: the test should measure the same underlying constructs, in the same manner, regardless of what groups (ethnicity, gender, etc.) each testee belongs to. We employed Structural Equation Modeling (SEM) to test for measurement invariance across four ethnic groups (White, Black, Hispanic, and Asian) in the MCAS results. Our results indicate that the MCAS does not function similarly across the ethnic groups, a result which undermines the validity of the test. Additionally, we applied multivariate regression and multivariate regression trees to analyze results from a questionnaire given to testees. Our results indicate that students who indicate ambition to pursue a bachelor's degree have higher scores on each test and are significantly affected by higher quality educational programs.
 
 \section{Introduction}
-
-\subsection{Data}
 
 The Massachusetts Comprehensive Assessment System (MCAS) is a standardized test administered to Massachusetts public school students in grades 3-10 since 1998. We examine a subset sample of 10\textsuperscript{th} grade students' results from the 2009 Spring MCAS test. The data also contains basic demographic information for each student comprised of race/ethnicity, gender, and an academic engagement questionnaire. Each test consists of multiple choice items and open ended type questions that are graded on a holistic scale, implemented as a 5 point integer scale. 
 
@@ -63,12 +61,12 @@ These four factors are argued to be necessary conditions for a fair and equitabl
 Exploratory bootstrapped oblimin factor analyses were conducted upon each test to establish the number of domains and high loading items within each of the three tests. As a consequence of the extreme ethnicity imbalance within three of the four science exams, only Biology was tested using MG-CFA.
 
 
-\subsection{Questionairre Results}
+\subsection{Questionnaire Results}
 
 We investigated the information found within the student questionnaire by relating them to the students' scores on the three sections. We used both multivariate parametric regressions and a non-parametric predictive procedure using the mvpart package, which models multivariate regression trees.
 
 
-Missing data in survey and test data is an important consideration, and there exist a number of techniques to produce more robust solutions; most work under the Bayesian estimation process for missing data pioneered by Donald Rubin\cite{rubin}. However, within the structure of the exam, missing data was unsurprisingly a rare occurrence: the highest proportion of missing for any item was .008, and 91.23\% had no missing questions. Even so, for the MG-CFA we attempted to account for this by utilizing the Full Information Maximum Likelihood (FIML) estimation in conjunction with a large number of bootstraps to obtain accurate estimates of asymptotic errors. However, the questionnaire exhibited extreme proportions of non-response, which is problematic for the multivariate regression techniques as it produces potentially biased results under the assumption that items are missing completely at random. As such, we processed the original responses using the mice package\cite{mice} using 13 imputed data frames with 15 iterations in each dataframe. Regression trees are relatively robust to missing data because all information is not processed simultaneously, but rather sequentially in order of variable importance. As such we did not take any additional steps when conducting that analysis.
+Missing data in survey and test data is an important consideration, and there exist a number of techniques to produce more robust solutions; most work under the Bayesian estimation process for missing data pioneered by Donald Rubin\cite{rubin}. However, within the structure of the exam, missing data was unsurprisingly a rare occurrence: the highest proportion of missing for any item was .008, and 91.23\% had no missing questions. Even so, for the MG-CFA we attempted to account for this by utilizing the Full Information Maximum Likelihood (FIML) estimation in conjunction with a large number of bootstraps to obtain accurate estimates of asymptotic errors. However, the questionnaire exhibited extreme proportions of non-response, which is problematic for the multivariate regression techniques as it produces potentially biased results under the assumption that items are missing completely at random. As such, we processed the original responses using the mice package\cite{mie} using 13 imputed data frames with 15 iterations in each dataframe. Regression trees are relatively robust to missing data because all information is not processed simultaneously, but rather sequentially in order of variable importance. As such we did not take any additional steps when conducting that analysis.
 
 \section{Results}
 \subsection{Exploratory factor analyses}
