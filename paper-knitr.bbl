@@ -1,316 +1,325 @@
 \begin{thebibliography}{}
 
-\bibitem[\protect\citeauthoryear{%
+\bibitem [\protect \citeauthoryear {%
 Bentler%
 }{%
 Bentler%
 }{%
-{\protect\APACyear{1990}}%
+{\protect \APACyear {1990}}%
 }]{%
+Bentler}
+\APACinsertmetastar {%
 Bentler}%
-\APACinsertmetastar{%
-Bentler}%
+\begin{APACrefauthors}%
 Bentler, P\BPBI M.%
-%
+\end{APACrefauthors}%
 \unskip\
 \newblock
 \APACrefYearMonthDay{1990}{}{}.
 \newblock
-\BBOQ{}\APACrefatitle{Comparative fit indexes in structural
-  models.}{Comparative fit indexes in structural models.}\BBCQ{}
+{\BBOQ}\APACrefatitle {Comparative fit indexes in structural models.}
+  {Comparative fit indexes in structural models.}{\BBCQ}
 \newblock
 \APACjournalVolNumPages{Psychological bulletin}{107}{2}{238}.
 \PrintBackRefs{\CurrentBib}
 
-\bibitem[\protect\citeauthoryear{%
-Buuren%
-\ \BBA{} Groothuis-Oudshoorn%
-}{%
-Buuren%
-\ \BBA{} Groothuis-Oudshoorn%
-}{%
-{\protect\APACyear{2011}}%
-}]{%
-mice}%
-\APACinsertmetastar{%
-mice}%
-Buuren, S. van%
-\BCBT{}\ \BBA{} Groothuis-Oudshoorn, K.%
-%
-\unskip\
-\newblock
-\APACrefYearMonthDay{2011}{}{}.
-\newblock
-\BBOQ{}\APACrefatitle{{mice}: Multivariate Imputation by Chained Equations in
-  R}{{mice}: Multivariate imputation by chained equations in r}.\BBCQ{}
-\newblock
-\APACjournalVolNumPages{Journal of Statistical Software}{45}{3}{1--67}.
-\newblock
- \begin{APACrefURL} \url{http://www.jstatsoft.org/v45/i03/} \end{APACrefURL}
-\PrintBackRefs{\CurrentBib}
-
-\bibitem[\protect\citeauthoryear{%
+\bibitem [\protect \citeauthoryear {%
 Chen%
 }{%
 Chen%
 }{%
-{\protect\APACyear{2007}}%
+{\protect \APACyear {2007}}%
 }]{%
+Chen}
+\APACinsertmetastar {%
 Chen}%
-\APACinsertmetastar{%
-Chen}%
+\begin{APACrefauthors}%
 Chen, F\BPBI F.%
-%
+\end{APACrefauthors}%
 \unskip\
 \newblock
 \APACrefYearMonthDay{2007}{}{}.
 \newblock
-\BBOQ{}\APACrefatitle{Sensitivity of goodness of fit indexes to lack of
-  measurement invariance}{Sensitivity of goodness of fit indexes to lack of
-  measurement invariance}.\BBCQ{}
+{\BBOQ}\APACrefatitle {Sensitivity of goodness of fit indexes to lack of
+  measurement invariance} {Sensitivity of goodness of fit indexes to lack of
+  measurement invariance}.{\BBCQ}
 \newblock
 \APACjournalVolNumPages{Structural Equation Modeling}{14}{3}{464--504}.
 \PrintBackRefs{\CurrentBib}
 
-\bibitem[\protect\citeauthoryear{%
+\bibitem [\protect \citeauthoryear {%
 De'Ath%
 }{%
 De'Ath%
 }{%
-{\protect\APACyear{2002}}%
+{\protect \APACyear {2002}}%
 }]{%
+De'ath}
+\APACinsertmetastar {%
 De'ath}%
-\APACinsertmetastar{%
-De'ath}%
+\begin{APACrefauthors}%
 De'Ath, G.%
-%
+\end{APACrefauthors}%
 \unskip\
 \newblock
 \APACrefYearMonthDay{2002}{}{}.
 \newblock
-\BBOQ{}\APACrefatitle{Multivariate regression trees: a new technique for
-  modeling species-environment relationships}{Multivariate regression trees: a
-  new technique for modeling species-environment relationships}.\BBCQ{}
+{\BBOQ}\APACrefatitle {Multivariate regression trees: a new technique for
+  modeling species-environment relationships} {Multivariate regression trees: a
+  new technique for modeling species-environment relationships}.{\BBCQ}
 \newblock
 \APACjournalVolNumPages{Ecology}{83}{4}{1105--1117}.
 \PrintBackRefs{\CurrentBib}
 
-\bibitem[\protect\citeauthoryear{%
+\bibitem [\protect \citeauthoryear {%
 Gaudet%
 }{%
 Gaudet%
 }{%
-{\protect\APACyear{2000}}%
+{\protect \APACyear {2000}}%
 }]{%
+Gaudet}
+\APACinsertmetastar {%
 Gaudet}%
-\APACinsertmetastar{%
-Gaudet}%
+\begin{APACrefauthors}%
 Gaudet, R\BPBI D.%
-%
+\end{APACrefauthors}%
 \unskip\
 \newblock
 \APACrefYearMonthDay{2000}{}{}.
 \newblock
-\BBOQ{}\APACrefatitle{Effective school districts in Massachusetts}{Effective
-  school districts in massachusetts}.\BBCQ{}
+{\BBOQ}\APACrefatitle {Effective school districts in Massachusetts} {Effective
+  school districts in massachusetts}.{\BBCQ}
 \newblock
 \APACjournalVolNumPages{The Donahue Institute, Boston}{}{}{}.
 \PrintBackRefs{\CurrentBib}
 
-\bibitem[\protect\citeauthoryear{%
-<<<<<<< HEAD
+\bibitem [\protect \citeauthoryear {%
 Kim%
-\ \BBA{} Bentler%
+\ \BBA {} Bentler%
 }{%
 Kim%
-\ \BBA{} Bentler%
+\ \BBA {} Bentler%
 }{%
-{\protect\APACyear{2002}}%
+{\protect \APACyear {2002}}%
 }]{%
+KB}
+\APACinsertmetastar {%
 KB}%
-\APACinsertmetastar{%
-KB}%
+\begin{APACrefauthors}%
 Kim, K\BPBI H.%
-\BCBT{}\ \BBA{} Bentler, P\BPBI M.%
-%
+\BCBT {}\ \BBA {} Bentler, P\BPBI M.%
+\end{APACrefauthors}%
 \unskip\
 \newblock
 \APACrefYearMonthDay{2002}{}{}.
 \newblock
-\BBOQ{}\APACrefatitle{Tests of homogeneity of means and covariance matrices for
-  multivariate incomplete data}{Tests of homogeneity of means and covariance
-  matrices for multivariate incomplete data}.\BBCQ{}
+{\BBOQ}\APACrefatitle {Tests of homogeneity of means and covariance matrices
+  for multivariate incomplete data} {Tests of homogeneity of means and
+  covariance matrices for multivariate incomplete data}.{\BBCQ}
 \newblock
 \APACjournalVolNumPages{Psychometrika}{67}{4}{609--623}.
 \PrintBackRefs{\CurrentBib}
 
-\bibitem[\protect\citeauthoryear{%
+\bibitem [\protect \citeauthoryear {%
 Little%
 }{%
 Little%
 }{%
-{\protect\APACyear{1988}}%
+{\protect \APACyear {1988}}%
 }]{%
+little}
+\APACinsertmetastar {%
 little}%
-\APACinsertmetastar{%
-little}%
+\begin{APACrefauthors}%
 Little, R\BPBI J.%
-%
+\end{APACrefauthors}%
 \unskip\
 \newblock
 \APACrefYearMonthDay{1988}{}{}.
 \newblock
-\BBOQ{}\APACrefatitle{A test of missing completely at random for multivariate
-  data with missing values}{A test of missing completely at random for
-  multivariate data with missing values}.\BBCQ{}
+{\BBOQ}\APACrefatitle {A test of missing completely at random for multivariate
+  data with missing values} {A test of missing completely at random for
+  multivariate data with missing values}.{\BBCQ}
 \newblock
 \APACjournalVolNumPages{Journal of the American Statistical
   Association}{83}{404}{1198--1202}.
 \PrintBackRefs{\CurrentBib}
 
-\bibitem[\protect\citeauthoryear{%
-=======
->>>>>>> 782b5472c392dad1d398b23760e87d19f21ebe4a
+\bibitem [\protect \citeauthoryear {%
 Meredith%
 }{%
 Meredith%
 }{%
-{\protect\APACyear{1993}}%
+{\protect \APACyear {1993}}%
 }]{%
+Meredith}
+\APACinsertmetastar {%
 Meredith}%
-\APACinsertmetastar{%
-Meredith}%
+\begin{APACrefauthors}%
 Meredith, W.%
-%
+\end{APACrefauthors}%
 \unskip\
 \newblock
 \APACrefYearMonthDay{1993}{}{}.
 \newblock
-\BBOQ{}\APACrefatitle{Measurement invariance, factor analysis and factorial
-  invariance}{Measurement invariance, factor analysis and factorial
-  invariance}.\BBCQ{}
+{\BBOQ}\APACrefatitle {Measurement invariance, factor analysis and factorial
+  invariance} {Measurement invariance, factor analysis and factorial
+  invariance}.{\BBCQ}
 \newblock
 \APACjournalVolNumPages{Psychometrika}{58}{4}{525--543}.
 \PrintBackRefs{\CurrentBib}
 
-\bibitem[\protect\citeauthoryear{%
+\bibitem [\protect \citeauthoryear {%
 Pornprasertmanit%
 , Miller%
 , Schoemann%
-\BCBL{}\ \BBA{} Rosseel%
+\BCBL {}\ \BBA {} Rosseel%
 }{%
 Pornprasertmanit%
-\ \protect\BOthers{.}}{%
-{\protect\APACyear{2013}}%
+\ \protect \BOthers {.}}{%
+{\protect \APACyear {2013}}%
 }]{%
+semTools}
+\APACinsertmetastar {%
 semTools}%
-\APACinsertmetastar{%
-semTools}%
+\begin{APACrefauthors}%
 Pornprasertmanit, S.%
 , Miller, P.%
 , Schoemann, A.%
-\BCBL{}\ \BBA{} Rosseel, Y.%
-%
+\BCBL {}\ \BBA {} Rosseel, Y.%
+\end{APACrefauthors}%
 \unskip\
 \newblock
 \APACrefYearMonthDay{2013}{}{}.
 \newblock
-\BBOQ{}\APACrefatitle{semTools: Useful tools for structural equation
-  modeling.}{semtools: Useful tools for structural equation modeling.}\BBCQ{}\
+{\BBOQ}\APACrefatitle {semTools: Useful tools for structural equation
+  modeling.} {semtools: Useful tools for structural equation modeling.}{\BBCQ}\
   [\bibcomputersoftwaremanual].
 \newblock
- \begin{APACrefURL} \url{http://CRAN.R-project.org/package=semTools}
+\begin{APACrefURL} \url{http://CRAN.R-project.org/package=semTools}
   \end{APACrefURL}
 \newblock
 \APACrefnote{R package version 0.4-0}
 \PrintBackRefs{\CurrentBib}
 
-\bibitem[\protect\citeauthoryear{%
+\bibitem [\protect \citeauthoryear {%
 Revelle%
 }{%
 Revelle%
 }{%
-{\protect\APACyear{2014}}%
+{\protect \APACyear {2014}}%
 }]{%
+psych}
+\APACinsertmetastar {%
 psych}%
-\APACinsertmetastar{%
-psych}%
+\begin{APACrefauthors}%
 Revelle, W.%
-%
+\end{APACrefauthors}%
 \unskip\
 \newblock
 \APACrefYearMonthDay{2014}{}{}.
 \newblock
-\BBOQ{}\APACrefatitle{psych: Procedures for Psychological, Psychometric, and
-  Personality Research}{psych: Procedures for psychological, psychometric, and
-  personality research}\BBCQ{}\ [\bibcomputersoftwaremanual].
+{\BBOQ}\APACrefatitle {psych: Procedures for Psychological, Psychometric, and
+  Personality Research} {psych: Procedures for psychological, psychometric, and
+  personality research}{\BBCQ}\ [\bibcomputersoftwaremanual].
 \newblock
 \APACaddressPublisher{Evanston, Illinois}{}.
 \newblock
- \begin{APACrefURL} \url{http://CRAN.R-project.org/package=psych}
+\begin{APACrefURL} \url{http://CRAN.R-project.org/package=psych}
   \end{APACrefURL}
 \newblock
 \APACrefnote{R package version 1.4.2}
 \PrintBackRefs{\CurrentBib}
 
-\bibitem[\protect\citeauthoryear{%
+\bibitem [\protect \citeauthoryear {%
 Rosseel%
 }{%
 Rosseel%
 }{%
-{\protect\APACyear{2012}}%
+{\protect \APACyear {2012}}%
 }]{%
+lavaan}
+\APACinsertmetastar {%
 lavaan}%
-\APACinsertmetastar{%
-lavaan}%
+\begin{APACrefauthors}%
 Rosseel, Y.%
-%
+\end{APACrefauthors}%
 \unskip\
 \newblock
 \APACrefYearMonthDay{2012}{}{}.
 \newblock
-\BBOQ{}\APACrefatitle{{lavaan}: An {R} Package for Structural Equation
-  Modeling}{{lavaan}: An {R} package for structural equation modeling}.\BBCQ{}
+{\BBOQ}\APACrefatitle {{lavaan}: An {R} Package for Structural Equation
+  Modeling} {{lavaan}: An {R} package for structural equation modeling}.{\BBCQ}
 \newblock
 \APACjournalVolNumPages{Journal of Statistical Software}{48}{2}{1--36}.
 \newblock
- \begin{APACrefURL} \url{http://www.jstatsoft.org/v48/i02/} \end{APACrefURL}
+\begin{APACrefURL} \url{http://www.jstatsoft.org/v48/i02/} \end{APACrefURL}
 \PrintBackRefs{\CurrentBib}
 
-\bibitem[\protect\citeauthoryear{%
+\bibitem [\protect \citeauthoryear {%
 Rubin%
 }{%
 Rubin%
 }{%
-{\protect\APACyear{2009}}%
+{\protect \APACyear {2009}}%
 }]{%
+rubin}
+\APACinsertmetastar {%
 rubin}%
-\APACinsertmetastar{%
-rubin}%
+\begin{APACrefauthors}%
 Rubin, D\BPBI B.%
-%
+\end{APACrefauthors}%
 \unskip\
 \newblock
 \APACrefYear{2009}.
 \newblock
-\APACrefbtitle{Multiple imputation for nonresponse in surveys}{Multiple
+\APACrefbtitle {Multiple imputation for nonresponse in surveys} {Multiple
   imputation for nonresponse in surveys}\ (\BVOL~307).
 \newblock
 \APACaddressPublisher{}{John Wiley \& Sons}.
 \PrintBackRefs{\CurrentBib}
 
-\bibitem[\protect\citeauthoryear{%
-\APACcitebtitle{Spring 2009 MCAS Tests: Summary of State Results}}{%
-\APACcitebtitle{Spring 2009 MCAS Tests: Summary of State Results}}{%
-{\protect\APACyear{2009}}%
+\bibitem [\protect \citeauthoryear {%
+\APACcitebtitle {Spring 2009 MCAS Tests: Summary of State Results}}{%
+\APACcitebtitle {Spring 2009 MCAS Tests: Summary of State Results}}{%
+{\protect \APACyear {2009}}%
 }]{%
+mcas_summary}
+\APACinsertmetastar {%
 mcas_summary}%
-\APACinsertmetastar{%
-mcas_summary}%
-\APACrefbtitle{Spring 2009 MCAS Tests: Summary of State Results.}{Spring 2009
+\APACrefbtitle {Spring 2009 MCAS Tests: Summary of State Results.} {Spring 2009
   mcas tests: Summary of state results.}
 \newblock
 \APACrefYearMonthDay{2009}{September}{}.
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+van Buuren%
+\ \BBA {} Groothuis-Oudshoorn%
+}{%
+van Buuren%
+\ \BBA {} Groothuis-Oudshoorn%
+}{%
+{\protect \APACyear {2011}}%
+}]{%
+mice}
+\APACinsertmetastar {%
+mice}%
+\begin{APACrefauthors}%
+van Buuren, S.%
+\BCBT {}\ \BBA {} Groothuis-Oudshoorn, K.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2011}{}{}.
+\newblock
+{\BBOQ}\APACrefatitle {{mice}: Multivariate Imputation by Chained Equations in
+  R} {{mice}: Multivariate imputation by chained equations in r}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{Journal of Statistical Software}{45}{3}{1--67}.
+\newblock
+\begin{APACrefURL} \url{http://www.jstatsoft.org/v45/i03/} \end{APACrefURL}
 \PrintBackRefs{\CurrentBib}
 
 \end{thebibliography}
