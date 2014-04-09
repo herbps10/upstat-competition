@@ -1,0 +1,64 @@
+\documentclass{beamer}
+
+\title{Analysis of Massachusetts' Standardized Testing Multi-Group Structural Equation Modelling}
+\author[shortname]{Landon Hurley \inst{1} \and Herb Susmann \inst{2}}
+\institute[shortinst]{\inst{1} Psychology, SUNY Geneseo \and %
+\inst{2} Mathematics, SUNY Geneseo}
+\begin{document}
+
+\begin{frame}
+  \titlepage
+\end{frame}
+
+\begin{frame}
+  \tableofcontents
+\end{frame}
+
+\begin{frame}{Introduction}
+
+\end{frame}
+
+\section{Data}
+
+  \begin{frame}{Data}
+    \begin{itemize}
+    
+    \end{itemize}
+  \end{frame}
+
+\section{Measurement Invariance}
+  
+  \begin{frame}{Measurement Invariance}
+  
+  \end{frame}
+
+  \subsection{Results}
+  
+    \begin{frame}{Results}
+    
+    \end{frame}
+  
+  \subsection{Discussion}
+  
+    \begin{frame}{Discussion}
+    
+    \end{frame}
+    
+\section{Regression Tree}
+  \begin{frame}{Regression Tree}
+  
+  \end{frame}
+
+  \subsection{Results}
+  
+    \begin{frame}{Results}
+    
+    \end{frame}
+  
+  \subsection{Discussion}
+  
+    \begin{frame}{Discussion}
+    
+    \end{frame}
+
+\end{document}
