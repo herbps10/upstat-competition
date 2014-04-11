@@ -1,5 +1,15 @@
 \documentclass{beamer}
 
+<<setup, include=F, cache=FALSE, echo=FALSE>>=
+load('~/upstat-competition/.RData')
+require(psych)
+require(semTools)
+require(mvpart)
+Sys.setenv(TEXINPUTS=getwd(), 
+           BIBINPUTS=getwd(), 
+           BSTINPUTS=getwd())
+@
+
 \title{Analysis of Massachusetts' Standardized Testing Multi-Group Structural Equation Modelling}
 \author[shortname]{Landon Hurley \inst{1} \and Herb Susmann \inst{2}}
 \institute[shortinst]{\inst{1} Psychology, SUNY Geneseo \and %
@@ -15,14 +25,18 @@
 \end{frame}
 
 \begin{frame}{Introduction}
-
+  Is the test psychometrically valid? \pause
+  \textbf{No! It doesn't measure the same thing across groups.}
 \end{frame}
 
 \section{Data}
 
   \begin{frame}{Data}
     \begin{itemize}
-    
+      \item 10,515 10th grade student test results \pause
+      \item English, Math, and Science components \pause
+      \item Answers from every question for each section \pause
+      \item Basic demographic information from questionnaire \pause
     \end{itemize}
   \end{frame}
 
@@ -52,7 +66,9 @@
   \subsection{Results}
   
     \begin{frame}{Results}
-    
+      <<echo=F,fig=T>>=
+      mvpart(cbind(mrawsc,erawsc,srawsc)~.,data=d4)
+      @
     \end{frame}
   
   \subsection{Discussion}
