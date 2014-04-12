@@ -1,10 +1,14 @@
 \documentclass{beamer}
 
+\usepackage{apacite}
+\setbeamertemplate{bibliography item}[text]
+
 <<setup, include=F, cache=FALSE, echo=FALSE>>=
 load('~/upstat-competition/.RData')
 require(psych)
 require(semTools)
 require(mvpart)
+setwd("~/upstat-competition/")
 Sys.setenv(TEXINPUTS=getwd(), 
            BIBINPUTS=getwd(), 
            BSTINPUTS=getwd())
@@ -20,13 +24,16 @@ Sys.setenv(TEXINPUTS=getwd(),
   \titlepage
 \end{frame}
 
-\begin{frame}
+\begin{frame}{Outline}
   \tableofcontents
 \end{frame}
 
 \begin{frame}{Introduction}
-  Is the test psychometrically valid? \pause
-  \textbf{No! It doesn't measure the same thing across groups.}
+  \begin{itemize}
+    \item Massachusetts standardized test data \pause
+    \item Is the test psychometrically valid? \pause
+    \item \textbf{No! It doesn't measure the same thing in the same way across groups.}
+  \end{itemize}
 \end{frame}
 
 \section{Data}
@@ -43,38 +50,125 @@ Sys.setenv(TEXINPUTS=getwd(),
 \section{Measurement Invariance}
   
   \begin{frame}{Measurement Invariance}
-  
+     \begin{itemize}
+      \item{Testing:} set of standardized questions designed to elicit responses for use in measuring the traits, capacities, or achievements of an individual.
+       \item{} Tests imply a global solution: the individual should never affect how items on the test perform.
+        \item{} In psychometrics, validity is tested in one of two way: predictive invariance \& measurement (factorial) invariance.
+      \end{itemize}
   \end{frame}
+  \begin{frame}{Measurement Invariance Process}
+    \begin{enumerate}
+      \item{Configural invariance:} Tests whether the same factor model is found within each subgroup.
+      \item{Weak invariance:} Tests whether in addition to the same factor structure, the same items load equivalently onto the same structure.
+      \item{Strong invariance:} Tests that the intercepts, item loadings, and factor structure are equivalent across groups.
+      \item{Strict invariance:} Tests the assumption that in addition to the preceding steps, the residual variances are equivalent across groups.
+    \end{enumerate}
+  \end{frame}
+  \begin{frame}{Asessing model fit}
+    \begin{itemize}
+      \item{$\chi^2$}\begin{equation} \chi^2_{d.f.}=2(N-1) \cdot F_0 \end{equation}
+      Scales with $N$, making it difficult to fit
+      \item{CFI:} \begin{equation} 1-\frac{\chi^2_{t}-{df_t}}{\chi^2_{n}-{df_n}} \end{equation}
+      \item{NNFI:} \begin{equation} 1-\frac{\frac{\chi^2_{t}}{df_t}}{\frac{\chi^2_{n}}{{df_n}}} \end{equation}
+      \item{RMSEA:} \begin{equation} \sqrt{\frac{\chi^2_{df}-{df_t}}{df_t(N-1)}} \end{equation}
+    \end{itemize}
+  \end{frame}
+  
+\subsection{Results}
 
-  \subsection{Results}
-  
-    \begin{frame}{Results}
-    
+    \begin{frame}{results}
+      <<fig=T,echo=F>>=
+      fa.diagram(feng,main='English Oblimin')
+      #fa.diagram(fmat,main='Mathematics Oblimin')
+      #fa.diagram(fsci1,main='Biology Oblimin')
+      @
     \end{frame}
-  
+
+    \begin{frame}{Results}
+\vspace{0.25cm}
+\begin{tabular}{|c|c|c|c|c|}
+\hline 
+English & $\chi^2$ & CFI & TLI & RMSEA
+\tabularnewline
+\hline 
+\hline 
+Comparison & -1670.297 & 0.030 & 0.034 & -0.006  \tabularnewline
+\hline 
+Strict fit indices & 6007.770 & 0.918 & 0.912 & 0.030 \tabularnewline
+\hline 
+\end{tabular}
+\end{frame}
+\begin{frame}{Results}
+\vspace{0.25cm}
+\begin{tabular}{|c|c|c|c|c|}
+\hline 
+Mathematics & $\chi^2$ & CFI & TLI & RMSEA
+ \tabularnewline
+\hline 
+\hline 
+Comparison & -998.348 & .014 & .017 & .005  \tabularnewline
+\hline 
+Strict fit indices & 4130.561 & .949 & .946 & .033 \tabularnewline
+\hline 
+\end{tabular}
+\end{frame}
+\begin{frame}{Results}
+\vspace{0.25cm}
+\begin{tabular}{|c|c|c|c|c|}
+\hline 
+Biology & $\chi^2$ & CFI & TLI & RMSEA
+ \tabularnewline
+\hline 
+\hline 
+Comparison & -2132.914 & .026 & .03 & .006  \tabularnewline
+\hline 
+Strict fit indices & 7686.782 & .926 & .922 & .031 \tabularnewline
+\hline 
+\end{tabular}
+\end{frame}
   \subsection{Discussion}
-  
     \begin{frame}{Discussion}
+  Strict invariance: what does it mean for these tests?
+      \begin{itemize}
+      \item{SES:}
+      Lack of strict invariance typically indicates that an unmeasured latent variable is differentially affecting the test outcome. In other words, the existence of unmeasured effects is specified by the existence of error variance heterogeneity. This is despite the invariance of both the factor model, the intercepts, and slopes.
+      \item{Meredith (1993):}
+      When using measures to make decisions “strict factorial invariance is essential.”
+      \end{itemize}
     
     \end{frame}
     
 \section{Regression Tree}
   \begin{frame}{Regression Tree}
-  
+  \begin{itemize}
+  \item{} CART allows for complex relationships to be modelled within data without parametric assumptions or linearity.
+  \item{} Multivariate regression trees are ideal in this instance because it can model both the complex relationships, but also non-response, in relation to a multiple vectored response surface: English, Mathematics, \& Science.
+  \end{itemize}
   \end{frame}
-
-  \subsection{Results}
-  
-    \begin{frame}{Results}
-      <<echo=F,fig=T>>=
-      mvpart(cbind(mrawsc,erawsc,srawsc)~.,data=d4)
-      @
-    \end{frame}
-  
+  \begin{frame}{Results}
+      <<echo=F,fig=T,fig.height=5.5,cache=T>>=
+mvpart(cbind(mrawsc,erawsc,srawsc)~.,data=d4)
+@
+  \end{frame}
   \subsection{Discussion}
-  
     \begin{frame}{Discussion}
-    
+    \begin{itemize}
+      \item{Missing data:} Question 3 deals with after college goals. These results indicate that students who either intend to go to attain a baccalaureate degree OR skip the question perform better on the three sub-tests.
+      \item{Ethncity:} Amongst students who do plan on a baccalaureate degree, ethnicity efficiently segments the science scores.
+      \item{Quest14:} How often do you use scientific instruments?
+      \item{Confirmation:} Each of the responses were regressed onto multiply imputed forms of the questionnaire, which had equivalent $R^2$, indicating effects were linear only.
+      \end{itemize}
     \end{frame}
+    
+\section{Conclusions}
+  \begin{frame}{Conclusions}
+    
+  \end{frame}
+  
+  \begin{frame}[t,allowframebreaks]
+    \frametitle{References}
+    \nocite{*}
+    \bibliography{references}
+  \end{frame}
 
 \end{document}
