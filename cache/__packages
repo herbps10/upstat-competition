@@ -1,8 +1,7 @@
 base
-datasets
-graphics
-grDevices
 knitr
-methods
-stats
-utils
+lavaan
+MASS
+mvpart
+psych
+semTools

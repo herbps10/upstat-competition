@@ -1,24 +1,26 @@
 \documentclass{beamer}
-
-\usepackage{apacite}
-\setbeamertemplate{bibliography item}[text]
-
-<<setup, include=F, cache=FALSE, echo=FALSE>>=
-load('~/upstat-competition/.RData')
-require(psych)
-require(semTools)
-require(mvpart)
-setwd("~/upstat-competition/")
-Sys.setenv(TEXINPUTS=getwd(), 
-           BIBINPUTS=getwd(), 
-           BSTINPUTS=getwd())
-@
+\usepackage{apacite,geometry,fancyhdr}
 
 \title{Analysis of Massachusetts' Standardized Testing Multi-Group Structural Equation Modelling}
 \author[shortname]{Landon Hurley \inst{1} \and Herb Susmann \inst{2}}
 \institute[shortinst]{\inst{1} Psychology, SUNY Geneseo \and %
 \inst{2} Mathematics, SUNY Geneseo}
 \begin{document}
+
+
+
+<<setup, include=FALSE, cache=FALSE, echo=FALSE, results='hide'>>=
+library(lavaan)
+library(psych)
+library(mvpart)
+library(semTools)
+
+load("comp.RData")
+
+Sys.setenv(TEXINPUTS=getwd(), 
+           BIBINPUTS=getwd(), 
+           BSTINPUTS=getwd())
+@
 
 \begin{frame}
   \titlepage
@@ -164,11 +166,11 @@ mvpart(cbind(mrawsc,erawsc,srawsc)~.,data=d4)
   \begin{frame}{Conclusions}
     
   \end{frame}
-  
-  \begin{frame}[t,allowframebreaks]
-    \frametitle{References}
-    \nocite{*}
-    \bibliography{references}
-  \end{frame}
 
+\begin{frame}[allowframebreaks]
+\frametitle{References}
+\nocite{*}
+\bibliography{references}{}
+\bibliographystyle{apacite}
+\end{frame}
 \end{document}

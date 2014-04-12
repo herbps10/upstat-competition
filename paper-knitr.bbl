@@ -294,32 +294,4 @@ mcas_summary}%
 \APACrefYearMonthDay{2009}{September}{}.
 \PrintBackRefs{\CurrentBib}
 
-\bibitem [\protect \citeauthoryear {%
-van Buuren%
-\ \BBA {} Groothuis-Oudshoorn%
-}{%
-van Buuren%
-\ \BBA {} Groothuis-Oudshoorn%
-}{%
-{\protect \APACyear {2011}}%
-}]{%
-mice}
-\APACinsertmetastar {%
-mice}%
-\begin{APACrefauthors}%
-van Buuren, S.%
-\BCBT {}\ \BBA {} Groothuis-Oudshoorn, K.%
-\end{APACrefauthors}%
-\unskip\
-\newblock
-\APACrefYearMonthDay{2011}{}{}.
-\newblock
-{\BBOQ}\APACrefatitle {{mice}: Multivariate Imputation by Chained Equations in
-  R} {{mice}: Multivariate imputation by chained equations in r}.{\BBCQ}
-\newblock
-\APACjournalVolNumPages{Journal of Statistical Software}{45}{3}{1--67}.
-\newblock
-\begin{APACrefURL} \url{http://www.jstatsoft.org/v45/i03/} \end{APACrefURL}
-\PrintBackRefs{\CurrentBib}
-
 \end{thebibliography}

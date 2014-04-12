@@ -59,7 +59,7 @@
 
 
 
-\title{An Analysis of Massachusetts' Standardized Testing through Multi-Group Structural Equation Modelling}
+\title{An Analysis of Massachusetts' Standardized Testing through Multi-Group Structural Equation Modeling}
 \date{March 24, 2014}
 \author{Landon Hurley\\ Psychology, SUNY Geneseo \and Herb Susmann\\ Mathematics, SUNY Geneseo}
 
@@ -71,15 +71,12 @@ The Massachusetts Comprehensive Assessment System (MCAS) is a set of standardize
 
 \section{Introduction}
 
-\subsection{Data}
-
 The Massachusetts Comprehensive Assessment System (MCAS) is a standardized test administered to Massachusetts public school students in grades 3-10 since 1998. We examine a subset sample of 10\textsuperscript{th} grade students' results from the 2009 Spring MCAS test. The data also contains basic demographic information for each student comprised of race/ethnicity, gender, and an academic engagement questionnaire. Each test consists of multiple choice items and open ended type questions that are graded on a holistic scale, implemented as a 5 point integer scale. 
 
 The examinations are comprised of three separate knowledge domains: English, Mathematics and a science component. Every student takes identical versions of the English and Mathematics sections; the science component can be fulfilled by taking either a Biology, Chemistry, Introductory Physics, or Technology/Engineering test. \cite{mcas_summary}
 
 The MCAS examination structure has received substantial criticism from both educational activists and theoreticians. The former, comprised mainly of teachers and educational policy analysts, claim that the test is unfairly biased against students as a function of demographics, while citing the significant impediment that poor performance upon the tests has upon both immediate and long-term outcomes. \cite{Gaudet} Theoretical perspectives on test design are the primary domain of psychometrics, who hold the unfortunate distinction of both supporting standards-based assessment, and subsequently watching their recommendations be ignored when put into practice, either through misinterpretation of statistical results, or the implementation of unrealistic expectations that ignore the original purpose: measurement, or the designation of numerical scales to classify underlying unobservable latent constructs. 
 
-\subsection{Theoretical structure of the test}
 Our paper begins with an analysis of the psychometric equivalence of the MCAS test within our sample of 10\textsuperscript{th} grade students, followed by an investigation into performance within each knowledge domain, conditioned upon the demographics and item responses found within a questionnaire included with the test.
 
 \section{Methodology}
@@ -104,16 +101,16 @@ These four factors are argued to be necessary conditions for a fair and equitabl
 Exploratory bootstrapped oblimin factor analyses were conducted upon each test to establish the number of domains and high loading items within each of the three tests. As a consequence of the extreme ethnicity imbalance within three of the four science exams, only Biology was tested using MG-CFA.
 
 
-\subsection{Questionairre Results}
+\subsection{Questionnaire Results}
 
 We investigated the information found within the student questionnaire by relating them to the students' scores on the three sections. We used both multivariate parametric regressions and a non-parametric predictive procedure using the mvpart package, which models multivariate regression trees.
 
 
-Missing data in survey and test data is an important consideration, and there exist a number of techniques to produce more robust solutions; most work under the Bayesian estimation process for missing data pioneered by Donald Rubin\cite{rubin}. However, within the structure of the exam, missing data was unsurprisingly a rare occurrence: the highest proportion of missing for any item was .008, and 91.23\% had no missing questions. Even so, for the MG-CFA we attempted to account for this by utilizing the Full Information Maximum Likelihood (FIML) estimation in conjunction with a large number of bootstraps to obtain accurate estimates of asymptotic errors. However, the questionnaire exhibited extreme proportions of non-response, which is problematic for the multivariate regression techniques as it produces potentially biased results under the assumption that items are missing completely at random. As such, we processed the original responses using the mice package\cite{mice} using 13 imputed data frames with 15 iterations in each dataframe. Regression trees are relatively robust to missing data because all information is not processed simultaneously, but rather sequentially in order of variable importance. As such we did not take any additional steps when conducting that analysis.
+Missing data in survey and test data is an important consideration, and there exist a number of techniques to produce more robust solutions; most work under the Bayesian estimation process for missing data pioneered by Donald Rubin\cite{rubin}. However, within the structure of the exam, missing data was unsurprisingly a rare occurrence: the highest proportion of missing for any item was .008, and 91.23\% had no missing questions. Even so, for the MG-CFA we attempted to account for this by utilizing the Full Information Maximum Likelihood (FIML) estimation in conjunction with a large number of bootstraps to obtain accurate estimates of asymptotic errors. However, the questionnaire exhibited extreme proportions of non-response, which is problematic for the multivariate regression techniques as it produces potentially biased results under the assumption that items are missing completely at random. As such, we processed the original responses using the mice package\cite{mie} using 13 imputed data frames with 15 iterations in each dataframe. Regression trees are relatively robust to missing data because all information is not processed simultaneously, but rather sequentially in order of variable importance. As such we did not take any additional steps when conducting that analysis.
 
 \section{Results}
 \subsection{Exploratory factor analyses}
-Given the preceding information, we examined the Mathematics, English, and Biology sections of the exam using a oblimin rotated factor structure, with the number of latent factors equal to the number of general domains. Factor loadings were calculated using maximum likelihood estimates from the tetrachoric correlation matrices for each subset of items. The psych package was used to calculate the factor structure. Items that loaded higher than .3 on a factor were specified as indicators, and diagrams of each factor can be located in Appendix A.
+Given the preceding information, we examined the Mathematics, English, and Biology sections of the exam using a oblimin rotated factor structure, with the number of latent factors equal to the number of general domains. Factor loadings were calculated using maximum likelihood estimates from the tetrachoric correlation matrices for each subset of items. The psych package was used to calculate the factor structure. Items that loaded higher than .3 on a factor were specified as indicators. See Appendix A for diagrams of the factor structures.
 
 \subsection{MG-CFA}
 As a consequence of the unequal numbers of test takers between Biology and the rest of the science exam options, we chose to run two separate tests for measurement invariance: the first was composed of the total sample on the English and Mathematics, and the second was composed of the Biology testees ($N$=9,239). Diagrams representing the EFA results can be found in Appendix A.
